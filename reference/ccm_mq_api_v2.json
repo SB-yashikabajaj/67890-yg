@@ -6,7 +6,7 @@
   "info": {
     "version": "1.0",
     "title": "Message Queue",
-    "summary": "MQ",
+    "summary": "cMQ",
     "description": "Message Queue Specification"
   },
   "servers": [
