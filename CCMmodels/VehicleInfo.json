@@ -1,0 +1,75 @@
+{
+  "title": "VehicleInfo",
+  "x-stoplight": {
+    "id": "q0o5n0v0gxqyx"
+  },
+  "type": "object",
+  "required": [
+    "vrn",
+    "closedRoadPermitNo",
+    "vehicleType",
+    "vehicleTypeOtherInfo",
+    "chiName",
+    "engName",
+    "chiAddress",
+    "engAddress"
+  ],
+  "properties": {
+    "vrn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "wasan834zcc3i"
+      },
+      "description": "Vehicle Registration Number"
+    },
+    "closedRoadPermitNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "euckzwori94zr"
+      },
+      "description": "Closed Road Permit Number"
+    },
+    "vehicleType": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "niu8798y3p8kg"
+      },
+      "description": "Vehicle Type"
+    },
+    "vehicleTypeOtherInfo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "qwnrepiyz3tqg"
+      },
+      "description": "Vehicle Type Other Information (applicable if Vehicle Type is Other)"
+    },
+    "chiName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "w1biws44h2973"
+      },
+      "description": "Chinese Name"
+    },
+    "engName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "xcomtg05bp5ak"
+      },
+      "description": "Englist Name"
+    },
+    "chiAddress": {
+      "$ref": "#/components/schemas/TswAddress",
+      "x-stoplight": {
+        "id": "pad92wjrowc3i"
+      },
+      "description": "Chinese Address"
+    },
+    "engAddress": {
+      "$ref": "#/components/schemas/TswAddress",
+      "x-stoplight": {
+        "id": "lw5ea1g76c103"
+      },
+      "description": "Englist Address"
+    }
+  }
+}

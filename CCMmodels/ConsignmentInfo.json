@@ -1,0 +1,73 @@
+{
+  "title": "ConsignmentInfo",
+  "x-stoplight": {
+    "id": "7z6kunpzmoeoa"
+  },
+  "type": "object",
+  "required": [
+    "impExpInd",
+    "expectedDate"
+  ],
+  "properties": {
+    "impExpInd": {
+      "x-stoplight": {
+        "id": "7i4ob8s9ot6wm"
+      },
+      "enum": [
+        "I",
+        "E"
+      ],
+      "description": "Import/Export indicator:<br/>\nI - Import<br/>\nE - Export"
+    },
+    "expectedDate": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "qwhva3wxwqwu5"
+      },
+      "description": "Expected date of arrival / Expected date of departure<br/>\nFormat: YYYY-MM-DD",
+      "format": "date",
+      "minLength": 10,
+      "maxLength": 10,
+      "example": "2024-09-30"
+    },
+    "cefaRegNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "5k52rda45tq5j"
+      },
+      "description": "CEFA Registration Number",
+      "maxLength": 70
+    },
+    "cefaDevanningSiteCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "c131jcsx7v168"
+      },
+      "description": "CEFA devanning site code",
+      "maxLength": 70
+    },
+    "cefaExamSiteCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "25g5ez2nja32l"
+      },
+      "description": "CEFA exam site code",
+      "maxLength": 70
+    },
+    "mainlandManifestNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "fvljrjdn9xeau"
+      },
+      "maxLength": 70,
+      "description": "Mainland manifest number"
+    },
+    "totalCifFobValue": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "8hxhdxyofo4bf"
+      },
+      "description": "Total CIF / FOB value"
+    }
+  }
+}

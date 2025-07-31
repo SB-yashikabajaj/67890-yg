@@ -1,0 +1,30 @@
+{
+  "title": "TswDoc",
+  "x-stoplight": {
+    "id": "url7eppy40opb"
+  },
+  "type": "object",
+  "required": [
+    "tswDocId"
+  ],
+  "properties": {
+    "tswDocId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "efsmzv3woe711"
+      },
+      "maxLength": 20,
+      "example": "2495201234",
+      "description": "TSW Document ID"
+    },
+    "version": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "yqdt69q1q3d5h"
+      },
+      "format": "int64",
+      "minimum": 1,
+      "description": "TSW Document version"
+    }
+  }
+}

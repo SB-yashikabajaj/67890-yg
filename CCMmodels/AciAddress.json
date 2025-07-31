@@ -1,0 +1,61 @@
+{
+  "title": "AciAddress",
+  "x-stoplight": {
+    "id": "m42uq3u2f2sra"
+  },
+  "type": "object",
+  "required": [
+    "countryCode",
+    "line"
+  ],
+  "properties": {
+    "cityName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "nja7wlw7ui3ck"
+      },
+      "maxLength": 35,
+      "description": "City name"
+    },
+    "countryCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "0gmkq4gw5o8rp"
+      },
+      "maxLength": 2,
+      "description": "Country/Territory code\n"
+    },
+    "countrySubEntityId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "wrl6nevckcjav"
+      },
+      "maxLength": 9,
+      "description": "SubEntity ID"
+    },
+    "countrySubEntityName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "lodichg6nrysc"
+      },
+      "description": "Country Sub-entity name",
+      "maxLength": 35
+    },
+    "line": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "abr7oe4uombmy"
+      },
+      "description": "Address line",
+      "maxLength": 256
+    },
+    "postCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "mbc86v7ex2ntd"
+      },
+      "maxLength": 17,
+      "description": "Postcode identification"
+    }
+  }
+}

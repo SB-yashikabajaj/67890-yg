@@ -1,0 +1,31 @@
+{
+  "title": "Ubr",
+  "x-stoplight": {
+    "id": "h2b1hdsitz7kn"
+  },
+  "type": "object",
+  "required": [
+    "ubr",
+    "version"
+  ],
+  "properties": {
+    "ubr": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "vfthl2zco4jvw"
+      },
+      "maxLength": 35,
+      "description": "Unique Bundling Reference",
+      "example": "9100204461"
+    },
+    "version": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "s0xxgur5na0ev"
+      },
+      "format": "int64",
+      "minimum": 1,
+      "description": "Bundling version"
+    }
+  }
+}

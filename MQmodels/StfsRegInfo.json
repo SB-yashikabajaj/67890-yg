@@ -1,0 +1,39 @@
+{
+  "title": "StfsRegInfo",
+  "x-stoplight": {
+    "id": "3grlh16tggmlu"
+  },
+  "type": "object",
+  "required": [
+    "refNo"
+  ],
+  "properties": {
+    "refNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "r7q20ahdf7e0q"
+      },
+      "description": "STFS scheme reference number ",
+      "maxLength": 10
+    },
+    "ctoCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "itx8w5r4f7ycu"
+      },
+      "maxLength": 3,
+      "description": "CTO Code"
+    },
+    "actionType": {
+      "x-stoplight": {
+        "id": "3e2q3q9otkinj"
+      },
+      "description": "Action Type:<br/>\nI - Insert<br/>\nU - Update<br/>\nD - Delete",
+      "enum": [
+        "I",
+        "U",
+        "D"
+      ]
+    }
+  }
+}

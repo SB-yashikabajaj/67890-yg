@@ -1,0 +1,75 @@
+{
+  "title": "AgentInfo",
+  "x-stoplight": {
+    "id": "lyl8x393r8uw4"
+  },
+  "type": "object",
+  "required": [
+    "companyTswId"
+  ],
+  "properties": {
+    "companyTswId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "y6yb7kgs4kjup"
+      },
+      "maxLength": 11,
+      "description": "Comapny Tsw ID",
+      "minLength": 10
+    },
+    "chiName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "xc2nmgl5vb9jg"
+      },
+      "maxLength": 70,
+      "description": "Chinese name of the agent"
+    },
+    "engName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "8zrd8kytj47ob"
+      },
+      "maxLength": 120,
+      "description": "English name of the agent"
+    },
+    "brn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "mpkdmk06oblq7"
+      },
+      "maxLength": 35,
+      "description": "Business Registration Number "
+    },
+    "chiAddress": {
+      "$ref": "./TswAddress.json",
+      "x-stoplight": {
+        "id": "1hydectr0t8ch"
+      },
+      "description": "Chinese Address"
+    },
+    "engAddress": {
+      "$ref": "./TswAddress.json",
+      "x-stoplight": {
+        "id": "1g5yemjszd50j"
+      },
+      "description": "English Address"
+    },
+    "contactNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ow8fhr37vyfge"
+      },
+      "maxLength": 50,
+      "description": "Contact No."
+    },
+    "faxNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "rvgm3092640px"
+      },
+      "maxLength": 50,
+      "description": "Fax No."
+    }
+  }
+}

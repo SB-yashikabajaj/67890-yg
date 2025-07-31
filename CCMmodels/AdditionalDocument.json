@@ -1,0 +1,85 @@
+{
+  "title": "AdditionalDocument",
+  "x-stoplight": {
+    "id": "3yrd6gx1gxchl"
+  },
+  "type": "object",
+  "required": [
+    "docItemNo"
+  ],
+  "properties": {
+    "docItemNo": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "28lbrni4ul1j4"
+      },
+      "description": "Item number of document",
+      "example": 1,
+      "maximum": 99
+    },
+    "refNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "jdcs385pgnn73"
+      },
+      "description": "Additional Document Reference Number<br/>\nLicence/notification/supporting documents number",
+      "example": "P39228401",
+      "maxLength": 70
+    },
+    "issuerCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "lqgxtdu1bc856"
+      },
+      "description": "Additional Document issuer code",
+      "maxLength": 17
+    },
+    "typeCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "3qacshg6lq4ux"
+      },
+      "description": "Additional Document type",
+      "maxLength": 3
+    },
+    "brandName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "s8rqrgia2zbr4"
+      },
+      "description": "Brand Name",
+      "maxLength": 35
+    },
+    "partModelNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "leg6pwoaxggs6"
+      },
+      "description": "Part/Model Number",
+      "maxLength": 25
+    },
+    "matchedInd": {
+      "x-stoplight": {
+        "id": "0wz1sx2p9y3tm"
+      },
+      "enum": [
+        "Y",
+        "N"
+      ],
+      "description": "Matched indicator of TSW1/TSW2 licence/permit<br/>\nY - Matched<br/>\nN - Not Matched"
+    },
+    "tswDocList": {
+      "x-stoplight": {
+        "id": "obqrsovcmnj6v"
+      },
+      "description": "TSW Document List",
+      "type": "array",
+      "items": {
+        "$ref": "./TswDoc.json",
+        "x-stoplight": {
+          "id": "13hx0yndhtffr"
+        }
+      }
+    }
+  }
+}

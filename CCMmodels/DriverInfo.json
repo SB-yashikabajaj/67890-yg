@@ -1,0 +1,109 @@
+{
+  "title": "DriverInfo",
+  "x-stoplight": {
+    "id": "ywnnhhff2y56r"
+  },
+  "type": "object",
+  "examples": [
+    {
+      "tswId": "P439283920",
+      "name": "陳大文"
+    }
+  ],
+  "required": [
+    "tswId"
+  ],
+  "properties": {
+    "tswId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "p22k4oku2cmm0"
+      },
+      "maxLength": 10,
+      "minLength": 10,
+      "example": "P439283920",
+      "description": "TSW ID"
+    },
+    "name": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "h3ray4fkqa9c3"
+      },
+      "maxLength": 70,
+      "description": "Name of the driver"
+    },
+    "driverId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "41hkja8ywy8x8"
+      },
+      "description": "Driver ID",
+      "maxLength": 35
+    },
+    "idType": {
+      "x-stoplight": {
+        "id": "p7b88ch8bovii"
+      },
+      "enum": [
+        "C",
+        "H"
+      ],
+      "description": "Driver ID type.<br/>\n\nC - China, PRC exit-entry permit number <br/>\nH - HKID\n"
+    },
+    "hkDrivingLicenceNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "jbcd60dopaour"
+      },
+      "maxLength": 20,
+      "description": "HKSAR driving licence number."
+    },
+    "phoneNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "iobf1bmxfozir"
+      },
+      "maxLength": 50,
+      "description": "Phone No."
+    },
+    "faxNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ajjs0f4w07jnt"
+      },
+      "description": "Fax No.",
+      "maxLength": 50
+    },
+    "email": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "wjrm5fkrgyn4q"
+      },
+      "maxLength": 320,
+      "description": "Email"
+    },
+    "chiAddress": {
+      "$ref": "./TswAddress.json",
+      "x-stoplight": {
+        "id": "utpvfs9c8fsey"
+      },
+      "description": "Chinese Address"
+    },
+    "engAddress": {
+      "$ref": "./TswAddress.json",
+      "x-stoplight": {
+        "id": "fjond4wac5uu5"
+      },
+      "description": "English Address"
+    },
+    "closedRoadPermitNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "pw1bartgile90"
+      },
+      "maxLength": 11,
+      "minLength": 11,
+      "description": "HK Closed Road Permit Number"
+    }
+  }
+}

@@ -1,0 +1,796 @@
+x-headmatter:
+  readable_by:
+    - ALLSPECS
+    - SHOPPING
+x-stoplight:
+  id: gbd4azwnfe0qo
+x-category:
+  - SHOPPING
+openapi: 3.1.0
+info:
+  version: 7.0.0
+  title: Fetch Cruises
+  description: 'The Power Shopping APIs are engineered for optimal performance through effective cache management. These APIs feature endpoints for retrieving products with basic filters, aimed at improving the shopping experience.'
+servers:
+  - url: KONG_DATAPLANE_URL
+    description: Dataplane URL
+paths:
+  /v7/rest/cruises/fetch:
+    post:
+      tags:
+        - Fetch cruises
+      summary: Fetch cruises
+      description: 'This API allows basic filtering by cruise definition, itinerary, and ship setup, but does not support filters with POS and passenger details. Response will include cruise itinerary details with controlled flag support, along with Cruise Catalogue information and Applicable Packages.'
+      operationId: fetchCruises
+      parameters:
+        - name: x-auth-channel
+          in: header
+          description: Channel to connect the API
+          required: true
+          schema:
+            type: string
+        - name: x-auth-token
+          in: header
+          description: Token string of the channel.
+          required: true
+          schema:
+            type: string
+        - name: pagination
+          in: query
+          description: |-
+            Pagination is triggered when the number of records exceeds the predefined limit of 100 to efficiently manage large datasets. When this happens, the response is marked as partial using the PartialResponse flag set to true. The response includes Pagination metadata with two modified timestamps: FromDateTime (start) and ToDateTime (end) of the current record set.
+            To fetch the next set of records, pass the ToDateTime in the response as the from_date_time in your next request parameter. Repeat this until PartialResponse is false in the response, indicating all records have been retrieved.
+          required: false
+          schema:
+            type: string
+            examples:
+              - '{"from_date_time": "2025-04-04T08:53:01.895Z"}'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FetchCruiseRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/FetchCruiseResponse'
+        '422':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                DepartureDateValidationError01:
+                  $ref: '#/components/examples/DepartureDateValidationError01Example'
+                DepartureDateValidationError02:
+                  $ref: '#/components/examples/DepartureDateValidationError02Example'
+                CruiseLengthValidationError01:
+                  $ref: '#/components/examples/CruiseLengthValidationError01Example'
+                CruiseLengthValidationError02:
+                  $ref: '#/components/examples/CruiseLengthValidationError02Example'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      x-stoplight:
+        id: 8y1aokm9u296y
+tags:
+  - name: Fetch cruises
+    description: Fetch cruises APIs
+components:
+  responses:
+    FetchCruiseResponse:
+      description: Fetch Cruise Success Response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FetchCruiseResponse'
+    InternalServerError:
+      description: Returned on unhandled code exception
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+  examples:
+    DepartureDateValidationError01Example:
+      summary: Departure Date Validation Error 01
+      value:
+        ErrorResponse:
+          - Code: ITRVL_CRUISE_SAILING_LIST_SYS_00001
+            Message: The departure start date must not be later than the end date.
+            Severity: ERROR
+            CorrelationId: f2d39f5f5e432f4dd34520d63923808c-2131397101
+    DepartureDateValidationError02Example:
+      summary: Departure Date Validation Error 02
+      value:
+        ErrorResponse:
+          - Code: ITRVL_CRUISE_SAILING_LIST_SYS_00003
+            Message: 'The DepartureDate.Start and DepartureDate.End fields are conditional. If you provide one, you must also provide the other.'
+            Severity: ERROR
+            CorrelationId: f2d39f5f5e432f4dd34520d63923808c-2131397101
+    CruiseLengthValidationError01Example:
+      summary: Cruise Length Validation Error 01
+      value:
+        ErrorResponse:
+          - Code: ITRVL_CRUISE_SAILING_LIST_SYS_00002
+            Message: Cruise Length from value cannot be greater than to value.
+            Severity: ERROR
+            CorrelationId: f2d39f5f5e432f4dd34520d63923808c-2131397101
+    CruiseLengthValidationError02Example:
+      summary: Cruise Length Validation Error 02
+      value:
+        ErrorResponse:
+          - Code: ITRVL_CRUISE_SAILING_LIST_SYS_00004
+            Message: 'The CruiseLength.From and CruiseLength.To fields are conditional. If you provide one, you must also provide the other.'
+            Severity: ERROR
+            CorrelationId: f2d39f5f5e432f4dd34520d63923808c-2131397101
+    FromTimeValidationError02Example:
+      summary: AvailabilityStatus Validation Error
+      value:
+        ErrorResponse:
+          - Code: ITRVL_CRUISE_SAILING_LIST_SYS_00008
+            Message: Requested FromTime cannot be set to a future date or time.
+            Severity: ERROR
+            CorrelationId: f2d39f5f5e432f4dd34520d63923808c-2131397101
+  schemas:
+    FetchCruiseRequest:
+      type: object
+      properties:
+        FetchCruiseRQ:
+          $ref: '#/components/schemas/FetchCruiseSearch'
+      x-stoplight:
+        id: 6nj1bxu523gy5
+    FetchCruiseSearch:
+      type: object
+      properties:
+        CruiseSearch:
+          $ref: '#/components/schemas/CruiseSearch'
+        AdditionalParameters:
+          $ref: '#/components/schemas/AdditionalParameters'
+      x-stoplight:
+        id: j5qaumgtcd9jm
+    CruiseSearch:
+      type: object
+      properties:
+        DepartureDate:
+          $ref: '#/components/schemas/DepartureDate'
+        ShipCodes:
+          type: array
+          description: List of ship codes
+          examples:
+            - - CE
+          items:
+            type: string
+        CruiseCodes:
+          type: array
+          description: List of cruise codes
+          examples:
+            - - CE07250208
+              - CE07250801
+          items:
+            type: string
+        CruiseTypes:
+          type: array
+          description: List of Cruise Types
+          examples:
+            - - DESTINATION
+          items:
+            type: string
+        ItineraryCodes:
+          type: array
+          description: List of Itinerary codes
+          examples:
+            - - 3N-SIN-SIN
+          items:
+            type: string
+        ShipClassCodes:
+          type: array
+          description: List of Ship Class codes
+          examples:
+            - - HARMONY
+          items:
+            type: string
+        CruiseLengthRange:
+          $ref: '#/components/schemas/CruiseLength'
+        DeparturePorts:
+          type: array
+          description: List of Cruise Departure Ports
+          examples:
+            - - SIN
+          items:
+            type: string
+        ArrivalPorts:
+          type: array
+          description: List of Cruise Arrival Ports
+          examples:
+            - - SIN
+          items:
+            type: string
+        Regions:
+          type: array
+          description: List of region codes
+          examples:
+            - - SEASIA
+          items:
+            type: string
+        DeparturePortCountries:
+          type: array
+          description: List of Departure Country codes
+          examples:
+            - - USA
+          items:
+            type: string
+        ArrivalPortCountries:
+          type: array
+          description: List of Arrival Country codes
+          examples:
+            - - USA
+          items:
+            type: string
+        PortsOfCall:
+          type: array
+          description: List of visiting ports. A port of call is a place where a ship stops during a journey.
+          examples:
+            - - SHA
+          items:
+            type: string
+        CruiseThemes:
+          type: array
+          description: List of Cruise Themes
+          examples:
+            - - DISNEY
+          items:
+            type: string
+        OnboardLanguages:
+          type: array
+          description: List of Languages supported on-board
+          examples:
+            - - EN
+          items:
+            type: string
+        BrandCodes:
+          type: array
+          description: List of Brand codes
+          examples:
+            - - SSC
+              - CEL
+          items:
+            type: string
+      x-stoplight:
+        id: uo0ka79ys9201
+    DepartureDate:
+      type: object
+      properties:
+        Start:
+          type: string
+          description: This attribute specifies the beginning of the date range for cruise departures.
+          format: date
+          examples:
+            - '2025-01-01T00:00:00.000Z'
+        End:
+          type: string
+          description: This attribute specifies the ending of the date range for cruise departures.
+          format: date
+          examples:
+            - '2025-12-31T00:00:00.000Z'
+      x-stoplight:
+        id: di6w90lipequg
+    CruiseLength:
+      type: object
+      properties:
+        From:
+          type: integer
+          description: This attribute specifies the beginning of the range for Cruise Length Range
+          examples:
+            - 1
+        To:
+          type: integer
+          description: This attribute specifies the ending of the range for Cruise Length Range
+          examples:
+            - 10
+      x-stoplight:
+        id: r5vh9x14uw5px
+    AdditionalParameters:
+      type: object
+      properties:
+        IncludeItinerary:
+          type: boolean
+          description: 'If the value is set to true, the cruise itinerary details will be included in the response. If not provided system will not return itinerary details.'
+          default: false
+        IncludePackage:
+          type: boolean
+          description: 'If the value is set to false, then cruise only sailings will be returned. If not provided system will include package details.'
+          default: true
+      x-stoplight:
+        id: ny46920vhek9q
+    ErrorResponse:
+      type: object
+      title: ErrorResponse
+      description: Object returned when the API processing fails.
+      properties:
+        Errors:
+          type: array
+          title: Errors
+          description: List of errors encountered while processing the request.
+          items:
+            type: object
+            title: Error
+            properties:
+              Code:
+                type: string
+                description: Error code.
+                examples:
+                  - SYS_005
+              Message:
+                type: string
+                description: Error message.
+                examples:
+                  - System Error Occurred
+              Severity:
+                type: string
+                enum:
+                  - ERROR
+                  - WARN
+                  - INFO
+                  - FINE
+                description: Severity of the error.
+              CorrelationId:
+                type: string
+                description: This is a reference to the transaction id of the error.
+                examples:
+                  - f2d39f5f5e432f4dd34520d63923808c-2131397101
+      x-stoplight:
+        id: yw93xs7tf12l5
+    FetchCruiseResponse:
+      type: object
+      properties:
+        FetchCruiseRS:
+          $ref: '#/components/schemas/FetchCruiseRS'
+      x-stoplight:
+        id: snh5m0gxf251a
+    FetchCruiseRS:
+      type: object
+      properties:
+        CruiseProducts:
+          type: array
+          items:
+            $ref: '#/components/schemas/FetchCruiseProduct'
+        ItineraryDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItineraryResponse'
+        Pagination:
+          $ref: '#/components/schemas/Pagination'
+        Messages:
+          type: array
+          title: Messages
+          description: Messages returned while processing the request.
+          items:
+            type: object
+            title: Message
+            properties:
+              Code:
+                type: string
+                description: Unique identifier for the message.
+                examples:
+                  - ITRVL_CRUISE_AVAIL_SYS_00001
+              Message:
+                type: string
+                description: Message returned while processing the request.
+                examples:
+                  - There are no cruises matching the search criteria. Please try modifying the search.
+      x-stoplight:
+        id: 0z19u5pv724dz
+    FetchCruiseProduct:
+      type: object
+      properties:
+        CruiseCode:
+          type: string
+          description: This attribute holds the cruise code
+          examples:
+            - CE07250208
+        MasterVoyage:
+          type: boolean
+          description: This attribute will specify if the cruise is a Master Cruise or not
+          examples:
+            - false
+        CruiseInfo:
+          $ref: '#/components/schemas/FetchCruiseInfo'
+        ApplicablePackages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageCruiseDefinition'
+      x-stoplight:
+        id: kjdtmclfxbznb
+    FetchCruiseInfo:
+      type: object
+      properties:
+        ShipCode:
+          type: string
+          description: This attribute holds the cruise Ship identifier
+          examples:
+            - CE
+        ItineraryCode:
+          type: string
+          description: This attribute holds the Itinerary identifier
+          examples:
+            - 3N-SIN-SIN
+        ItineraryMetaInfo:
+          type: array
+          description: This attribute holds the Itinerary Meta Info details
+          items:
+            $ref: '#/components/schemas/ItineraryMetaInfo'
+        PortsOfCall:
+          type: array
+          description: This attribute holds the ports of visit.
+          examples:
+            - - SIN
+          items:
+            type: string
+        CruiseLength:
+          type: integer
+          description: This attribute holds the number of nights of the cruise
+          examples:
+            - 7
+        BrandCode:
+          type: string
+          description: This attribute hold the brand code corresponding to the Cruise
+          examples:
+            - SSC
+        Regions:
+          type: array
+          description: This node holds the region code
+          examples:
+            - - SEASIA
+          items:
+            type: string
+        DeparturePortCode:
+          type: string
+          description: This attribute holds the Departure Port Code
+          examples:
+            - SIN
+        DepartureDate:
+          type: string
+          description: This holds the package Departure Date.
+          format: date
+          examples:
+            - '2031-12-09'
+        DepartureTime:
+          type: string
+          description: This holds the package DepartureTime.
+          format: datetime
+          examples:
+            - '2031-12-09T09:30'
+        DeparturePortCountryCode:
+          type: string
+          description: Country Code of the corresponding Port
+          examples:
+            - SG
+        ArrivalPortCode:
+          type: string
+          description: This attribute holds the Arrival Port Code
+          examples:
+            - SIN
+        ArrivalDate:
+          type: string
+          description: This attribute holds the Arrival Date
+          format: date
+          examples:
+            - '2031-12-09'
+        ArrivalTime:
+          type: string
+          description: This attribute holds the Arrival Time
+          format: datetime
+          examples:
+            - '2031-12-09T09:30'
+        ArrivalPortCountryCode:
+          type: string
+          description: Country Code of the corresponding Port
+          examples:
+            - SG
+        ShipClassCode:
+          type: string
+          description: Indicates the Class of the Ship to which this Cruise belongs to
+          examples:
+            - HARMONY
+        CruiseType:
+          type: string
+          description: This attribute holds the Type of Cruise
+          examples:
+            - DESTINATION
+        CruiseThemes:
+          type: array
+          description: This attribute holds the list of Cruise Themes
+          examples:
+            - - DISNEY
+          items:
+            type: string
+        OnboardLanguages:
+          type: array
+          description: List of Languages supported on-board
+          examples:
+            - - EN
+          items:
+            type: string
+      x-stoplight:
+        id: z4kmfktpl4fpk
+    ItineraryMetaInfo:
+      type: object
+      properties:
+        SequenceNumber:
+          type: integer
+          description: This attribute holds the sequence number
+          examples:
+            - 1
+        DayNumber:
+          type: integer
+          description: This attribute holds the day number
+          examples:
+            - 1
+        ItineraryDate:
+          type: string
+          description: This attribute holds the itinerary date value
+          format: date
+          examples:
+            - '2025-01-01T00:00:00.000Z'
+      x-stoplight:
+        id: 5hflpt6ctsnrk
+    PackageCruiseDefinition:
+      type: object
+      properties:
+        PackageCode:
+          type: string
+          description: This holds the unique package code
+          examples:
+            - CE07250208PKG
+        CategoryCode:
+          type: string
+          description: This holds the package category associated applicable for this cruise.
+          examples:
+            - CE07250208PKG
+        DepartureDate:
+          type: string
+          description: This holds the package Departure Date.
+          format: date
+        ItineraryCode:
+          type: string
+          description: This holds the itinerary code.
+          examples:
+            - CE07250208PKG
+        Schedule:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSchedule'
+        Markets:
+          type: array
+          description: This node holds the applicable market codes. If empty it means it is applicable for all the markets.
+          examples:
+            - - MEX
+          items:
+            type: string
+      x-stoplight:
+        id: 2qtyxof4qtae7
+    PackageSchedule:
+      type: object
+      properties:
+        StartDay:
+          type: integer
+          description: Starting day number of the itinerary item.
+          examples:
+            - 1
+        EndDay:
+          type: integer
+          description: Ending day number of the itinerary item.
+          examples:
+            - 6
+        SequenceWithinDayNumber:
+          type: integer
+          description: The sequence order number for each tour activity within the day.
+          examples:
+            - 1
+        ItemType:
+          type: string
+          enum:
+            - CRU
+            - AIR
+            - HTL
+            - ACT
+            - TRF
+          description: Holds the itinerary item product type.
+        ItemCode:
+          type: string
+          description: Holds the itinerary item code in the system.
+          examples:
+            - CE07250208
+        LeadItem:
+          type: boolean
+          description: Indicated if this itinerary item is the Lead item in the package or not.
+          examples:
+            - true
+        Mandatory:
+          type: boolean
+          description: Indicates if this itinerary item is a mandatory item in the package or not.
+          examples:
+            - true
+      x-stoplight:
+        id: uqptan3t5bo9r
+    ItineraryResponse:
+      type: object
+      properties:
+        ItineraryCode:
+          type: string
+          description: Unique identifier for the itinerary.
+          examples:
+            - 3N-SIN-SIN
+        Regions:
+          type: array
+          description: List of Region(s) associated to Itinerary
+          examples:
+            - - SEASIA
+          items:
+            type: string
+        ItineraryLength:
+          type: integer
+          description: This field indicates the Number of Days of the Itinerary
+          examples:
+            - 7
+        DeparturePort:
+          type: string
+          description: Identifier for the Starting Port from which the itinerary departs.
+          examples:
+            - SIN
+        ArrivalPort:
+          type: string
+          description: Identifier for the Ending Port of the itinerary.
+          examples:
+            - SIN
+        PreCruiseOvernightStay:
+          type: boolean
+          description: Indicate whether pre cruise overnight stay is available aboard before departure from start port.
+          examples:
+            - true
+        PostCruiseOvernightStay:
+          type: boolean
+          description: Indicate whether post cruise overnight stay is available aboard after arrival at the end port.
+          examples:
+            - true
+        EmbarkationTime:
+          type: string
+          description: Time of embarkation when passengers get onboard at the starting port.
+          examples:
+            - '10:30'
+        DisembarkationTime:
+          type: string
+          description: Time of disembarkation when passengers disembark at the end port.
+          examples:
+            - '10:30'
+        NumberOfOverseasNights:
+          type: integer
+          description: Number of nights spent in international territory during the itinerary. This is used to split the total cruise fare into domestic and international portion for calculating taxes.
+          examples:
+            - 2
+        DepartureDay:
+          type: integer
+          description: 'Departure day offset from the day of embarkation for itineraries having pre cruise stay. For example,when the departure is after one night pre cruise stay, this value will be returned as 2. This is not sent if there is no pre-cruise stay.'
+          examples:
+            - 1
+        DepartureTime:
+          type: string
+          description: Departure time from the start port for itineraries having pre cruise stay.This is not sent if there is no pre-cruise stay as the departure time will be same as embarkation time.
+          examples:
+            - '10:30'
+        ArrivalDay:
+          type: integer
+          description: Arrival day offset for the end port from the day of embarkation for itineraries having post cruise stay. This is not sent if there is no pre-cruise stay.
+          examples:
+            - 6
+        ArrivalTime:
+          type: string
+          description: Arrival time at the end port for itineraries having post cruise stay. This is not sent if there is no post-cruise stay as the arrival time will be same as disembarkation time.
+          examples:
+            - '10:30'
+        DaySchedule:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItineraryPortResponse'
+      x-stoplight:
+        id: 4y3y6mgu06y2d
+    ItineraryPortResponse:
+      type: object
+      properties:
+        SequenceNumber:
+          type: integer
+          description: 'Order of appearance of the itinerary segment. If the same port repeats during the itinerary or if there are multiple ports on the same day, it will be listed with a separate sequence numbers.'
+          examples:
+            - 1
+        DayNumber:
+          type: integer
+          description: The day offset from the embarkation day of the itinerary.
+          examples:
+            - 1
+        PortCode:
+          type: string
+          description: This attribute holds the Port code
+          examples:
+            - SIN
+        DepartureTime:
+          type: string
+          description: 'Departure time from this port in local time zone. This will be empty for the the days spent at sea, for the ports where ship is anchored for the day and the last port of the itinerary.'
+          examples:
+            - '11:30'
+        ArrivalTime:
+          type: string
+          description: 'Arrival time at this port in local time zone. This will be empty for the starting port, days spent at sea and the days on which ship is not arriving at the port.'
+          examples:
+            - '11:30'
+        TenderPort:
+          type: boolean
+          description: Specifies whether the port is a tender port. At such ports the ship cannot dock at the pier and passengers are taken to shore by a tender boat.
+          examples:
+            - true
+        DeparturePier:
+          type: string
+          description: Pier from which the ship departs at this port on the departure date.
+          examples:
+            - Choke Aree Pontoons (PTB)
+        ArrivalPier:
+          type: string
+          description: Pier at which the ship arrives at this port on the arrival date.
+          examples:
+            - Phuket Custom Marine Jetty
+        PortCountryCode:
+          type: string
+          description: Country code of the port
+          examples:
+            - MY
+        AtSea:
+          type: boolean
+          description: Identifier when 'true' indicates that the vessel is sailing at sea for the entire day without any port of call or cruising by locations.Identifier is not sent if there is atleast one port is covered on this day.
+          examples:
+            - true
+      x-stoplight:
+        id: q0cjm6hvednbm
+    Pagination:
+      type: object
+      properties:
+        FromDateTime:
+          type: string
+          description: The starting date and time which represents the beginning date and time of changes captured
+          format: datetime
+          examples:
+            - '2025-01-01T12:00:00.000Z'
+        ToDateTime:
+          type: string
+          description: The ending date and time of changes captured
+          format: datetime
+          examples:
+            - '2025-12-31T12:00:00.000Z'
+        PartialResponse:
+          type: boolean
+          description: Indicates if the response is a partial response
+          examples:
+            - false
+      x-stoplight:
+        id: 4lz2sdpsrixmw
+    InternalServerError:
+      $ref: '#/components/schemas/ErrorResponse'
+      x-stoplight:
+        id: l3i715xopr7a2
+    UnauthorizedError:
+      type: object
+      properties:
+        StatusCode:
+          type: integer
+          examples:
+            - 500
+        Message:
+          type: string
+          examples:
+            - Internal Server Error
+      x-stoplight:
+        id: ruptha3b42n5l

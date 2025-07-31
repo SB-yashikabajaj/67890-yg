@@ -1,0 +1,65 @@
+{
+  "title": "TswAddress",
+  "x-stoplight": {
+    "id": "gp6aep0ucw6m6"
+  },
+  "type": "object",
+  "properties": {
+    "cityName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "i8kuootzxd4sz"
+      },
+      "maxLength": 35,
+      "description": "City name"
+    },
+    "countryCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "wbbt5ltl0zor1"
+      },
+      "maxLength": 2,
+      "description": "Country/Territory code\n"
+    },
+    "countrySubEntityId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ak1x359uhor4d"
+      },
+      "maxLength": 9,
+      "description": "SubEntity ID"
+    },
+    "countrySubEntityName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "q5uf5mg5mmdsb"
+      },
+      "description": "Country Sub-entity name",
+      "maxLength": 35
+    },
+    "line1": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "gekamvsw99qs7"
+      },
+      "description": "Line 1 of the address<br>\nIf specified, this field must not be blank or null.",
+      "maxLength": 150
+    },
+    "line2": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "grcfdlnua995s"
+      },
+      "description": "Line 2 of the address",
+      "maxLength": 62
+    },
+    "postCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "z7dm01s2p7w4a"
+      },
+      "maxLength": 9,
+      "description": "Postcode identification"
+    }
+  }
+}

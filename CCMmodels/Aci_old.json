@@ -1,0 +1,99 @@
+{
+  "title": "ACI",
+  "x-stoplight": {
+    "id": "1h4m7atp7vfee"
+  },
+  "type": "object",
+  "required": [
+    "submitterInfo",
+    "advanceCargoInfo",
+    "traderInfo",
+    "consignorInfo",
+    "consigneeInfo",
+    "consignmentInfo",
+    "goodsItemInfo",
+    "submittedDatetime"
+  ],
+  "properties": {
+    "submitterInfo": {
+      "$ref": "./SubmitterInfo.json",
+      "x-stoplight": {
+        "id": "651ae637mp12a"
+      },
+      "description": "Submitter Information"
+    },
+    "advanceCargoInfo": {
+      "$ref": "./AdvanceCargoInfo.json",
+      "x-stoplight": {
+        "id": "jx2b160rprzby"
+      },
+      "description": "Advance Cargo Information"
+    },
+    "traderInfo": {
+      "$ref": "./TraderInfo.json",
+      "x-stoplight": {
+        "id": "ff05xs7s11xro"
+      },
+      "description": "Trader Information"
+    },
+    "consignorInfo": {
+      "$ref": "./ConsignorInfo.json",
+      "x-stoplight": {
+        "id": "rabksbqs7s9kj"
+      },
+      "description": "Consignor Information"
+    },
+    "consigneeInfo": {
+      "$ref": "./ConsigneeInfo.json",
+      "x-stoplight": {
+        "id": "uluh52rtyvzoz"
+      },
+      "description": "Consignne Information"
+    },
+    "consignmentInfo": {
+      "$ref": "./ConsignmentInfo.json",
+      "x-stoplight": {
+        "id": "c7any4t2t77fj"
+      },
+      "description": "Consignment Information"
+    },
+    "goodsItemInfo": {
+      "x-stoplight": {
+        "id": "9ug1dvlytqftw"
+      },
+      "description": "Consignment Item Information",
+      "type": "array",
+      "items": {
+        "$ref": "./GoodsItemInfo.json",
+        "x-stoplight": {
+          "id": "dlg5wnydqg00t"
+        }
+      }
+    },
+    "transhipmentInfo": {
+      "$ref": "./TranshipmentInfo.json",
+      "x-stoplight": {
+        "id": "lr9ei968f9lzg"
+      },
+      "description": "Transhipment Information "
+    },
+    "transportEquipment": {
+      "$ref": "./TransportEquipment.json",
+      "x-stoplight": {
+        "id": "52pubv8jnazfa"
+      },
+      "description": "Transport equipment"
+    },
+    "submittedDatetime": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "tctjscpqg8gag"
+      },
+      "minLength": 19,
+      "maxLength": 19,
+      "example": "2024-08-25T19:30:00",
+      "format": "date-time",
+      "description": "Submission datetime"
+    }
+  }
+}

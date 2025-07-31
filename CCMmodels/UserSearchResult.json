@@ -1,0 +1,27 @@
+{
+  "title": "UserSearchResult",
+  "x-stoplight": {
+    "id": "gzynpkoqb2yoj"
+  },
+  "type": "object",
+  "properties": {
+    "user": {
+      "$ref": "../MQmodels/TswAccountUser.json",
+      "x-stoplight": {
+        "id": "wtyhbsz16l93o"
+      }
+    },
+    "company": {
+      "$ref": "./CompanyInfo.json",
+      "x-stoplight": {
+        "id": "moc756ix9uid2"
+      }
+    },
+    "subscription": {
+      "$ref": "./BundlingSubscriptionInfo.json",
+      "x-stoplight": {
+        "id": "ntbgmbz9veaz5"
+      }
+    }
+  }
+}

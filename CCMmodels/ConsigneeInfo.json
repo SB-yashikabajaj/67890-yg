@@ -1,0 +1,59 @@
+{
+  "title": "ConsigneeInfo",
+  "x-stoplight": {
+    "id": "cu9jf31oi0qz0"
+  },
+  "type": "object",
+  "required": [
+    "name",
+    "nameLangInd",
+    "address",
+    "addrLangInd"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Consignee Name",
+      "x-stoplight": {
+        "id": "tqpbh06di3tz4"
+      }
+    },
+    "nameLangInd": {
+      "x-stoplight": {
+        "id": "vxuoykydho8eq"
+      },
+      "enum": [
+        "E",
+        "T",
+        "S"
+      ],
+      "description": "Name language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+    },
+    "address": {
+      "$ref": "./AciAddress.json",
+      "description": "Address",
+      "x-stoplight": {
+        "id": "igyn4jriyh26h"
+      }
+    },
+    "addrLangInd": {
+      "x-stoplight": {
+        "id": "ea401hl0ycxvs"
+      },
+      "enum": [
+        "E",
+        "T",
+        "S"
+      ],
+      "description": "Address language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+    },
+    "brn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "t5wc98o1k7umu"
+      },
+      "maxLength": 35,
+      "description": "Business Registration Number (applicable to Phase 3B and after)"
+    }
+  }
+}

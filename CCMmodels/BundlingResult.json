@@ -1,0 +1,62 @@
+{
+  "title": "BundlingResult",
+  "x-stoplight": {
+    "id": "x6zqzpx27kahv"
+  },
+  "allOf": [
+    {
+      "required": [
+        "ccrnList",
+        "bundlingCode"
+      ],
+      "properties": {
+        "earliestCrossingTime": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "rjl05nczacoxv"
+          },
+          "description": "Earliest crossing time",
+          "format": "date-time",
+          "example": "2024-08-15T15:35:00",
+          "maxLength": 19,
+          "minLength": 19
+        },
+        "ccrnList": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "qysclhv0j8und"
+          },
+          "description": "List of CCRNs included in the bundling",
+          "items": {
+            "$ref": "./Ccrn.json",
+            "x-stoplight": {
+              "id": "9wggb1794ppuy"
+            }
+          }
+        },
+        "bundlingCode": {
+          "x-stoplight": {
+            "id": "1hstzvj3ys3zc"
+          },
+          "description": "Response Information Code:<br/>\n\n11 - The bundling of CCRN(s) with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 30 minutes after successful bundling. <br/> \n12 - The bundling of CCRN(s)with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 5 minutes after successful bundling. <br/>\n13 - The amendment of bundling of CCRN(s) with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 30 minutes after successful amendment of bundling. <br/>\n14 - The amendment of bundling of CCRN(s)with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 5 minutes after successful bundling.",
+          "enum": [
+            11,
+            12,
+            13,
+            14
+          ]
+        }
+      },
+      "x-stoplight": {
+        "id": "ar8mq8c3fbp1q"
+      }
+    },
+    {
+      "$ref": "./Ubr.json",
+      "x-stoplight": {
+        "id": "b4z4q4xvullsm"
+      }
+    }
+  ],
+  "type": "object"
+}

@@ -1,0 +1,83 @@
+title: Employee
+x-stoplight:
+  id: i625kcdzvb4sp
+type: object
+description: Represents an employee of a business
+properties:
+  personId:
+    type: string
+    x-stoplight:
+      id: 1jb2lnmhodw56
+    format: uuid
+    description: The person identifier
+    readOnly: true
+  businessId:
+    type: string
+    format: uuid
+    x-stoplight:
+      id: aamurq6opm65h
+    description: The business identifier
+    readOnly: true
+  active:
+    type: boolean
+    description: A value indicating if the employee is enabled in the system
+    x-stoplight:
+      id: ayrb56jlweo2c
+    default: true
+  title:
+    type: string
+    description: 'The employee''s title, such as `Vice President`'
+    x-stoplight:
+      id: nrbzf1jnf07iq
+  userType:
+    type: string
+    description: 'Used to identify the relationship between the organization and the employee. Typical values used might be `Contractor`, `Employee`, `Intern`, `Temp`, `External`, or `Unknown`, but any value may be used.'
+    x-stoplight:
+      id: gvviwz99cx48k
+  employeeNumber:
+    type: string
+    description: 'Numeric or alphanumeric identifier assigned to the employee, typically based on order of hire or association with an organization'
+    x-stoplight:
+      id: 9ora1vi0xdc5l
+  costCenter:
+    type: string
+    description: Identifies the name of a cost center assigned to the employee
+    x-stoplight:
+      id: 5b62ch9gcpaef
+  organization:
+    type: string
+    description: Identifies the name of an organization assigned to the employee
+    x-stoplight:
+      id: 1hb5l9h16rf24
+  division:
+    type: string
+    description: Identifies the name of a division assigned to the employee
+    x-stoplight:
+      id: ybbo1thqc62x3
+  department:
+    type: string
+    description: Identifies the name of a department assigned to the employee
+    x-stoplight:
+      id: pey7prtbpw7gy
+  managerId:
+    type: string
+    format: uuid
+    description: The employee's manager's identifier
+    x-stoplight:
+      id: l4yjosbrdgnvr
+  hireDate:
+    type: string
+    x-stoplight:
+      id: 1snkx24r9cs9x
+    format: date
+    description: The employee's hire date
+  terminationDate:
+    type: string
+    x-stoplight:
+      id: wvnhpuocwg0zq
+    format: date
+    description: The employee's separation date
+required:
+  - personId
+  - businessId
+  - active

@@ -1,0 +1,123 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "7mdejusuccwvw"
+  },
+  "info": {
+    "title": "CCM-RT-API",
+    "version": "1.0",
+    "summary": "",
+    "description": "CCM RT API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/report"
+    }
+  ],
+  "paths": {
+    "/report-server/callback": {
+      "post": {
+        "summary": "Callback",
+        "operationId": "callback",
+        "responses": {
+          "200": {
+            "description": "Report history inserted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Required Information"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddReportHistoryRequest"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "reportId": "R-CE-005",
+                    "errorIndicator": false,
+                    "errorReason": null,
+                    "reportRequestId": "12345"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Post the necessary fields for the API to insert a report history record"
+        },
+        "description": "Add a record in report history table (i.e. sys_rpt_hist) to incidicate a report wass generated",
+        "x-stoplight": {
+          "id": "ihsl4g8j7a7pq"
+        }
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddReportHistoryRequest": {
+        "title": "AddReportHistoryRequest",
+        "type": "object",
+        "examples": [
+          {
+            "reportId": "R-CE-005",
+            "errorIndicator": false,
+            "errorReason": null,
+            "reportRequestId": "12345"
+          }
+        ],
+        "x-stoplight": {
+          "id": "44wm1xu0lp8tp"
+        },
+        "required": [
+          "reportId",
+          "errorIndicator",
+          "reportRequestId"
+        ],
+        "properties": {
+          "reportId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "svwtq7lq5ehbg"
+            },
+            "description": "Report ID, unique identifier for the given report."
+          },
+          "errorIndicator": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "zavvma34im156"
+            },
+            "description": "Error indicator"
+          },
+          "errorReason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "x-stoplight": {
+              "id": "40pu6qy092e42"
+            },
+            "description": "Error reason"
+          },
+          "reportRequestId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ttjj829rp5n4b"
+            },
+            "description": "Unique identifier of the report request"
+          }
+        }
+      }
+    }
+  }
+}

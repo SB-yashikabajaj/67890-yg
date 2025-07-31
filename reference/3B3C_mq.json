@@ -1,0 +1,502 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "l2hddzn623ido"
+  },
+  "info": {
+    "version": "1.0",
+    "title": "Message Queue",
+    "summary": "MQ",
+    "description": "Message Queue Specification"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/air-gate-in-out-timestamp": {
+      "get": {
+        "summary": "Receive Gate-in Timestamp from STD",
+        "tags": [
+          "Air Queue from STD"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-air-gate-in-out-timestamp",
+        "x-stoplight": {
+          "id": "0tvshw1ebcotd"
+        },
+        "description": "Consume Message: CCM <br/>\nPut Message: STD <br/>\nJMSDestination: STD_AIR.CCM_APP.TS_IN.Q <br/>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-056 Collect Gate-in Information of Air Mode from STD",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GateInInfo"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Receive Gate-out Timestamp from STD",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "post-air-gate-in-out-timestamp",
+        "x-stoplight": {
+          "id": "m8g3fhrub9hj9"
+        },
+        "description": "Consume Message: CCM <br/>\nPut Message: STD <br/>\nJMSDestination: STD_AIR.CCM_APP.TS_OUT.Q <br/>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-057 Collect Gate-out Information of Air Mode from STD",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GateOutInfo"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Air Queue from STD"
+        ]
+      },
+      "put": {
+        "summary": "Gate InOut Timestamp Acknowledgement",
+        "tags": [
+          "ACK Queue from CCM"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "put-air-gate-in-out-timestamp",
+        "x-stoplight": {
+          "id": "72k4q7xxwlvt2"
+        },
+        "description": "Consume Message: STD <br/>\nPut Message: CCM <br/>\nJMSDestination: CCM_APP.STD_AIR.TS.ACK.Q <br/>\nFrequency: Ad-hoc<br>\n\nGate-in and Gate-out timestamp acknowledgment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GeneralAck"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/atcs-doc": {
+      "get": {
+        "summary": "Receive Supporting Documents for ATCS from STD",
+        "tags": [
+          "Common Queue from STD"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-atcs-doc",
+        "x-stoplight": {
+          "id": "1su2ci2g1ensl"
+        },
+        "description": "Consume Message: CCM <br/>\nPut Message: STD <br/>\nJMSDestination: STD_.CCM_APP.ATCS_DOC.Q <br/>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-217 Receive Supporting Documents for ATCS from STD",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtcsDocInfo"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "ATCS Doc ACK",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "put-atcs-doc",
+        "x-stoplight": {
+          "id": "obrhmd14itgrx"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GeneralAck"
+              }
+            }
+          }
+        },
+        "description": "Consume Message: STD <br/>\nPut Message: CCM <br/>\nJMSDestination: CCM_APP.STD_.ACS_DOC.ACK.Q <br/>\nFrequency: Ad-hoc<br>\n\nReceive Supporting Documents for ATCS from STD acknowledgment",
+        "tags": [
+          "ACK Queue from CCM"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AtcsDocInfo": {
+        "title": "AtcsDocInfo",
+        "x-stoplight": {
+          "id": "6pnbynfyt98t3"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "consignmentType": "C",
+            "consignmentKey": "102349284212",
+            "version": 1,
+            "docList": [
+              {
+                "tswDocId": "9382048213",
+                "documentTypeCode": "INV"
+              },
+              {
+                "tswDocId": "9382048212",
+                "documentTypeCode": "OTH",
+                "remark": "Others document type"
+              }
+            ],
+            "submittedDatetime": "2025-06-25T19:30:00"
+          }
+        ],
+        "required": [
+          "consignmentType",
+          "consignmentKey",
+          "docList",
+          "submittedDatetime"
+        ],
+        "properties": {
+          "consignmentType": {
+            "x-stoplight": {
+              "id": "koy07h7474wp4"
+            },
+            "enum": [
+              "C",
+              "A"
+            ],
+            "description": "C - CCRN <br/>\nA - Air ACI"
+          },
+          "consignmentKey": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "onfzboqy0m08f"
+            },
+            "description": "If consignmentType = 'C', the key is CCRN<br>\nIf consignmentType = 'A', the key is C&E reference number"
+          },
+          "version": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "bsbnyffbcymbz"
+            },
+            "description": "Version for CCRN only\n",
+            "format": "int64"
+          },
+          "docList": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "y49flymoqp9re"
+            },
+            "items": {
+              "$ref": "#/components/schemas/DocInfo",
+              "x-stoplight": {
+                "id": "7brhidlt7yj4g"
+              }
+            }
+          },
+          "submittedDatetime": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "x-stoplight": {
+              "id": "m5t3vy6npv8nq"
+            },
+            "description": "Submission datetime"
+          }
+        }
+      },
+      "DocInfo": {
+        "title": "DocInfo",
+        "x-stoplight": {
+          "id": "dlbzh4t88gylt"
+        },
+        "type": "object",
+        "required": [
+          "tswDocId",
+          "documentTypeCode",
+          "filename"
+        ],
+        "properties": {
+          "tswDocId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "p3nmzt11r2sbb"
+            },
+            "description": "TSW Document ID",
+            "maxLength": 20
+          },
+          "documentTypeCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "tbo03ce0s17d3"
+            },
+            "description": "Document Type Code",
+            "maxLength": 3
+          },
+          "filename": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "91gxj75dpauwe"
+            },
+            "maxLength": 256,
+            "description": "File name"
+          },
+          "remark": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "qq9my83gp895l"
+            },
+            "description": "Remark",
+            "maxLength": 256
+          }
+        }
+      },
+      "LocalDatetime": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+        "examples": [
+          "2024-08-25T19:30:00"
+        ],
+        "x-stoplight": {
+          "id": "0m6gfdf6iy8fp"
+        }
+      },
+      "GateInTimestamp": {
+        "title": "GateInTimestamp",
+        "x-stoplight": {
+          "id": "akf1jf4vkh6wz"
+        },
+        "type": "object",
+        "required": [
+          "ceRefNo",
+          "timestamp"
+        ],
+        "properties": {
+          "ceRefNo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3u95trsv96xzu"
+            },
+            "description": "C&E Reference Number"
+          },
+          "timestamp": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "x-stoplight": {
+              "id": "gd7iztcqs4g0x"
+            },
+            "description": "Gate-in timestamp"
+          }
+        }
+      },
+      "GateInInfo": {
+        "title": "GateInInfo",
+        "x-stoplight": {
+          "id": "lbtw3p5zmyx97"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "gateInList": [
+              {
+                "ceRefNo": "CE12345",
+                "timestamp": "2025-06-03T10:15:30"
+              },
+              {
+                "ceRefNo": "CE67890",
+                "timestamp": "2025-06-03T11:30:45"
+              },
+              {
+                "ceRefNo": "CE54321",
+                "timestamp": "2025-06-03T12:45:15"
+              }
+            ],
+            "tswDocId": "4223093482"
+          }
+        ],
+        "required": [
+          "gateInList",
+          "tswDocId"
+        ],
+        "properties": {
+          "gateInList": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "h1ysk081okckd"
+            },
+            "items": {
+              "$ref": "#/components/schemas/GateInTimestamp",
+              "x-stoplight": {
+                "id": "jri60wmm4fpdi"
+              }
+            }
+          },
+          "tswDocId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jqfxjbiynwlof"
+            },
+            "description": "TSW Document ID of raw submitted ebXML / JSON"
+          }
+        }
+      },
+      "GateOutInfo": {
+        "title": "GateOutInfo",
+        "x-stoplight": {
+          "id": "lmvcvt3feyddj"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "gateOutList": [
+              {
+                "ceRefNo": "CE11111",
+                "timestamp": "2025-06-03T14:30:00",
+                "piece": 50,
+                "weight": 2500
+              },
+              {
+                "ceRefNo": "CE22222",
+                "timestamp": "2025-06-03T15:45:30",
+                "piece": 75,
+                "weight": 3800
+              },
+              {
+                "ceRefNo": "CE33333",
+                "timestamp": "2025-06-03T17:00:15",
+                "piece": 30,
+                "weight": 1500
+              }
+            ],
+            "tswDocId": "9876543210"
+          }
+        ],
+        "required": [
+          "gateOutList",
+          "tswDocId"
+        ],
+        "properties": {
+          "gateOutList": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "44e7kursh35qm"
+            },
+            "items": {
+              "$ref": "#/components/schemas/GateOutTimestamp",
+              "x-stoplight": {
+                "id": "ezoxryw38vjkz"
+              }
+            }
+          },
+          "tswDocId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "qepx45ulie288"
+            },
+            "description": "TSW Document ID of raw submitted ebXML / JSON"
+          }
+        }
+      },
+      "GateOutTimestamp": {
+        "title": "GateOut",
+        "x-stoplight": {
+          "id": "llkghaup6zrgn"
+        },
+        "type": "object",
+        "required": [
+          "ceRefNo",
+          "timestamp"
+        ],
+        "properties": {
+          "ceRefNo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "6pvm3hptkqcl0"
+            },
+            "description": "C&E Reference Number"
+          },
+          "timestamp": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "x-stoplight": {
+              "id": "xmsvimxszp9ih"
+            },
+            "description": "Gate-out timestamp"
+          },
+          "piece": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "gpatdjijqidk5"
+            },
+            "description": "Manifest piece",
+            "maximum": 99999999
+          },
+          "weight": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "doezforx6jm98"
+            },
+            "description": "Manifest weight"
+          }
+        }
+      },
+      "GeneralAck": {
+        "title": "GeneralAck",
+        "x-stoplight": {
+          "id": "15k354s5wz5d9"
+        },
+        "type": "object",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "result": {
+            "x-stoplight": {
+              "id": "klq5wdsel8cag"
+            },
+            "enum": [
+              "S",
+              "F"
+            ],
+            "description": "Result: <br/>\n\nS - Success<br/>\nF - Fail\n"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "ACK Queue from CCM"
+    },
+    {
+      "name": "Air Queue from STD"
+    },
+    {
+      "name": "Common Queue from STD"
+    },
+    {
+      "name": "Road Queue from STD"
+    },
+    {
+      "name": "Sea Queue from STD"
+    }
+  ]
+}

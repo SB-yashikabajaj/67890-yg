@@ -1,0 +1,4368 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "15sxdzlmuacwv"
+  },
+  "info": {
+    "version": "1.0",
+    "title": "CCM-RA-API",
+    "description": "CCM RA API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/ra",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/target-list": {
+      "post": {
+        "tags": [
+          "Target List"
+        ],
+        "summary": "Create Target List",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/TargetListCreateAndUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "h8cbpu2ls5jwh"
+        },
+        "operationId": "post-target-list",
+        "description": "Create Target List"
+      },
+      "parameters": []
+    },
+    "/target-list/{id}": {
+      "get": {
+        "tags": [
+          "Target List"
+        ],
+        "summary": "Get Target List",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Target List",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TargetListFoundDto"
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "gzvagu9jp1mon"
+        },
+        "operationId": "get-target-list-id",
+        "description": "Get Target List"
+      },
+      "put": {
+        "tags": [
+          "Target List"
+        ],
+        "summary": "Update Target List",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Target List",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TargetListCreateAndUpdateDto"
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "71ug89kkkvi4r"
+        },
+        "operationId": "put-target-list-id",
+        "description": "Update Target List",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Target List",
+        "description": "Delete Target List",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Target List",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "x-stoplight": {
+          "id": "574deymkw7q4z"
+        },
+        "tags": [
+          "Target List"
+        ],
+        "operationId": "delete-target-list-id"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Target List"
+        }
+      ]
+    },
+    "/target-list/{id}/status": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Target List"
+        }
+      ],
+      "patch": {
+        "summary": "Update Status of Target List",
+        "tags": [
+          "Target List"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "patch-target-list-id-status",
+        "x-stoplight": {
+          "id": "t7ksm477e2c3k"
+        },
+        "description": "Update status of Target List",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "listStatus": {
+                    "$ref": "#/components/schemas/ListStatusEnum",
+                    "x-stoplight": {
+                      "id": "58tnw4b22x6kw"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/target-list/history/{listNo}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "listNo",
+          "in": "path",
+          "required": true,
+          "description": "List No of Target List"
+        }
+      ],
+      "get": {
+        "summary": "Get Target List History",
+        "tags": [
+          "Target List"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "x-stoplight": {
+                    "id": "8xjylwd47t4y9"
+                  },
+                  "items": {
+                    "x-stoplight": {
+                      "id": "fcs5x62xtgsdr"
+                    },
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "yl20binadnmkw"
+                        }
+                      },
+                      "versionNo": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "2v1224ysxvkmj"
+                        }
+                      },
+                      "effectiveDate": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "dbgqo23jrt527"
+                        },
+                        "format": "date-time"
+                      },
+                      "expirytDate": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "cplb7rec19hw0"
+                        },
+                        "format": "date-time"
+                      },
+                      "creationDate": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "mnwb55vrgs5qg"
+                        },
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "7fn8dkse4qysv"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-target-list-id-history",
+        "x-stoplight": {
+          "id": "3w4lmv0ajn0el"
+        },
+        "description": "Get Target List History"
+      }
+    },
+    "/target-list/{id}/{versionNo}": {
+      "get": {
+        "summary": "Get Target List of specific version",
+        "tags": [
+          "Target List"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/TargetListFoundDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-target-list-id-versionNo",
+        "x-stoplight": {
+          "id": "pooryc18kkmiy"
+        }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Target List"
+        },
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "versionNo",
+          "in": "path",
+          "required": true,
+          "description": "Version no of Target List"
+        }
+      ]
+    },
+    "/target-list/search": {
+      "post": {
+        "tags": [
+          "Target List"
+        ],
+        "summary": "Search Target List by Criteria",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TargetListSearchCriteriaDTO",
+                "__errors__": {
+                  "#/components/schemas/TransportMode": "No foreign doc with id components found",
+                  "#/components/schemas/ShipmentType": "No foreign doc with id components found"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TargetListSearchResultDTO",
+                  "__errors__": {
+                    "#/components/schemas/TransportMode": "No foreign doc with id components found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "0mq5u1dzd3vni"
+        },
+        "operationId": "post-target-list-search",
+        "description": "Search Target List by criteria"
+      },
+      "parameters": []
+    },
+    "/controlled-item": {
+      "post": {
+        "summary": "Create Controlled Item",
+        "tags": [
+          "Controlled Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          }
+        },
+        "operationId": "post-controlled-item",
+        "x-stoplight": {
+          "id": "ycbm25fm48bya"
+        },
+        "description": "Create Controlled Item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ControlledItemCreateAndUpdateDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/controlled-item/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Controlled Item"
+        }
+      ],
+      "get": {
+        "summary": "Get Controlled Item",
+        "tags": [
+          "Controlled Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ControlledItemFoundDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-controlled-item-id",
+        "x-stoplight": {
+          "id": "b5qxmhthzhjwv"
+        },
+        "description": "Get Controlled Item"
+      },
+      "put": {
+        "summary": "Update Controlled Item",
+        "tags": [
+          "Controlled Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "put-controlled-item-id",
+        "x-stoplight": {
+          "id": "k6jx3dkkfqb9s"
+        },
+        "description": "Update Controlled Item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ControlledItemCreateAndUpdateDto"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Controlled Item",
+        "tags": [
+          "Controlled Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "delete-controlled-item-id",
+        "x-stoplight": {
+          "id": "mus8ja6s8pgng"
+        },
+        "description": "Delete Controlled Item"
+      }
+    },
+    "/controlled-item/{id}/status": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Controlled Item"
+        }
+      ],
+      "patch": {
+        "summary": "Update Status of Controlled Item",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "patch-controlled-item-id-status",
+        "description": "Update Status of Controlled Item",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "Y",
+                      "N"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "p43l7m7ooidfj"
+        },
+        "tags": [
+          "Controlled Item"
+        ]
+      }
+    },
+    "/controlled-item/search": {
+      "post": {
+        "summary": "Search Controlled Item by Criteria",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "__errors__": {
+                  "#/components/schemas/TransportMode": "No foreign doc with id components found",
+                  "#/components/schemas/ShipmentType": "No foreign doc with id components found"
+                },
+                "type": "object",
+                "properties": {
+                  "listNoFrom": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "cspk98b46a8si"
+                    }
+                  },
+                  "listNoTo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "g5myb5znygvmt"
+                    }
+                  },
+                  "effectiveDateFrom": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "akg2svt2he5ix"
+                    },
+                    "format": "date"
+                  },
+                  "effectiveDateTo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "li96xrmpqwpuw"
+                    },
+                    "format": "date"
+                  },
+                  "expiryDateFrom": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "p9zx9mbk9umvg"
+                    },
+                    "format": "date"
+                  },
+                  "expiryDateTo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "yj3kqpa7v0tim"
+                    },
+                    "format": "date"
+                  },
+                  "cermRefIdFrom": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "gfisgx9n52wvk"
+                    }
+                  },
+                  "cermRefIdTo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "v5c2unlhrgxhe"
+                    }
+                  },
+                  "transportMode": {
+                    "$ref": "#/components/schemas/TransportMode",
+                    "x-stoplight": {
+                      "id": "abu0mow93ov1i"
+                    }
+                  },
+                  "constraintCode": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "nqojxwvqpfph1"
+                    }
+                  },
+                  "commDesc": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "b6zc7dllok374"
+                    }
+                  },
+                  "chapter": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "9mcyctmis0wiu"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "__errors__": {
+                    "#/components/schemas/TransportMode": "No foreign doc with id components found"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "mkbd06arv1790"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "5skich2mdr5p0"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "lxb1kminfqyba"
+                            }
+                          },
+                          "listNo": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "90kwvtwrtfbxg"
+                            }
+                          },
+                          "versionNo": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "2eokn7oh90dp2"
+                            }
+                          },
+                          "cermRefId": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "7z1vzl0vfaccz"
+                            }
+                          },
+                          "transportModes": {
+                            "type": "array",
+                            "x-stoplight": {
+                              "id": "n36ssi079it2g"
+                            },
+                            "items": {
+                              "$ref": "#/components/schemas/TransportMode",
+                              "x-stoplight": {
+                                "id": "pbq25dfxmzk6l"
+                              }
+                            }
+                          },
+                          "effectiveDate": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "9twku5fox01gz"
+                            },
+                            "format": "date-time"
+                          },
+                          "expiryDate": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "62dp3pnohml2o"
+                            },
+                            "format": "date-time"
+                          },
+                          "commDescEng": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "ttl5558fp52of"
+                            }
+                          },
+                          "commDescChn": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "iwh5m18nshuwf"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "$ref": "../CCMmodels/Pageable.json",
+                      "x-stoplight": {
+                        "id": "tvbmdssuzpoew"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-controlled-item-search",
+        "description": "Search Controlled Item by criteria",
+        "x-stoplight": {
+          "id": "906euq7y170u4"
+        },
+        "tags": [
+          "Controlled Item"
+        ]
+      },
+      "parameters": []
+    },
+    "/controlled-item/history/{listNo}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "listNo",
+          "in": "path",
+          "required": true,
+          "description": "List No of Controlled Item"
+        }
+      ],
+      "get": {
+        "summary": "Get Controlled Item History",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "versionNo": {
+                        "type": "integer"
+                      },
+                      "effectiveDate": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "expirytDate": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "creationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "cnp0d254uo73m"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-controlled-item-id-history",
+        "x-stoplight": {
+          "id": "3n4as51wzo1fd"
+        },
+        "description": "Get Controlled Item History",
+        "tags": [
+          "Controlled Item"
+        ]
+      }
+    },
+    "/driver-vehicle-list": {
+      "post": {
+        "summary": "Create Driver Vehicle List",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          }
+        },
+        "operationId": "post-driver-vehicle-list",
+        "description": "Create Driver/Vehicle List",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/DriverVehicleCreateAndUpdateDto"
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "pm8p41ftulkwn"
+        },
+        "tags": [
+          "Driver List"
+        ]
+      },
+      "parameters": []
+    },
+    "/driver-vehicle-list/search": {
+      "post": {
+        "summary": "Search Driver/Vehicle Lists by Criteria",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "__errors__": {
+                  "#/components/schemas/TransportMode": "No foreign doc with id components found",
+                  "#/components/schemas/ShipmentType": "No foreign doc with id components found"
+                },
+                "type": "object",
+                "properties": {
+                  "listNoFrom": {
+                    "type": "string"
+                  },
+                  "listNoTo": {
+                    "type": "string"
+                  },
+                  "effectiveDateFrom": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "effectiveDateTo": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "expiryDateFrom": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "expiryDateTo": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "invNo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "vw2urae0fxhbf"
+                    }
+                  },
+                  "caseFileNum": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "bxv8wpomm52pf"
+                    }
+                  },
+                  "matchAction": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "6olpyqfot9dlb"
+                    }
+                  },
+                  "status": {
+                    "$ref": "#/components/schemas/ListStatusEnum",
+                    "x-stoplight": {
+                      "id": "zel7ovbdf1fy2"
+                    }
+                  },
+                  "driverId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "etprpwzdm5fwe"
+                    }
+                  },
+                  "vrn": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "7uoppb7jwm3fx"
+                    }
+                  },
+                  "action": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "sbpus35rty8sm"
+                    }
+                  },
+                  "remark": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "331cvayp6wqa5"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "__errors__": {
+                    "#/components/schemas/TransportMode": "No foreign doc with id components found"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "listNo": {
+                            "type": "string"
+                          },
+                          "versionNo": {
+                            "type": "integer"
+                          },
+                          "status": {
+                            "x-stoplight": {
+                              "id": "210cfkhqttq3l"
+                            },
+                            "type": "string"
+                          },
+                          "effectiveDate": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "expiryDate": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "matchAction": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "c8cnkrfnrsaw2"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "$ref": "../CCMmodels/Pageable.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-driver-vehicle-search",
+        "description": "Search Driver / Vehicle Lists by criteria",
+        "x-stoplight": {
+          "id": "64peysue7sxc5"
+        },
+        "tags": [
+          "Driver List"
+        ]
+      },
+      "parameters": []
+    },
+    "/driver-vehicle-list/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Driver / Vehicle List"
+        }
+      ],
+      "get": {
+        "summary": "Get Driver/Vehicle List",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/DriverVehicleFoundDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-driver-vehicle-id",
+        "description": "Get Driver/Vehicle List",
+        "x-stoplight": {
+          "id": "ykbizf1jzcodu"
+        },
+        "tags": [
+          "Driver List"
+        ]
+      },
+      "put": {
+        "summary": "Update Driver/Vehicle List",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "put-driver-vehicle-id",
+        "description": "Update Driver / Vehicle\r\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/DriverVehicleCreateAndUpdateDto"
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "kkxmkcw1z3sr5"
+        },
+        "tags": [
+          "Driver List"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Driver/Vehicle List",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "delete-driver-vehicle-id",
+        "description": "Delete Driver/Vehicle\r\n",
+        "x-stoplight": {
+          "id": "xkz9xrz24dfdn"
+        },
+        "tags": [
+          "Driver List"
+        ]
+      }
+    },
+    "/driver-vehicle-list/history/{listNo}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "listNo",
+          "in": "path",
+          "required": true,
+          "description": "List No of driver/vehicle list"
+        }
+      ],
+      "get": {
+        "summary": "Get Driver/Vehicle List History",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "versionNo": {
+                        "type": "integer"
+                      },
+                      "effectiveDate": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "expirytDate": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "creationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "createdBy": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-driver-vehicle-list-id-history",
+        "description": "Get Driver/Vehicle List History",
+        "tags": [
+          "Controlled Item"
+        ],
+        "x-stoplight": {
+          "id": "msb2pzt8rl4gd"
+        }
+      }
+    },
+    "/ra-list/{list-type}/{id}/status": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Risk Product List"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "list-type",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "Update Status of Risk Product List",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "patch-risk-product-list-status",
+        "description": "Update Status of Risk Product List",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "Y",
+                      "N"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Controlled Item"
+        ],
+        "x-stoplight": {
+          "id": "lf5rrxi2o6l4b"
+        }
+      }
+    },
+    "/noise-word": {
+      "post": {
+        "summary": "Create Noise Word",
+        "tags": [
+          "Noise Word"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "operationId": "post-noise-word",
+        "x-stoplight": {
+          "id": "qoukdt7lvdztu"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/NoiseWordCreateDto"
+              }
+            }
+          }
+        },
+        "description": "Create Noise Word"
+      }
+    },
+    "/noise-word/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Noise Word"
+        }
+      ],
+      "get": {
+        "summary": "Get Noise Word",
+        "tags": [
+          "Noise Word"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/NoiseWordFoundDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-noise-word-id",
+        "x-stoplight": {
+          "id": "q9ct6knsnxgag"
+        },
+        "description": "Get Noise Word"
+      },
+      "put": {
+        "summary": "Update Noise Word",
+        "tags": [
+          "Noise Word"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "put-noise-word-id",
+        "x-stoplight": {
+          "id": "v7esayk9zqo5v"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/NoiseWordCreateDto"
+              }
+            }
+          }
+        },
+        "description": "Update Noise Word"
+      },
+      "delete": {
+        "summary": "Delete Noise Word",
+        "tags": [
+          "Noise Word"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "delete-noise-word-id",
+        "x-stoplight": {
+          "id": "r08mns37fwrjb"
+        },
+        "description": "Delete Noise Word"
+      }
+    },
+    "/noise-word/search": {
+      "post": {
+        "summary": "Search Noise Word by criteria",
+        "tags": [
+          "Noise Word"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "8purn425knuvy"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "g0nr765x3d43f"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "d98q1bgdy7e2e"
+                            }
+                          },
+                          "noiseWord": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "xw27ftim67ljo"
+                            }
+                          },
+                          "transportModes": {
+                            "x-stoplight": {
+                              "id": "lqxisohgy8gr3"
+                            },
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/TransportMode",
+                              "x-stoplight": {
+                                "id": "o29p8eux5mc10"
+                              }
+                            }
+                          },
+                          "fieldTypes": {
+                            "x-stoplight": {
+                              "id": "v79cums04ffqv"
+                            },
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/WordFieldTypeEnum",
+                              "x-stoplight": {
+                                "id": "qwv3jjuv1tjk1"
+                              }
+                            }
+                          },
+                          "effectiveDate": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "p825s2ufk6clb"
+                            },
+                            "format": "date"
+                          },
+                          "expiryDate": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "tkzf5x1fk694w"
+                            },
+                            "format": "date"
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "$ref": "#/components/schemas/Page",
+                      "x-stoplight": {
+                        "id": "zi5sva4lk74r5"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "content": [
+                        {
+                          "id": 12345,
+                          "noiseWord": "apple",
+                          "transportModes": [
+                            "AR"
+                          ],
+                          "fieldType": "string",
+                          "effectiveDate": "2019-08-24",
+                          "expiryDate": "2019-08-24"
+                        }
+                      ],
+                      "page": {
+                        "size": 0,
+                        "number": 0,
+                        "totalElements": 0,
+                        "totalPages": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-noise-word-search",
+        "x-stoplight": {
+          "id": "93kgt7cubl79p"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "effectiveDateFrom": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "qwlnhexfytevf"
+                    },
+                    "format": "date"
+                  },
+                  "effectiveDateTo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "7lo7g8rr28sd3"
+                    },
+                    "format": "date"
+                  },
+                  "expiryDateFrom": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "38nrkyjfzc6r2"
+                    },
+                    "format": "date"
+                  },
+                  "expiryDateTo": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "565xh72devklj"
+                    },
+                    "format": "date"
+                  },
+                  "fieldTypes": {
+                    "x-stoplight": {
+                      "id": "qucs3di6lxtqm"
+                    },
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WordFieldTypeEnum",
+                      "x-stoplight": {
+                        "id": "toodr1z3gcr3w"
+                      }
+                    }
+                  },
+                  "noiseWord": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "87bfx7fjg9kn2"
+                    },
+                    "maxLength": 20
+                  },
+                  "transportModes": {
+                    "x-stoplight": {
+                      "id": "5z41o8yonwaco"
+                    },
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/TransportMode",
+                      "x-stoplight": {
+                        "id": "hhg7pxg58e3bi"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Searh Noise Word by criteria"
+      }
+    },
+    "/synonym": {
+      "post": {
+        "summary": "Create Synonym",
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "operationId": "post-synonym",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/SynonymCreateDto"
+              }
+            }
+          }
+        },
+        "description": "Create Synonym",
+        "x-stoplight": {
+          "id": "gw5brbmb1yl3v"
+        },
+        "tags": [
+          "Synonym"
+        ]
+      },
+      "parameters": []
+    },
+    "/synonym/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of Synonym"
+        }
+      ],
+      "get": {
+        "summary": "Get Synonym",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/SynonymFoundDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-synonym-id",
+        "description": "Get Noise Word",
+        "x-stoplight": {
+          "id": "1eg8qdqnkry1z"
+        },
+        "tags": [
+          "Synonym"
+        ]
+      },
+      "put": {
+        "summary": "Update Synonym",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "put-synonym-id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/SynonymCreateDto"
+              }
+            }
+          }
+        },
+        "description": "Update Synonym",
+        "x-stoplight": {
+          "id": "lv0maj09l9rsd"
+        },
+        "tags": [
+          "Synonym"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Synonym",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "delete-synonym-id",
+        "description": "Delete Synonym",
+        "x-stoplight": {
+          "id": "4jv16b1e49489"
+        },
+        "tags": [
+          "Synonym"
+        ]
+      }
+    },
+    "/synonym/search": {
+      "post": {
+        "summary": "Search Synonym by criteria",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "transportModes": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/TransportMode"
+                            }
+                          },
+                          "fieldTypes": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/WordFieldTypeEnum"
+                            }
+                          },
+                          "effectiveDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "expiryDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "phrase": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "qjlxyd60s5wxz"
+                            }
+                          },
+                          "synonym1": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "6ijtoavwqw2zi"
+                            }
+                          },
+                          "synonym2": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "up0a6jvn4ijap"
+                            }
+                          },
+                          "synonym3": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "0c38hpqpq3jzf"
+                            }
+                          },
+                          "synonym4": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "8gho1qfxzdq08"
+                            }
+                          },
+                          "synonym5": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "ylhdl54w2z8dd"
+                            }
+                          },
+                          "synonym6": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "hc62xmfr9whr8"
+                            }
+                          },
+                          "synonym7": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "582ehvovre7f1"
+                            }
+                          },
+                          "synonym8": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "q699lf6yire88"
+                            }
+                          },
+                          "synonym9": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "8bdgknbe6l8z2"
+                            }
+                          },
+                          "synonym10": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "9km6yol8krv9y"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "page": {
+                      "$ref": "#/components/schemas/Page"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "content": [
+                        {
+                          "id": 12345,
+                          "noiseWord": "apple",
+                          "transportModes": [
+                            "AR"
+                          ],
+                          "fieldType": "string",
+                          "effectiveDate": "2019-08-24",
+                          "expiryDate": "2019-08-24"
+                        }
+                      ],
+                      "page": {
+                        "size": 0,
+                        "number": 0,
+                        "totalElements": 0,
+                        "totalPages": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-synonym-search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "effectiveDateFrom": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "effectiveDateTo": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "expiryDateFrom": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "expiryDateTo": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "fieldTypes": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WordFieldTypeEnum"
+                    }
+                  },
+                  "transportModes": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/TransportMode"
+                    }
+                  },
+                  "phrase": {
+                    "type": "string",
+                    "maxLength": 20,
+                    "x-stoplight": {
+                      "id": "4mm1rji9xdf67"
+                    }
+                  },
+                  "synonym": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "uca0brukopgyp"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Searh Synonym by criteria",
+        "x-stoplight": {
+          "id": "xkorja49chzyt"
+        },
+        "tags": [
+          "Synonym"
+        ]
+      },
+      "parameters": []
+    },
+    "/email/post": {
+      "get": {
+        "summary": "Get user posts",
+        "tags": [
+          "General"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "divisions": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "57r2llkqjq5v9"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "q2ehr9k7hed25"
+                        },
+                        "type": "string"
+                      }
+                    },
+                    "posts": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "pn9g6hhexbs00"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "t6o29eixx036m"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "formation": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3sr97cctm0vhz"
+                            }
+                          },
+                          "group": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "fb97epqwoysbg"
+                            }
+                          },
+                          "division": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "tjsarrb1rxd91"
+                            }
+                          },
+                          "postName": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "6sw4vbwla6b4v"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "divisions": [
+                        "RMD",
+                        "IPD"
+                      ],
+                      "posts": [
+                        {
+                          "formation": "IB",
+                          "group": "RMG",
+                          "division": "RMD",
+                          "postName": "SCO(RMTV)1"
+                        },
+                        {
+                          "formation": "IB",
+                          "group": "RMG",
+                          "division": "RMD",
+                          "postName": "SCO(RMTV)2"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-post",
+        "x-stoplight": {
+          "id": "npnftfpka78fv"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "IB"
+            },
+            "in": "query",
+            "name": "formation",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "RMG"
+            },
+            "in": "query",
+            "name": "group",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "RMD"
+            },
+            "in": "query",
+            "name": "division"
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/email/post/group": {
+      "parameters": [],
+      "get": {
+        "summary": "Get all available user group for RA",
+        "tags": [
+          "General"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "groups": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "roq9owt1pd6s9"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "su1tk6mo7avly"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "formation": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "3kaz710etlknt"
+                            }
+                          },
+                          "group": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "2f2r9iw91da1z"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "groups": [
+                        {
+                          "formation": "IB",
+                          "group": "RMG"
+                        },
+                        {
+                          "formation": "IB",
+                          "group": "IPG"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-post-group",
+        "x-stoplight": {
+          "id": "8vmuz8wds648w"
+        }
+      }
+    },
+    "/option/country": {
+      "get": {
+        "summary": "Get Country Options",
+        "tags": [
+          "General"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "x-stoplight": {
+                      "id": "r9god4mod043t"
+                    },
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "x-stoplight": {
+                          "id": "9ja9pwklbmzhh"
+                        }
+                      },
+                      "label": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "edezzdeuu6a4p"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-option-country",
+        "x-stoplight": {
+          "id": "qgvwzo9i7ulhz"
+        },
+        "description": "Get Country Options"
+      }
+    },
+    "/option/constraint-code": {
+      "get": {
+        "summary": "Get Constraint Code Options",
+        "tags": [
+          "General"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "road": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "9ephsu40g4ggo"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "zxdbdb81p6mb2"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "j875hct8y7rzy"
+                            }
+                          },
+                          "value": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "xxayhrw4yfpkq"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sea": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "5w3rd00v6uz1v"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "7s5q34r0yj0k8"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "p6tnmwpnn8pir"
+                            }
+                          },
+                          "value": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "ux7ggm3bogz06"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "rail": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "k8xd5fo4hgavp"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "c03xwlfa6w67b"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "40lawisnyb857"
+                            }
+                          },
+                          "value": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "4keyrj2p0r9zg"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "ferry": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "whkwl0u6x0a59"
+                      },
+                      "items": {
+                        "x-stoplight": {
+                          "id": "lbescfcg4i3ta"
+                        },
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "type": "integer",
+                            "x-stoplight": {
+                              "id": "cckp2z4dqawao"
+                            }
+                          },
+                          "value": {
+                            "type": "string",
+                            "x-stoplight": {
+                              "id": "igh2cr9ybtx5x"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "air": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "muhw0op9l0gqf"
+                      },
+                      "properties": {
+                        "inbound": {
+                          "type": "array",
+                          "x-stoplight": {
+                            "id": "6g9k322ml307n"
+                          },
+                          "items": {
+                            "x-stoplight": {
+                              "id": "ai2kvym03rcy8"
+                            },
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "integer",
+                                "x-stoplight": {
+                                  "id": "82idid3u18j9i"
+                                }
+                              },
+                              "value": {
+                                "type": "string",
+                                "x-stoplight": {
+                                  "id": "a9aaq4cuo1v9s"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "outbound": {
+                          "type": "array",
+                          "x-stoplight": {
+                            "id": "rfunqkxxdynys"
+                          },
+                          "items": {
+                            "x-stoplight": {
+                              "id": "h8yxuskkzdnj0"
+                            },
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "integer",
+                                "x-stoplight": {
+                                  "id": "wnnzolwzslgy6"
+                                }
+                              },
+                              "value": {
+                                "type": "string",
+                                "x-stoplight": {
+                                  "id": "3sw3rew5thx8b"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "transhipment": {
+                          "type": "array",
+                          "x-stoplight": {
+                            "id": "oax6xpmmr6gqw"
+                          },
+                          "items": {
+                            "x-stoplight": {
+                              "id": "foqj3g5o0vi36"
+                            },
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "integer",
+                                "x-stoplight": {
+                                  "id": "k2d4h4nuffcum"
+                                }
+                              },
+                              "value": {
+                                "type": "string",
+                                "x-stoplight": {
+                                  "id": "eo8wbex76ip5p"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-option-constraint-code",
+        "x-stoplight": {
+          "id": "911anposimrxi"
+        },
+        "description": "Get Constraint Code Options"
+      }
+    },
+    "/internal/road/driver-vehicle-list/screen": {
+      "post": {
+        "summary": "Driver Vehicle List - Screening",
+        "tags": [
+          "Internal"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "matchAction": {
+                      "$ref": "#/components/schemas/DriverVehicleMatchAction",
+                      "x-stoplight": {
+                        "id": "phouffnuxecel"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-internal-driver-vehicle-list-screen",
+        "x-stoplight": {
+          "id": "qgjae6kcjnhr7"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bundleId": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "94g3efo5o4klh"
+                    },
+                    "format": "int64"
+                  },
+                  "shipmentType": {
+                    "$ref": "#/components/schemas/ShipmentType",
+                    "x-stoplight": {
+                      "id": "vvl1hx2fwry5i"
+                    }
+                  },
+                  "vrn": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "txqiu4r8mj5pm"
+                    }
+                  },
+                  "driverIdType": {
+                    "x-stoplight": {
+                      "id": "1jvib2hfcvgx1"
+                    },
+                    "enum": [
+                      "H",
+                      "C"
+                    ]
+                  },
+                  "driverId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "1652b9vv4ok2t"
+                    }
+                  },
+                  "rdAciCsgmtIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "cywix6u5ezr3o"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "0h21tzthlxa78"
+                      },
+                      "type": "integer",
+                      "format": "int64"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Driver Vehicle List - Screening"
+      },
+      "parameters": []
+    },
+    "/internal/road/driver-vehicle-list/debundle": {
+      "post": {
+        "summary": "Driver Vehicle List - Debundle",
+        "tags": [
+          "Internal"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "post-internal-road-driver-vehicle-list-debundle",
+        "x-stoplight": {
+          "id": "2gr1vrqtvun6h"
+        },
+        "description": "Driver Vehicle List - Debundle",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bundleId": {
+                    "type": "integer",
+                    "x-stoplight": {
+                      "id": "yf9ywuccdzbc7"
+                    },
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/target-list/hit-consignment/road/aci/search": {
+      "get": {
+        "summary": "Search Hit Consignment by ListNum and Date Range",
+        "tags": [
+          "Target List"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/HitConsignmentSearchResultOfRoadAciDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-target-list-hit-consignment-road-aci-search",
+        "x-stoplight": {
+          "id": "rb5u7r75qyy7x"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "listNum"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "hitDateFrom"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "hitDateTo"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "size"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sort"
+          }
+        ],
+        "description": "Search Hit Consignment by ListNum and Date Range"
+      },
+      "parameters": []
+    },
+    "/hit-consignment/road/aci/search": {
+      "post": {
+        "summary": "Search Hit Consignment by Criteria",
+        "tags": [
+          "Target List"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/HitConsignmentSearchResultOfRoadAciDto"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-hit-consignment-road-aci-search",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "size"
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sort"
+          }
+        ],
+        "description": "Search Hit Consignment by Criteria",
+        "x-stoplight": {
+          "id": "optazjkbndfef"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/HitConsignmentSearchCriteriaForControllerDto"
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/rat/consignments/search": {
+      "post": {
+        "summary": "Search Consignements for RAT by Criteria",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RatConsignmentsSearchCriteriaDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TargetListSearchResultDTO",
+                  "__errors__": {
+                    "#/components/schemas/TransportMode": "No foreign doc with id components found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-rat-consignments-search",
+        "description": "Search consignments for RAT by criteria",
+        "x-stoplight": {
+          "id": "woi3jdxzoud0y"
+        },
+        "tags": [
+          "rat-consignments-search"
+        ]
+      },
+      "parameters": []
+    },
+    "/rat/run/submit": {
+      "post": {
+        "summary": "Submission for RAT on specified Risk Product(s)",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RatRunRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jobId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "89614umjhqjd0"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-rat-riskproduct-run",
+        "description": "Submission for running RAT on specified risk product(s) vs selected consignments.",
+        "x-stoplight": {
+          "id": "bwxhuaqvsu552"
+        },
+        "tags": [
+          "rat-riskproduct-run"
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "TargetListBasicDto": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "4dq0wvxgpzvtt"
+        },
+        "title": "TargetListBasicDto",
+        "x-internal": false,
+        "properties": {
+          "listName": {
+            "type": "string"
+          },
+          "listStatus": {
+            "$ref": "#/components/schemas/ListStatusEnum",
+            "x-stoplight": {
+              "id": "hghls0ei3reip"
+            }
+          },
+          "hsCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ry5xho11w96rx"
+            }
+          },
+          "cifFobFrom": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "smh2b07rtfcvw"
+            }
+          },
+          "cifFobTo": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "qllp37u51bmxy"
+            }
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2019-08-24T14:15:22"
+          },
+          "transportModes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransportMode"
+            }
+          },
+          "shipmentTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentType"
+            }
+          },
+          "invNo": {
+            "type": "string"
+          },
+          "caseFileNo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "lkvxf45pff5rf"
+            }
+          },
+          "alertDescription": {
+            "type": "string"
+          },
+          "pgaRiskIndicator": {
+            "type": "string"
+          },
+          "severityLevel": {
+            "type": "integer"
+          },
+          "allegations": {
+            "type": "string"
+          },
+          "commodityDescriptionEng": {
+            "type": "string"
+          },
+          "commodityDescriptionChi": {
+            "type": "string"
+          },
+          "notifyConfig": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "qg6wlet3c22fh"
+            },
+            "properties": {
+              "notifyOnly": {
+                "type": "boolean",
+                "x-stoplight": {
+                  "id": "gvh1muep9h58i"
+                }
+              },
+              "startTime": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "blegu14cd0lzl"
+                },
+                "example": 12
+              },
+              "freq": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "nvkuyamzc6z1x"
+                }
+              }
+            }
+          },
+          "party1": {
+            "$ref": "#/components/schemas/RPParty"
+          },
+          "party2": {
+            "$ref": "#/components/schemas/RPParty"
+          },
+          "actions": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "road": {
+            "type": "object",
+            "properties": {
+              "ctnrNum": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "coungfinxwx6e"
+                }
+              },
+              "agentName": {
+                "type": "string"
+              },
+              "agentAddress": {
+                "type": "string"
+              },
+              "agentCountryCode": {
+                "type": "string",
+                "example": "hk"
+              },
+              "traderName": {
+                "type": "string"
+              },
+              "traderAddress": {
+                "type": "string"
+              },
+              "traderCountryCode": {
+                "type": "string",
+                "example": "hk"
+              },
+              "estimateArrDepDateFrom": {
+                "type": "string",
+                "format": "date"
+              },
+              "estimateArrDepDateTo": {
+                "type": "string",
+                "format": "date"
+              },
+              "transhipment": {
+                "type": "object",
+                "properties": {
+                  "flightNo": {
+                    "type": "string"
+                  },
+                  "awb": {
+                    "type": "string"
+                  },
+                  "hwb": {
+                    "type": "string"
+                  },
+                  "vesselName": {
+                    "type": "string"
+                  },
+                  "voyageNo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": ""
+      },
+      "TargetListCreateAndUpdateDto": {
+        "allOf": [
+          {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "listNo": {
+                "type": "string"
+              },
+              "versionNo": {
+                "type": "integer"
+              },
+              "lastModifiedBy": {
+                "type": "string"
+              },
+              "lastModifiedDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "additionalEmailReceiver": {
+                "type": "object",
+                "x-stoplight": {
+                  "id": "nxhs7j6bkxesa"
+                },
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "ma4wiiy2en3c3"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "nd3pp5vtlraio"
+                      },
+                      "type": "string"
+                    }
+                  },
+                  "postIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "1978pcrct486b"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "k6ugwy2mkje6f"
+                      },
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/TargetListBasicDto"
+          }
+        ],
+        "x-stoplight": {
+          "id": "zrs4mw8asyjzt"
+        },
+        "type": "object"
+      },
+      "TargetListFoundDto": {
+        "x-stoplight": {
+          "id": "avc9ndvve321q"
+        },
+        "allOf": [
+          {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "listNo": {
+                "type": "string"
+              },
+              "versionNo": {
+                "type": "integer"
+              },
+              "lastModifiedBy": {
+                "type": "string"
+              },
+              "lastModifiedDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "additionalEmailReceiver": {
+                "type": "object",
+                "x-stoplight": {
+                  "id": "iv7kmg8rj6l40"
+                },
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "itchd3vmkwyqe"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "ojt9mwotkpsl1"
+                      },
+                      "type": "string"
+                    }
+                  },
+                  "posts": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "589e97zsotx38"
+                    },
+                    "items": {
+                      "$ref": "#/components/schemas/AdditionalReceiverPost",
+                      "x-stoplight": {
+                        "id": "5s8rwsw4if5st"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/TargetListBasicDto",
+            "x-stoplight": {
+              "id": "cv00hc8z2b0xg"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "TransportMode": {
+        "type": "string",
+        "enum": [
+          "AR",
+          "FY",
+          "OC",
+          "RD",
+          "RV",
+          "RL"
+        ],
+        "x-stoplight": {
+          "id": "ch1a4itmqndkm"
+        }
+      },
+      "ShipmentType": {
+        "type": "string",
+        "enum": [
+          "I",
+          "O"
+        ],
+        "x-stoplight": {
+          "id": "bqh46ytdovham"
+        }
+      },
+      "TargetListSearchCriteriaDTO": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "0q2tovi5k1lvx"
+        },
+        "properties": {
+          "listNoFrom": {
+            "type": "string"
+          },
+          "listNoTo": {
+            "type": "string"
+          },
+          "effectiveDateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "effectiveDateTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDateTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "invNoFrom": {
+            "type": "string"
+          },
+          "invNoTo": {
+            "type": "string"
+          },
+          "transportMode": {
+            "schema": {
+              "$ref": "#/components/schemas/TransportMode"
+            }
+          },
+          "shipmentType": {
+            "schema": {
+              "$ref": "#/components/schemas/ShipmentType"
+            }
+          },
+          "pgaRiskIndicator": {
+            "type": "string"
+          },
+          "listName": {
+            "type": "string"
+          },
+          "caseFileNoFrom": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "x98w7wdrljejp"
+            }
+          },
+          "caseFileNoTo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "5brbjqtt3i0jb"
+            }
+          },
+          "consignorName": {
+            "type": "string"
+          },
+          "consignorAddress": {
+            "type": "string"
+          },
+          "consigneeName": {
+            "type": "string"
+          },
+          "consigneeAddress": {
+            "type": "string"
+          },
+          "commodityDescription": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "hyoj6dm4z0z9r"
+            }
+          },
+          "actions": {
+            "type": "string"
+          },
+          "remarks": {
+            "type": "string"
+          },
+          "road": {
+            "type": "object",
+            "properties": {
+              "traderName": {
+                "type": "string"
+              },
+              "traderAddress": {
+                "type": "string"
+              },
+              "agentName": {
+                "type": "string"
+              },
+              "agentAddress": {
+                "type": "string"
+              },
+              "containerNo": {
+                "type": "string"
+              },
+              "estimateArrDepDateFrom": {
+                "type": "string",
+                "format": "date"
+              },
+              "estimateArrDepDateTo": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      },
+      "RatConsignmentsSearchCriteriaDTO": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "lbvgy4rqq8zrp"
+        },
+        "title": "RatConsignmentsSearchCriteriaDto",
+        "properties": {
+          "receiveDateFrom": {
+            "type": "string",
+            "format": "date",
+            "x-stoplight": {
+              "id": "t4qoe122s8690"
+            }
+          },
+          "receiveDateTo": {
+            "type": "string",
+            "format": "date",
+            "x-stoplight": {
+              "id": "h3porlsoqryct"
+            }
+          },
+          "transportMode": {
+            "schema": {
+              "$ref": "#/components/schemas/TransportMode"
+            }
+          },
+          "shipmentType": {
+            "schema": {
+              "$ref": "#/components/schemas/ShipmentType"
+            }
+          },
+          "consignorName": {
+            "type": "string"
+          },
+          "consignorAddress": {
+            "type": "string"
+          },
+          "consigneeName": {
+            "type": "string"
+          },
+          "consigneeAddress": {
+            "type": "string"
+          },
+          "documentType": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "7dne9t2bwqt95"
+            }
+          },
+          "commodityDescription": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "gsfccnyiag6z9"
+            }
+          }
+        }
+      },
+      "RatConsignemtsSearchResultDTO": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "f14rzl7i5k68e"
+        },
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cargoDocumentSumissionId": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "le4gdjbqu57hp"
+                  }
+                },
+                "cargoDocumentNo": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "efjx178sqbjri"
+                  }
+                },
+                "receiveDate": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "e8gzypl3jt682"
+                  },
+                  "format": "date-time"
+                },
+                "shipmentType": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "la0pnkzm23aob"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RatRunRequestDTO": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "u56y0du1k7mik"
+        },
+        "title": "RatRunRequestDto",
+        "properties": {
+          "cargoDocumentSumissionIdList": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "klrgbw5g21sdv"
+            },
+            "description": "List of selected cargo document Id for RAT\r\n",
+            "items": {
+              "x-stoplight": {
+                "id": "p3o961nr9rxfj"
+              },
+              "type": "string"
+            }
+          },
+          "riskProductForRat": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "gyrzmj33wpzx8"
+            },
+            "items": {
+              "x-stoplight": {
+                "id": "timet62zc7fsc"
+              },
+              "type": "object",
+              "properties": {
+                "riskProductType": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "al9ujnqovboco"
+                  }
+                },
+                "listNumList": {
+                  "type": "array",
+                  "x-stoplight": {
+                    "id": "9xvrrjdgo3bln"
+                  },
+                  "description": "All risk product lists of specified type will apply,\r\nif the array is null or empty.",
+                  "items": {
+                    "x-stoplight": {
+                      "id": "cvlue84gnxucx"
+                    },
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "RPParty": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "4hb5b2ewwsw05"
+        },
+        "properties": {
+          "type": {
+            "enum": [
+              "CSGNR",
+              "CSGNE",
+              "BOTH"
+            ],
+            "x-stoplight": {
+              "id": "9aadwsm1qv46d"
+            }
+          },
+          "brNum": {
+            "x-stoplight": {
+              "id": "inqgm7wc8ezpe"
+            },
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "chineseName": {
+            "type": "string"
+          },
+          "telNo": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "countryCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "hk"
+            }
+          }
+        }
+      },
+      "TargetListSearchResultDTO": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "5ue5bsecm17a5"
+        },
+        "properties": {
+          "result": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "8uskk74fd0t28"
+                  }
+                },
+                "listNo": {
+                  "type": "string"
+                },
+                "versionNo": {
+                  "type": "integer"
+                },
+                "listName": {
+                  "type": "string"
+                },
+                "transportMode": {
+                  "type": "array",
+                  "items": {
+                    "schema": {
+                      "$ref": "#/components/schemas/TransportMode"
+                    }
+                  }
+                },
+                "effectiveDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expiryDate": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "severity": {
+                  "type": "integer",
+                  "x-stoplight": {
+                    "id": "hxfxtmuqqdmg9"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "NoiseWordBasicDto": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "miyof8qjngyki"
+        },
+        "required": [
+          "transportModes",
+          "effectiveDate",
+          "noiseWord"
+        ],
+        "properties": {
+          "transportModes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/TransportMode"
+            }
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "fieldTypes": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "y2y1eaysta4gq"
+            },
+            "items": {
+              "$ref": "#/components/schemas/WordFieldTypeEnum",
+              "x-stoplight": {
+                "id": "z8wjbfnhe4as3"
+              }
+            }
+          },
+          "noiseWord": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "o8i7etlfiuest"
+            },
+            "maxLength": 20
+          },
+          "recordVersion": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "jr6mj9nztb9l5"
+            }
+          }
+        }
+      },
+      "NoiseWordCreateDto": {
+        "title": "NoiseWordCreateDto",
+        "x-stoplight": {
+          "id": "cy7vf1558d3xj"
+        },
+        "allOf": [
+          {
+            "properties": {
+              "additionalEmailReceiver": {
+                "type": "object",
+                "x-stoplight": {
+                  "id": "qs1hs6aa5c33r"
+                },
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "js34tco4gorfd"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "r3f7ill1kbd0s"
+                      },
+                      "type": "string"
+                    }
+                  },
+                  "postIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "591rybgkz4zur"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "hendj9zvi5zdj"
+                      },
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/NoiseWordBasicDto",
+            "x-stoplight": {
+              "id": "vmxic5bjw2muf"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "NoiseWordFoundDto": {
+        "title": "NoiseWordViewDto",
+        "x-stoplight": {
+          "id": "6fdsgq1nssf8u"
+        },
+        "allOf": [
+          {
+            "x-stoplight": {
+              "id": "lnkuzy2ycn9xo"
+            },
+            "properties": {
+              "id": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "ihz5c7e7s65q5"
+                }
+              },
+              "version": {
+                "type": "number",
+                "x-stoplight": {
+                  "id": "wqbpql8ofuj9i"
+                }
+              },
+              "lastModifiedBy": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "oackgze6ktnb9"
+                }
+              },
+              "lastModifiedDate": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "by3chin04hytn"
+                },
+                "format": "date-time"
+              },
+              "additionalEmailReceiver": {
+                "type": "object",
+                "x-stoplight": {
+                  "id": "ci6pck07it9d5"
+                },
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "piyoo5pygig1d"
+                    },
+                    "items": {
+                      "x-stoplight": {
+                        "id": "ubqa7bx1030ix"
+                      },
+                      "type": "string"
+                    }
+                  },
+                  "posts": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "8nippiojmmaka"
+                    },
+                    "items": {
+                      "$ref": "#/components/schemas/AdditionalReceiverPost",
+                      "x-stoplight": {
+                        "id": "xmtxjjjtpnchk"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/NoiseWordBasicDto",
+            "x-stoplight": {
+              "id": "vuxc4j37wlnna"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "SynonymCreateDto": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "mjpfkqnxigp3v"
+        },
+        "required": [
+          "transportModes",
+          "effectiveDate",
+          "phrase",
+          "synonym1"
+        ],
+        "properties": {
+          "transportModes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/components/schemas/TransportMode"
+            }
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "fieldTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WordFieldTypeEnum"
+            }
+          },
+          "phrase": {
+            "type": "string",
+            "maxLength": 20,
+            "x-stoplight": {
+              "id": "8w4h35ltwolou"
+            }
+          },
+          "synonym1": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "czqqvc8v3qncq"
+            },
+            "maxLength": 20
+          },
+          "synonym2": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3kymvspdx5ke5"
+            },
+            "maxLength": 20
+          },
+          "synonym3": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "tayawi0eidnfz"
+            },
+            "maxLength": 20
+          },
+          "synonym4": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "pznvlxpnny3ff"
+            },
+            "maxLength": 20
+          },
+          "synonym5": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "frvrv17eko83d"
+            },
+            "maxLength": 20
+          },
+          "synonym6": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "6ieapxqq7oazr"
+            },
+            "maxLength": 20
+          },
+          "synonym7": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "l8ddhx30w6vju"
+            },
+            "maxLength": 20
+          },
+          "synonym8": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3yruars7h1ojv"
+            },
+            "maxLength": 20
+          },
+          "synonym9": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "kgkro60acj9mr"
+            },
+            "maxLength": 20
+          },
+          "synonym10": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "2pl26mdqik20z"
+            },
+            "maxLength": 20
+          },
+          "recordVersion": {
+            "type": "integer"
+          }
+        }
+      },
+      "SynonymFoundDto": {
+        "title": "NoiseWordViewDto",
+        "x-stoplight": {
+          "id": "zkraslq7xn248"
+        },
+        "allOf": [
+          {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "lastModifiedBy": {
+                "type": "string"
+              },
+              "lastModifiedDate": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/NoiseWordCreateDto"
+          }
+        ],
+        "type": "object"
+      },
+      "Page": {
+        "title": "Page",
+        "x-stoplight": {
+          "id": "92nf6p6a2l7ur"
+        },
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "1j8u1noza3c1t"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "l4ybx69y2gjgv"
+            }
+          },
+          "totalElements": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "n07oocjsn6zo1"
+            }
+          },
+          "totalPages": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "an74k9m56ounm"
+            }
+          }
+        }
+      },
+      "WordFieldTypeEnum": {
+        "title": "WordFieldTypeEnum",
+        "x-stoplight": {
+          "id": "2js8arpvr0d9h"
+        },
+        "enum": [
+          "CN",
+          "PN",
+          "RN",
+          "GD",
+          "SM",
+          "AD",
+          "VN",
+          "GC",
+          "OD"
+        ]
+      },
+      "AdditionalReceiverPost": {
+        "title": "AdditionalReceiverPost",
+        "x-stoplight": {
+          "id": "t1xvhoi7vl1h3"
+        },
+        "type": "object",
+        "properties": {
+          "postId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "yzn45m6lkup4t"
+            }
+          },
+          "formation": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "oo0041vmensky"
+            }
+          },
+          "group": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jz8zume69xq6j"
+            }
+          },
+          "division": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "a2iix2uk21jai"
+            }
+          },
+          "postName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ejr0lmqmka3v1"
+            }
+          }
+        }
+      },
+      "ControlledItemBasicDto": {
+        "x-stoplight": {
+          "id": "l443xdfu6zl5i"
+        },
+        "type": "object",
+        "properties": {
+          "listStatus": {
+            "$ref": "#/components/schemas/ListStatusEnum",
+            "x-stoplight": {
+              "id": "il1k7fm0m8v71"
+            }
+          },
+          "effectiveDate": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bqcipiay7wtud"
+            },
+            "format": "date-time"
+          },
+          "expiryDate": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "a5e56vwcmhw9k"
+            },
+            "format": "date-time"
+          },
+          "transportModes": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "rs5qpozxwvj6z"
+            },
+            "items": {
+              "$ref": "#/components/schemas/TransportMode",
+              "x-stoplight": {
+                "id": "9fna8syggsn8w"
+              }
+            }
+          },
+          "pgaRiskIndicator": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "fg8u5eagveh6d"
+            }
+          },
+          "commodityDescriptionEng": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "9cln3scqki0n4"
+            }
+          },
+          "commodityDescriptionChi": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cn17gywueqnit"
+            }
+          },
+          "ordinance": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "thvmkgrou1j8m"
+            }
+          },
+          "chapter": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "kajyqkoeq6f88"
+            }
+          },
+          "issuingAuthority": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "2nsgp71xrh3ug"
+            }
+          },
+          "actions": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "svi1vkwbpuw5g"
+            }
+          },
+          "remarks": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "v2h2zp38ye9ln"
+            }
+          },
+          "road": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "ztmr5mckiy6a7"
+            },
+            "properties": {
+              "inbound_constraint_code": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "dascfzjz5yy2y"
+                }
+              },
+              "outbound_constraint_code": {
+                "type": "integer",
+                "x-stoplight": {
+                  "id": "otffn4j4vkth9"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ControlledItemFoundDto": {
+        "x-stoplight": {
+          "id": "a2nxaasu84ouw"
+        },
+        "allOf": [
+          {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "listNo": {
+                "type": "string"
+              },
+              "versionNo": {
+                "type": "integer"
+              },
+              "lastModifiedBy": {
+                "type": "string"
+              },
+              "lastModifiedDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "cermRefId": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "kjln5ie11jlei"
+                }
+              },
+              "riskRank": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "aqa3rn2fupijh"
+                }
+              },
+              "additionalEmailReceiver": {
+                "type": "object",
+                "properties": {
+                  "emails": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "posts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AdditionalReceiverPost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/ControlledItemBasicDto",
+            "x-stoplight": {
+              "id": "c8dgmt4ql5223"
+            }
+          }
+        ],
+        "type": "object",
+        "title": "",
+        "x-internal": true
+      },
+      "ControlledItemCreateAndUpdateDto": {
+        "title": "",
+        "x-stoplight": {
+          "id": "ss9j64a2mhqsu"
+        },
+        "allOf": [
+          {
+            "properties": {
+              "additionalEmailReceiver": {
+                "type": "object",
+                "properties": {
+                  "emails": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "postIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "s57ojdtqifzcc"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/ControlledItemBasicDto",
+            "x-stoplight": {
+              "id": "qbo8gcbydbai7"
+            }
+          }
+        ],
+        "type": "object"
+      },
+      "DriverVehicleBasicDto": {
+        "x-stoplight": {
+          "id": "g5zdwgv5zzoga"
+        },
+        "type": "object",
+        "x-internal": false,
+        "required": [
+          "effectiveDate",
+          "shipmentType",
+          "matchAction"
+        ],
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ListStatusEnum"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "shipmentType": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShipmentType",
+              "x-stoplight": {
+                "id": "3hlc4taj17fd4"
+              }
+            }
+          },
+          "matchAction": {
+            "$ref": "#/components/schemas/DriverVehicleMatchAction"
+          },
+          "severity": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "79ow7msn2dg66"
+            },
+            "minimum": 1,
+            "maximum": 100
+          },
+          "invNum": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "msf2i3tgk4yf1"
+            }
+          },
+          "caseFileNum": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "5xfupgc2w89a9"
+            }
+          },
+          "vrn": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "43nhrb83m1ofw"
+            }
+          },
+          "driverIdType": {
+            "$ref": "#/components/schemas/PersonDocIdType",
+            "x-stoplight": {
+              "id": "2vkpbki4a08cn"
+            }
+          },
+          "hkid": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "6c979w44721r0"
+            }
+          },
+          "hkidCheckDigit": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "00tsmdwuln9hy"
+            }
+          },
+          "prcPermitNum": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "fphiihhj3r70j"
+            }
+          },
+          "commDescMatchType": {
+            "$ref": "#/components/schemas/CommDescMatchType",
+            "x-stoplight": {
+              "id": "wtbvyxg5xs3ot"
+            }
+          },
+          "commDescEng": {
+            "type": "string"
+          },
+          "commDescChn": {
+            "type": "string"
+          },
+          "consignor": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "52wpce0q1ewt6"
+            },
+            "properties": {
+              "name": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "ink3x9k20cdsc"
+                }
+              },
+              "address": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "nmuvsdx89mtih"
+                }
+              }
+            }
+          },
+          "consignee": {
+            "type": "object",
+            "x-stoplight": {
+              "id": "9uoc40v36yrw3"
+            },
+            "properties": {
+              "name": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "sfwpu90cgctbj"
+                }
+              },
+              "address": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "a1m55j0mxatcz"
+                }
+              }
+            }
+          },
+          "actions": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "i1rgsy9u7ki0x"
+            }
+          },
+          "remarks": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "gsm1g2w61qmxg"
+            }
+          }
+        }
+      },
+      "DriverVehicleFoundDto": {
+        "allOf": [
+          {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "listNo": {
+                "type": "string"
+              },
+              "versionNo": {
+                "type": "integer"
+              },
+              "lastModifiedBy": {
+                "type": "string"
+              },
+              "lastModifiedDate": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "additionalEmailReceiver": {
+                "type": "object",
+                "properties": {
+                  "emails": {
+                    "type": "string",
+                    "maxLength": 1000
+                  },
+                  "posts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AdditionalReceiverPost"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/DriverVehicleBasicDto"
+          }
+        ],
+        "x-stoplight": {
+          "id": "8vh1ffwihclb3"
+        },
+        "type": "object"
+      },
+      "DriverVehicleCreateAndUpdateDto": {
+        "x-stoplight": {
+          "id": "xn4cbtvbdhufa"
+        },
+        "allOf": [
+          {
+            "properties": {
+              "additionalEmailReceiver": {
+                "type": "object",
+                "properties": {
+                  "emails": {
+                    "type": "array",
+                    "items": {
+                      "x-stoplight": {
+                        "id": "o4ruq7yodlqwd"
+                      },
+                      "type": "string"
+                    }
+                  },
+                  "postIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/DriverVehicleBasicDto"
+          }
+        ],
+        "type": "object"
+      },
+      "ListStatusEnum": {
+        "title": "ListStatusEnum",
+        "x-stoplight": {
+          "id": "96km74g5mik27"
+        },
+        "enum": [
+          "A",
+          "I"
+        ]
+      },
+      "CommDescMatchType": {
+        "title": "ComDescMatchType",
+        "x-stoplight": {
+          "id": "ofc3ezlpw2yj9"
+        },
+        "enum": [
+          "NA",
+          "Contain",
+          "NotContain"
+        ]
+      },
+      "DriverVehicleMatchAction": {
+        "x-stoplight": {
+          "id": "2e2bntnolc3l7"
+        },
+        "enum": [
+          "NFTY_ONLY",
+          "NTFY_SEL",
+          "NFTY_REV",
+          "NFTY_FAC"
+        ]
+      },
+      "PersonDocIdType": {
+        "title": "PersonDocIdType",
+        "x-stoplight": {
+          "id": "06yo76xnivi1l"
+        },
+        "enum": [
+          "H",
+          "C"
+        ]
+      },
+      "HitConsignmentSearchResultOfRoadAciDto": {
+        "title": "HitConsignmentSearchResultOfRoadAciDto",
+        "x-stoplight": {
+          "id": "hslsse1b6f20j"
+        },
+        "type": "object",
+        "properties": {
+          "recId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "7031hbrref05n"
+            }
+          },
+          "hitDatetime": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "d5f35dym011g2"
+            },
+            "format": "date-time"
+          },
+          "versionNo": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "4vv5ivvuyo070"
+            }
+          },
+          "constraintCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ntzr6mlznay5e"
+            }
+          },
+          "shipmentType": {
+            "$ref": "#/components/schemas/ShipmentType",
+            "x-stoplight": {
+              "id": "gg96qg6xsuntq"
+            }
+          },
+          "ccrn": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "7m49ehy8tpbya"
+            }
+          },
+          "itemNo": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "btijz3gukhxk5"
+            }
+          },
+          "vrn": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "uktnzp80m6hxt"
+            }
+          },
+          "estArrDepDate": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "le553znsmxyrd"
+            },
+            "format": "date"
+          },
+          "matCsgmtItmId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "06zd06ia409zv"
+            }
+          }
+        }
+      },
+      "HitConsignmentSearchCriteriaForControllerDto": {
+        "title": "HitConsignmentSearchCriteriaForControllerDto",
+        "x-stoplight": {
+          "id": "f7inhh37qat5m"
+        },
+        "type": "object",
+        "properties": {
+          "hitDateFrom": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "8wjmrnca1r7o7"
+            },
+            "format": "date"
+          },
+          "hitDateTo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "2o2wet83aj4ih"
+            },
+            "format": "date"
+          },
+          "arrDepDateFrom": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ckzgofswnir9x"
+            },
+            "format": "date"
+          },
+          "arrDepDateTo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "6aw2wiaitsf7v"
+            },
+            "format": "date"
+          },
+          "listName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "a6envhhfciwz3"
+            }
+          },
+          "listNums": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "ci1nppxwzdvd0"
+            },
+            "items": {
+              "x-stoplight": {
+                "id": "pqg06qf7kvht1"
+              },
+              "type": "string"
+            }
+          },
+          "vrn": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "eg9gdgms3xyrd"
+            }
+          }
+        }
+      }
+    },
+    "responses": {},
+    "requestBodies": {}
+  },
+  "tags": [
+    {
+      "name": "Controlled Item"
+    },
+    {
+      "name": "Driver List"
+    },
+    {
+      "name": "General"
+    },
+    {
+      "name": "Internal"
+    },
+    {
+      "name": "Noise Word"
+    },
+    {
+      "name": "Synonym"
+    },
+    {
+      "name": "Target List"
+    }
+  ]
+}

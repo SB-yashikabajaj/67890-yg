@@ -1,0 +1,4227 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "n6koz4wdd7b86"
+  },
+  "info": {
+    "version": "1.0",
+    "title": "API for STD",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/tsw3/v1/cargo-statuses/vehicles/crossing-times": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Send Vehicle Crossing Information to STD",
+        "description": "Host: STD<br>\r\nFrequency: Every 15 seconds<br>\r\nCCM Function: UF-IT-205 Send Vehicle Crossing Information to STD",
+        "operationId": "post-api-v1-send-vehicle-crossing-info",
+        "requestBody": {
+          "description": "Host: STD<br>\r\nFrequency: Every 15 seconds<br>\r\nCCM Function: UF-IT-205 Send Vehicle Crossing Information to STD",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "vehicleCrossingList": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PostCrossingInfoRequest"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "mv9ilgbxlxx4q"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-statuses/vehicles/{vrn}/crossing-times/{crossingDatetime}": {
+      "patch": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Patch Crossing Info",
+        "description": "Host: STD<br/>\r\nFrequency: Every 15 seconds<br/>\r\nCCM Function: UF-IT-205 Send Vehicle Crossing Information to STD<br/>\r\n\r\nUpdate crossing info by the key {vrn} + {crossingDatetime}<br/>\r\nExampe:<br/>\r\nvrn: MM1010<br/>\r\ncrossingDatetime: 2024-09-20T10:00:00",
+        "operationId": "patch-tsw3-v1-cargo-statuses-crossing-times-vrn",
+        "parameters": [
+          {
+            "name": "vrn",
+            "in": "path",
+            "description": "Vehicle Registration Number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "crossingDatetime",
+            "in": "path",
+            "description": "Crossing Datetime",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchCrossingInfoRequest"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "inOutInd": "I",
+                    "submittedDatetime": "2024-08-25T19:30:00"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "xplkuxnii4k3a"
+        }
+      },
+      "delete": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Delete Crossing Info",
+        "description": "Host: STD<br/>\r\nFrequency: Every 15 seconds<br/>\r\nCCM Function: UF-IT-205 Send Vehicle Crossing Information to STD<br/>\r\n\r\nDelete crossing info by the key {vrn} + {crossingDatetime}<br/>\r\nExampe:<br/>\r\nvrn: MM1010<br/>\r\ncrossingDatetime: 2024-09-20T10:00:00",
+        "operationId": "delete-tsw3-v1-cargo-statuses-crossing-times-vrn",
+        "parameters": [
+          {
+            "name": "vrn",
+            "in": "path",
+            "description": "Vehicle Registration Number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "crossingDatetime",
+            "in": "path",
+            "description": "Crossing Datetime",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteCrossingInfoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "w4812zar7ckgn"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-docs/acis": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Receive ACI of Road Mode from STD",
+        "description": "Host: CCM<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-124 Receive Advance Cargo Information (ACI) of Road Mode from STD",
+        "operationId": "post-tsw3-v1-cargo-docs-acis",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostACIResquest"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "submitterInfo": {
+                      "party": "TRADER",
+                      "tswId": "P888163390",
+                      "companyTswId": "97088759971"
+                    },
+                    "submittedDatetime": "2024-12-01T09:31:00",
+                    "aciList": [
+                      {
+                        "aciInfo": {
+                          "ccrn": "1046142210",
+                          "version": 1,
+                          "aciStatus": "S",
+                          "validUntilDate": "2029-11-10",
+                          "expectedLBCP": "LMC",
+                          "messageSenderRef": [
+                            "REF1",
+                            "REF2"
+                          ],
+                          "ucr": "881201439",
+                          "udi": "293921021"
+                        },
+                        "traderInfo": {
+                          "name": "陳大文",
+                          "nameLangInd": "S",
+                          "brn": "73598929643",
+                          "hkId": "A607610(7)",
+                          "passportNo": "H2741078440",
+                          "contactName": "",
+                          "contactChiName": "陳大文",
+                          "contactNo": "61773799",
+                          "faxNo": "25316476",
+                          "address": {
+                            "cityName": "香港",
+                            "countryCode": "HK",
+                            "countrySubEntityId": "K",
+                            "countrySubEntityName": "九龍",
+                            "line": "尖沙咀彌敦道100號"
+                          },
+                          "addrLangInd": "S",
+                          "tswId": "P143149366",
+                          "traderInd": "P",
+                          "companyTswId": "33781112639"
+                        },
+                        "consignorInfo": {
+                          "name": "一號托運公司",
+                          "nameLangInd": "S",
+                          "address": {
+                            "cityName": "香港",
+                            "countryCode": "HK",
+                            "countrySubEntityId": "N",
+                            "countrySubEntityName": "新界",
+                            "line": "元朗富業街1號"
+                          },
+                          "addrLangInd": "T",
+                          "brn": "89242016098"
+                        },
+                        "consigneeInfo": {
+                          "name": "北京华贸有限公司",
+                          "nameLangInd": "S",
+                          "address": {
+                            "cityName": "北京",
+                            "countryCode": "CN",
+                            "line": "长安街100号",
+                            "postCode": "100000"
+                          },
+                          "addrLangInd": "S",
+                          "brn": "74395286353"
+                        },
+                        "consignmentInfo": {
+                          "impExpInd": "I",
+                          "expectedDate": "2024-12-08",
+                          "mainlandManifestNo": "73792813322"
+                        },
+                        "transportEquipment": {
+                          "equipmentTypeCode": "902",
+                          "containerNo": "C561393"
+                        },
+                        "goodsItemInfo": [
+                          {
+                            "seqNo": 1,
+                            "additionalDocList": [
+                              {
+                                "docItemNo": 1,
+                                "refNo": "LIC82100472771",
+                                "issuerCode": "4",
+                                "typeCode": "ZMO",
+                                "brandName": "ABC",
+                                "partModelNo": "A123",
+                                "matchedInd": "Y",
+                                "tswDocList": [
+                                  {
+                                    "tswDocId": "5078822000",
+                                    "version": 1
+                                  }
+                                ]
+                              },
+                              {
+                                "docItemNo": 2,
+                                "refNo": "LIC33371458988",
+                                "issuerCode": "0",
+                                "typeCode": "ZDC",
+                                "brandName": "ABC",
+                                "partModelNo": "A123",
+                                "matchedInd": "Y",
+                                "tswDocList": [
+                                  {
+                                    "tswDocId": "2078111000",
+                                    "version": 1
+                                  }
+                                ]
+                              }
+                            ],
+                            "description": "套装货样7件(SHEIN)",
+                            "foodInd": "Y",
+                            "grossWeight": 66,
+                            "grossWeightUnit": "GRM",
+                            "grossVol": 114,
+                            "grossVolUnit": "MTQ",
+                            "netWeight": 51,
+                            "netWeightUnit": "GRM",
+                            "qtyCargo": 409,
+                            "qtyPackage": 98,
+                            "packingTypeCode": "BX",
+                            "cargoType": "P",
+                            "hsCode": "64184806"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostACIResponse"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "mnw3lm7rdsgwb"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-docs/acis/{ccrn}": {
+      "put": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Update ACI of Road Mode from STD",
+        "description": "Host: CCM<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-124 Receive Advance Cargo Information (ACI) of Road Mode from STD<br>\n\nUpdate ACI by the key {ccrn} ",
+        "operationId": "put-tsw3-v1-cargo-docs-acis-ccrn",
+        "parameters": [
+          {
+            "name": "ccrn",
+            "in": "path",
+            "description": "Customs Cargo Reference Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Ccrn"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutACIRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PutACIResponse"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "v3cqqi1wmdwz8"
+        }
+      },
+      "delete": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Cancel ACI of Road Mode from STD",
+        "description": "Host: CCM<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-124 Receive Advance Cargo Information (ACI) of Road Mode from STD<br>\n\nCancel ACI by the key {ccrn} ",
+        "operationId": "delete-tsw3-v1-cargo-docs-acis-ccrn",
+        "parameters": [
+          {
+            "name": "ccrn",
+            "in": "path",
+            "description": "Customs Cargo Reference Number",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Ccrn"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelSubmitterInfo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelACIResponse"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-internal": false,
+        "x-stoplight": {
+          "id": "g45h44hkqw6j6"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-docs/bundles": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Fresh Submission - Bundling",
+        "description": "Host: CCM<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-125 Receive Bundling of Road Mode from STD",
+        "operationId": "post-bundling",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bundling"
+              },
+              "examples": {
+                "Create Bundling Bob Fellow": {
+                  "value": {
+                    "ubr": "9100204461",
+                    "version": 1,
+                    "channel": "W",
+                    "impExpInd": "I",
+                    "ccrnList": [
+                      "1323456324",
+                      "1324324567"
+                    ],
+                    "unassociatedBatchCcrnList": [
+                      "1423480841"
+                    ],
+                    "vrn": "CM1999",
+                    "party": "DRIVER",
+                    "tswId": "P492812390",
+                    "driverInfo": {
+                      "tswId": "P492812390",
+                      "name1": "陳大文"
+                    },
+                    "expectedLbcp": "LMC",
+                    "submittedDatetime": "2024-09-29T09:00:00",
+                    "bundlingCompleteDatetime": "2024-09-29T09:00:05",
+                    "validUntilDate": "2024-10-09"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Shared Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BundlingResult"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 20101,
+                      "message": "string",
+                      "earliestCrossingTime": "2024-08-15T15:35:00",
+                      "ubr": "9100204461",
+                      "version": 1,
+                      "ccrnList": [
+                        {
+                          "ccrn": "1383347892",
+                          "version": 1
+                        }
+                      ],
+                      "bundlingCode": 11
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing Required Information"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "7ir2j0t3u5cwp"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-docs/bundles/{ubr}": {
+      "put": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Put Bundling",
+        "description": "Host: CCM<br>\r\nFrequency: Ad-hoc<br>\r\nCCM Function: UF-IT-125 Receive Bundling of Road Mode from STD",
+        "operationId": "put-tsw3-v1-cargo-docs-bundles-ubr",
+        "parameters": [
+          {
+            "name": "ubr",
+            "in": "query",
+            "description": "Unique Bundling Reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ubr",
+            "in": "path",
+            "description": "Unique Bundling Reference",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Bundling"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bundling Information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BundlingResult"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 20003,
+                      "message": "string",
+                      "earliestCrossingTime": "2024-08-15T15:35:00",
+                      "ubr": "9100204461",
+                      "version": 1,
+                      "ccrnList": [
+                        {
+                          "ccrn": "1383347892",
+                          "version": 1
+                        }
+                      ],
+                      "bundlingCode": 13
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "f2lm5saefsbx2"
+        }
+      },
+      "delete": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Delete Bundling",
+        "description": "Host: CCM<br>\r\nFrequency: Ad-hoc<br>\r\nCCM Function: UF-IT-125 Receive Bundling of Road Mode from STD",
+        "operationId": "delete-tsw3-v1-cargo-docs-bundles-ubr",
+        "parameters": [
+          {
+            "name": "ubr",
+            "in": "query",
+            "description": "Unique Bundling Reference",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ubr",
+            "in": "path",
+            "description": "Unique Bundling Reference",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteBundlingRequest"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "party": "DRIVER",
+                    "driverInfo": {
+                      "tswId": "P439283920",
+                      "name": "陳大文"
+                    },
+                    "udi": "293921021",
+                    "submittedDatetime": "2024-08-25T19:30:00"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBundlingResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "nv0lz5x2ddwtu"
+        }
+      }
+    },
+    "/tsw3/v1/customs-actions/cefa-csvs": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Send CEFA CSV",
+        "description": "Host: STD<br>\r\nFrequency: Ad-hoc<br>\r\nCCM Function: UF-IT-193 Send Masked Code on Road Consignment for CEFA to STD",
+        "operationId": "post-api-v1-Send-Masked-Code",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCEFARequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Respone Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "v6t9ca3tuubkd"
+        }
+      }
+    },
+    "/tsw3/v1/queries/road-messages": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Send Query Message to Trader of Road Mode",
+        "description": "Host: STD<br>\r\nFrequency: Ad-hoc<br>\r\nCCM Function: UF-IT-198 Send Query Message to Trader of Road Mode to STD",
+        "operationId": "post-api-v1-Send-Query-Message",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostRoadMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Response Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "w4ti9e8rj0sy5"
+        }
+      }
+    },
+    "/tsw3/v1/queries/road-responses": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Receive Query Response from Trader of Road Mode",
+        "description": "Host: CCM<br>\r\nFrequency: Ad-hoc<br>\r\nCCM Function: UF-IT-199 Receive Query Response from Trader of Road Mode from STD",
+        "operationId": "post-tsw3-v1-queries-road-responses",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostRoadMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/responseMsg"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "rr2swzxgmdlzs"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-docs/acis/queries": {
+      "post": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Get ACIs information",
+        "description": "Host: STD<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-181 Request for Advance Cargo Information (ACI) of Road Mode to STD",
+        "operationId": "post-tsw3-v1-cargo-docs-acis-queries",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ccrnList": {
+                    "type": "array",
+                    "description": "List of CCRNs",
+                    "items": {
+                      "$ref": "#/components/schemas/CcrnList"
+                    }
+                  }
+                },
+                "required": [
+                  "ccrnList"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "submitterInfo",
+                    "aciList",
+                    "submittedDatetime"
+                  ],
+                  "properties": {
+                    "submitterInfo": {
+                      "$ref": "#/components/schemas/SubmitterInfo",
+                      "description": "Submitter information"
+                    },
+                    "aciList": {
+                      "type": "array",
+                      "description": "List of ACIs",
+                      "items": {
+                        "$ref": "#/components/schemas/AciOptional"
+                      }
+                    },
+                    "submittedDatetime": {
+                      "$ref": "#/components/schemas/LocalDatetime",
+                      "description": "Submission datetime"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "3h1eft2z9d6fe"
+        }
+      }
+    },
+    "/v1/tsw-documents/{tswDocId}?version=": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Collect Original File",
+        "description": "Host: STD<br>\r\nFrequency: Ad-hoc<br>\r\nCCM Function: UF-IT-192 Collect Original File of System-to-System Submission from STD",
+        "parameters": [
+          {
+            "name": "tswDocId",
+            "in": "path",
+            "description": "TSW Document ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Response Message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/File"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "operationId": "get-v1-tsw-documents-tswDocId",
+        "x-stoplight": {
+          "id": "ucf0qg4uvlvuy"
+        },
+        "requestBody": {
+          "content": {}
+        }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "tswDocId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "in": "query",
+          "name": "version"
+        }
+      ]
+    },
+    "/tsw3/v1/users/queries": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Enquires TSW User",
+        "description": "Host: STD<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-202 Request for User Registration Information to STD",
+        "operationId": "post-tsw3-v1-users-enquires",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSearchCriteria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "sort",
+                    "pageable"
+                  ],
+                  "properties": {
+                    "resultList": {
+                      "type": "array",
+                      "description": "Return distinct company profile",
+                      "items": {
+                        "$ref": "#/components/schemas/UserSearchResult"
+                      }
+                    },
+                    "sort": {
+                      "$ref": "#/components/schemas/Sort",
+                      "description": "Sort criteria"
+                    },
+                    "pageable": {
+                      "$ref": "#/components/schemas/Pageable",
+                      "description": "Pagination"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "1w9j0l2ffpfmg"
+        }
+      }
+    },
+    "/tsw3/v1/cargo-statuses/vehicles/{vrn}/bundles/{ubr}": {
+      "put": {
+        "tags": [
+          "Road Mode"
+        ],
+        "summary": "Update Cross Status in Contingency Mode",
+        "description": "Host: CCM<br>\nCCM Function: UF-IT-246 Receive Crossing Status in Contingency Mode from STD",
+        "operationId": "put-tsw3-v1-cargo-statuses-vehicles-vrn-bundles-ubr",
+        "parameters": [
+          {
+            "name": "ubr",
+            "in": "path",
+            "description": "Unique Bundling Reference",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vrn",
+            "in": "path",
+            "description": "Vehicle Registration Number",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PutCrossingStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000"
+          }
+        ],
+        "x-stoplight": {
+          "id": "j2xubho659azm"
+        }
+      }
+    },
+    "/tsw3/v1/users/queries/company-profiles": {
+      "post": {
+        "summary": "Enquires TSW Company",
+        "tags": [
+          "Common"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../CCMmodels/CompanySearchResult.json"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "resultList": [
+                        {
+                          "companyTswId": "00123456000",
+                          "hkid": "X123456(A)",
+                          "idType": "BR",
+                          "idNo": "00123456-000",
+                          "chiName": "環速",
+                          "engName": "SPEEDY WORK LTD",
+                          "phoneNo": "20129872",
+                          "phoneNo2": "21329874",
+                          "faxNo": "2439573",
+                          "addrLangInd": "C",
+                          "chiAddress": {
+                            "cityName": "香港",
+                            "countryCode": "HK",
+                            "countrySubEntityId": "E0001",
+                            "countrySubEntityName": "尖沙咀",
+                            "line1": "尖沙咀希爾頓大廈23樓",
+                            "line2": "中國香港",
+                            "postCode": "000"
+                          },
+                          "engAddress": {
+                            "cityName": "Hong Kong",
+                            "countryCode": "HK",
+                            "countrySubEntityId": "E0001",
+                            "countrySubEntityName": "Tsim Sha Tsui",
+                            "line1": "23/F, Hilton Tower, TST",
+                            "line2": "Hong Kong, China",
+                            "postCode": "000"
+                          },
+                          "agentInd": "Y",
+                          "businessStatus": "A",
+                          "businessNature": "O",
+                          "businessNatureOther": "Data Entry Services Provider",
+                          "profileVersion": 1
+                        }
+                      ],
+                      "sort": {
+                        "field": "idNo",
+                        "order": "A"
+                      },
+                      "pageable": {
+                        "pageSize": "10",
+                        "pageNo": "0",
+                        "totalItems": "1",
+                        "totalPages": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "operationId": "post-tsw3-v1-users-queries-company-profiles",
+        "x-stoplight": {
+          "id": "xotr1n5w5srer"
+        },
+        "description": "Host: STD<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-TS-001 Maintain ITFS/ATCS/STFS/CEFA Registration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../CCMmodels/CompanySearchCriteria.json"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "idNoList": [
+                      "X123456(A)",
+                      "Y112233(A)"
+                    ],
+                    "brnList": [
+                      "00123456-000",
+                      "24680000-001"
+                    ],
+                    "companyName": "Migration One LIMITED",
+                    "sort": {
+                      "field": "idNo",
+                      "order": "A"
+                    },
+                    "pageable": {
+                      "pageSize": "10",
+                      "pageNo": "0",
+                      "totalItems": "120",
+                      "totalPages": "12"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/ccm-documents/{tswDocId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "tswDocId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Collect CCM Document",
+        "tags": [
+          "Common"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/File"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseMessage"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-tsw3-v1-ccm-documents-tswDocId",
+        "x-stoplight": {
+          "id": "zzkvn5ibql7n5"
+        },
+        "description": "Host: CCM<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-219 Send Document to STD"
+      }
+    },
+    "/tsw3/v1/accounts/validation": {
+      "post": {
+        "summary": "Validate TSW Account",
+        "tags": [
+          "Common"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateResult"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-tsw3-v1-accounts-validation",
+        "x-stoplight": {
+          "id": "kz7z0785vl2m4"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TswAccount"
+              }
+            }
+          }
+        },
+        "description": "Host: STD<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-226 Check User Account Availability in STD\n\n*The failed validation will not count as fail login count in STD <br/>\n*Only Registered, Restricted and Locked account statuses are considered as successful validate"
+      }
+    },
+    "/tsw/v1/lpcos/files/{tswDocId}": {
+      "get": {
+        "summary": "Collect Licence/Permit",
+        "tags": [
+          "Common"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicencePermitInfo"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "fileList": [
+                        {
+                          "fileName": "file.pdf",
+                          "fileType": "application/pdf",
+                          "fileSizeByte": 2342,
+                          "fileContentBase64": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4="
+                        }
+                      ],
+                      "status": "ISSUE",
+                      "expiryDate": "2025-10-29",
+                      "pgaCode": "DH",
+                      "licenceNo": "L392371291"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-tsw-v1-lpcos-files",
+        "x-stoplight": {
+          "id": "2gei133wxhlss"
+        },
+        "description": "Host: STD<br>\nFrequency: Ad-hoc<br>\nCCM Function: UF-IT-048 Request for Licence or Permit to STD"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "tswDocId",
+          "in": "path",
+          "required": true
+        }
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Common"
+    },
+    {
+      "name": "Obsolete"
+    },
+    {
+      "name": "Road Mode"
+    }
+  ],
+  "components": {
+    "responses": {
+      "responseMsg": {
+        "description": "Response Message",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "description": "Response code"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Response message",
+                  "maxLength": 300
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ]
+            },
+            "examples": {
+              "Example 1": {
+                "value": {
+                  "code": 20001,
+                  "message": "OK"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "PostCrossingInfoRequest": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "34wqmx235b4ge"
+        },
+        "required": [
+          "vrn",
+          "inOutInd",
+          "emptyInd",
+          "privateCarInd",
+          "crossingDatetime",
+          "submittedDatetime"
+        ],
+        "properties": {
+          "ubr": {
+            "type": "string",
+            "description": "Unique Bundling Reference",
+            "maxLength": 35,
+            "examples": [
+              "9100204461"
+            ]
+          },
+          "vrn": {
+            "type": "string",
+            "description": "Vehicle Registration Number",
+            "maxLength": 25
+          },
+          "inOutInd": {
+            "type": "string",
+            "enum": [
+              "I",
+              "O"
+            ],
+            "description": "In/Out Indicator <br/>\nI - Inbound <br/>\nO - Outbound"
+          },
+          "emptyInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Empty/Loaded indicator <br/>\nY - Empty<br/>\nN - Loaded"
+          },
+          "privateCarInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Private Car / Truck indicator<br/>\nY - Private car<br/>\nN - Truck"
+          },
+          "crossingDatetime": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "description": "Crossing Date & Time"
+          },
+          "submittedDatetime": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "description": "Submission datetime"
+          },
+          "actualControlPoint": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1pddglqst32f3"
+            },
+            "maxLength": 11,
+            "description": "Actual Control Point Location"
+          }
+        }
+      },
+      "ResponseMessage": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Response Code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Response Message",
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "x-stoplight": {
+          "id": "791nva0tk1fkt"
+        }
+      },
+      "PatchCrossingInfoRequest": {
+        "type": "object",
+        "properties": {
+          "ubr": {
+            "type": "string",
+            "description": "Unique Bundling Reference",
+            "maxLength": 35,
+            "examples": [
+              "9100204461"
+            ]
+          },
+          "inOutInd": {
+            "type": "string",
+            "enum": [
+              "I",
+              "O"
+            ],
+            "description": "In/Out Indicator <br/>\nI - Inbound <br/>\nO - Outbound"
+          },
+          "emptyInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Empty/Loaded indicator <br/>\nY - Empty<br/>\nN - Loaded"
+          },
+          "privateCarInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Private car indicator<br/>\nY - Private car<br/>\nN - goods vehicle"
+          },
+          "submittedDatetime": {
+            "description": "Submission datetime",
+            "$ref": "#/components/schemas/LocalDatetime"
+          }
+        },
+        "required": [
+          "submittedDatetime"
+        ],
+        "x-stoplight": {
+          "id": "67tl1hi3joiiv"
+        }
+      },
+      "DeleteCrossingInfoRequest": {
+        "type": "object",
+        "properties": {
+          "submittedDatetime": {
+            "description": "Submission datetime",
+            "$ref": "#/components/schemas/LocalDatetime"
+          }
+        },
+        "required": [
+          "submittedDatetime"
+        ],
+        "x-stoplight": {
+          "id": "rwpb97at4az0w"
+        }
+      },
+      "PostACIResquest": {
+        "type": "object",
+        "properties": {
+          "submitterInfo": {
+            "$ref": "#/components/schemas/SubmitterInfo",
+            "description": "Submitter information"
+          },
+          "aciList": {
+            "type": "array",
+            "description": "List of ACIs",
+            "items": {
+              "$ref": "#/components/schemas/ACI"
+            }
+          },
+          "submittedDatetime": {
+            "description": "Submission datetime",
+            "$ref": "#/components/schemas/LocalDatetime"
+          }
+        },
+        "required": [
+          "submitterInfo",
+          "aciList",
+          "submittedDatetime"
+        ],
+        "x-stoplight": {
+          "id": "onbtvgf8j8lah"
+        }
+      },
+      "SubmitterInfo": {
+        "title": "SubmitterInfo",
+        "allOf": [
+          {
+            "required": [
+              "party",
+              "tswId"
+            ],
+            "properties": {
+              "party": {
+                "type": "string",
+                "enum": [
+                  "TRADER",
+                  "AGENT",
+                  "VASP"
+                ],
+                "description": "Submitter Party:<br/>\nTRADER - trader<br/>\nAGENT - agent (applicable to Phase 3A only)<br/>\nVASP - VASP (applicable to Phase 3B and after)"
+              },
+              "tswId": {
+                "type": "string",
+                "description": "TSW ID",
+                "minLength": 10,
+                "maxLength": 10,
+                "examples": [
+                  "P392310191"
+                ]
+              },
+              "companyTswId": {
+                "type": "string",
+                "description": "Company TSW ID",
+                "minLength": 10,
+                "maxLength": 11,
+                "examples": [
+                  "39283042112"
+                ]
+              },
+              "agentUserProfile": {
+                "$ref": "#/components/schemas/SubmitterUserProfile",
+                "description": "Agent User Profile"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/InOneGo"
+          }
+        ],
+        "x-stoplight": {
+          "id": "eoe50m2sfwd8f"
+        },
+        "type": "object"
+      },
+      "SubmitterUserProfile": {
+        "type": "object",
+        "title": "SubmitterUserProfile",
+        "properties": {
+          "chiName": {
+            "type": "string"
+          },
+          "engName": {
+            "type": "string"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress"
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress"
+          },
+          "contactNo": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "faxNo": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "brn": {
+            "type": "string",
+            "description": "Business Registration Number",
+            "maxLength": 17
+          }
+        },
+        "x-stoplight": {
+          "id": "v5bamz1qdet7t"
+        }
+      },
+      "TswAddress": {
+        "type": "object",
+        "title": "TswAddress",
+        "properties": {
+          "cityName": {
+            "type": "string",
+            "description": "City name",
+            "maxLength": 35
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Country/Territory code\n",
+            "maxLength": 2
+          },
+          "countrySubEntityId": {
+            "type": "string",
+            "description": "SubEntity ID",
+            "maxLength": 9
+          },
+          "countrySubEntityName": {
+            "type": "string",
+            "description": "Country Sub-entity name",
+            "maxLength": 35
+          },
+          "line1": {
+            "type": "string",
+            "description": "Line 1 of the address<br>\nIf specified, this field must not be blank or null.",
+            "maxLength": 150
+          },
+          "line2": {
+            "type": "string",
+            "description": "Line 2 of the address",
+            "maxLength": 62
+          },
+          "postCode": {
+            "type": "string",
+            "description": "Postcode identification",
+            "maxLength": 9
+          }
+        },
+        "x-stoplight": {
+          "id": "h20dew1y3o16n"
+        }
+      },
+      "InOneGo": {
+        "type": "object",
+        "title": "InOneGo",
+        "properties": {
+          "inOneGoInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "In-one-go indicator:<br/>\n\nY - submission in-one-go <br/>\nN - submission not in-one-go"
+          }
+        },
+        "x-stoplight": {
+          "id": "ctctq051mz4ht"
+        }
+      },
+      "ACI": {
+        "type": "object",
+        "title": "ACI",
+        "x-stoplight": {
+          "id": "5xol1xnblw3r4"
+        },
+        "required": [
+          "aciInfo",
+          "traderInfo",
+          "consignorInfo",
+          "consigneeInfo",
+          "consignmentInfo",
+          "goodsItemInfo"
+        ],
+        "properties": {
+          "aciInfo": {
+            "$ref": "#/components/schemas/AdvanceCargoInfo",
+            "description": "Advance Cargo Information"
+          },
+          "traderInfo": {
+            "$ref": "#/components/schemas/TraderInfo",
+            "description": "Trader Information"
+          },
+          "consignorInfo": {
+            "$ref": "#/components/schemas/ConsignorInfo",
+            "description": "Consignor Information"
+          },
+          "consigneeInfo": {
+            "$ref": "#/components/schemas/ConsigneeInfo",
+            "description": "Consignne Information"
+          },
+          "consignmentInfo": {
+            "$ref": "#/components/schemas/ConsignmentInfo",
+            "description": "Consignment Information"
+          },
+          "goodsItemInfo": {
+            "type": "array",
+            "description": "Consignment Item Information",
+            "items": {
+              "$ref": "#/components/schemas/GoodsItemInfo"
+            }
+          },
+          "transhipmentInfo": {
+            "$ref": "#/components/schemas/TranshipmentInfo",
+            "description": "Transhipment Information "
+          },
+          "transportEquipment": {
+            "$ref": "#/components/schemas/TransportEquipment",
+            "description": "Transport equipment"
+          }
+        }
+      },
+      "AciOptional": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "wsxwyzxbq8jic"
+        },
+        "title": "AciOptional",
+        "required": [
+          "aciInfo",
+          "traderInfo"
+        ],
+        "properties": {
+          "aciInfo": {
+            "$ref": "#/components/schemas/AdvanceCargoInfo",
+            "description": "Advance Cargo Information"
+          },
+          "traderInfo": {
+            "$ref": "#/components/schemas/TraderInfo",
+            "description": "Trader Information"
+          },
+          "consignorInfo": {
+            "$ref": "#/components/schemas/ConsignorInfo",
+            "description": "Consignor Information"
+          },
+          "consigneeInfo": {
+            "$ref": "#/components/schemas/ConsigneeInfo",
+            "description": "Consignne Information"
+          },
+          "consignmentInfo": {
+            "$ref": "#/components/schemas/ConsignmentInfo",
+            "description": "Consignment Information"
+          },
+          "goodsItemInfo": {
+            "type": "array",
+            "description": "Consignment Item Information",
+            "items": {
+              "$ref": "#/components/schemas/GoodsItemInfo"
+            }
+          },
+          "transhipmentInfo": {
+            "$ref": "#/components/schemas/TranshipmentInfo",
+            "description": "Transhipment Information "
+          },
+          "transportEquipment": {
+            "$ref": "#/components/schemas/TransportEquipment",
+            "description": "Transport equipment"
+          }
+        },
+        "description": ""
+      },
+      "AdvanceCargoInfo": {
+        "type": "object",
+        "title": "AdvanceCargoInfo",
+        "x-stoplight": {
+          "id": "cqi8wdwi21rap"
+        },
+        "required": [
+          "ccrn",
+          "version",
+          "aciStatus",
+          "validUntilDate",
+          "udi"
+        ],
+        "properties": {
+          "ccrn": {
+            "$ref": "#/components/schemas/Ccrn"
+          },
+          "version": {
+            "type": "integer",
+            "description": "ACI version , not ccrn version , \"for each ACI updated\"",
+            "format": "int64",
+            "minimum": 1
+          },
+          "aciStatus": {
+            "type": "string",
+            "enum": [
+              "S",
+              "B",
+              "E",
+              "C"
+            ],
+            "description": "ACI Status:<br/>\r\nS - Submitted<br/>\r\nB - Bundled<br/>\r\nE - Expired<br/>\r\nC - Cancelled"
+          },
+          "validUntilDate": {
+            "$ref": "#/components/schemas/LocalDate",
+            "description": "Validity (end date) of CCRN, inclusive"
+          },
+          "batchCcrn": {
+            "$ref": "#/components/schemas/Ccrn",
+            "description": "Batch CCRN (if the submission channel is Batch)"
+          },
+          "expectedLBCP": {
+            "type": "string",
+            "description": "Expected Customs Control Point",
+            "maxLength": 3,
+            "examples": [
+              "LMC"
+            ]
+          },
+          "messageSenderRef": {
+            "type": "array",
+            "description": "Message Sender Reference",
+            "maxItems": 5,
+            "items": {
+              "type": "string"
+            }
+          },
+          "ucr": {
+            "type": "string",
+            "description": "Unique Consignment Reference Number (UCR)"
+          },
+          "udi": {
+            "type": "string",
+            "description": "Unique Declaration ID",
+            "maxLength": 70,
+            "examples": [
+              "293921021"
+            ]
+          },
+          "docList": {
+            "type": "array",
+            "description": "List of supporting document",
+            "items": {
+              "type": "object",
+              "properties": {
+                "docType": {
+                  "type": "string",
+                  "description": "Document type"
+                },
+                "tswDocId": {
+                  "type": "string",
+                  "description": "TSW Document ID"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TraderInfo": {
+        "type": "object",
+        "title": "TraderInfo",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Trader name",
+            "maxLength": 70,
+            "examples": [
+              "Chan Tai Man"
+            ]
+          },
+          "nameLangInd": {
+            "type": "string",
+            "enum": [
+              "E",
+              "T",
+              "S"
+            ],
+            "description": "Name language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+          },
+          "brn": {
+            "type": "string",
+            "description": "Business Registration Number ",
+            "maxLength": 35
+          },
+          "hkId": {
+            "type": "string",
+            "description": "HKID ",
+            "maxLength": 35
+          },
+          "passportNo": {
+            "type": "string",
+            "description": "Passport Number",
+            "maxLength": 35
+          },
+          "contactName": {
+            "type": "string",
+            "description": "Name of the contact person",
+            "maxLength": 70,
+            "examples": [
+              "Chan Tai Man"
+            ]
+          },
+          "contactChiName": {
+            "type": "string",
+            "description": "Traditional Chinese name of the contact person",
+            "maxLength": 70
+          },
+          "contactNo": {
+            "type": "string",
+            "description": "Contact Number",
+            "maxLength": 256
+          },
+          "faxNo": {
+            "type": "string",
+            "description": "Fax number",
+            "maxLength": 256
+          },
+          "address": {
+            "$ref": "#/components/schemas/AciAddress",
+            "description": "Address"
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "E",
+              "T",
+              "S"
+            ],
+            "description": "Address language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+          },
+          "tswId": {
+            "type": "string",
+            "description": "TSW ID",
+            "minLength": 10,
+            "maxLength": 10,
+            "examples": [
+              "P392310191"
+            ]
+          },
+          "traderInd": {
+            "type": "string",
+            "enum": [
+              "P",
+              "C"
+            ],
+            "description": "Trader indicator:<br/>\nP - Person<br/>\nC - Company"
+          },
+          "companyTswId": {
+            "type": "string",
+            "description": "Company TSW ID",
+            "minLength": 10,
+            "maxLength": 11,
+            "examples": [
+              "39283042112"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "nameLangInd"
+        ],
+        "x-stoplight": {
+          "id": "d0rx0hnfgptvi"
+        }
+      },
+      "AciAddress": {
+        "type": "object",
+        "title": "AciAddress",
+        "properties": {
+          "cityName": {
+            "type": "string",
+            "description": "City name",
+            "maxLength": 35
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "Country/Territory code\n",
+            "maxLength": 2
+          },
+          "countrySubEntityId": {
+            "type": "string",
+            "description": "SubEntity ID",
+            "maxLength": 9
+          },
+          "countrySubEntityName": {
+            "type": "string",
+            "description": "Country Sub-entity name",
+            "maxLength": 35
+          },
+          "line": {
+            "type": "string",
+            "description": "Address line",
+            "maxLength": 256
+          },
+          "postCode": {
+            "type": "string",
+            "description": "Postcode identification",
+            "maxLength": 17
+          }
+        },
+        "required": [
+          "countryCode",
+          "line"
+        ],
+        "x-stoplight": {
+          "id": "xjzt3xwlna579"
+        }
+      },
+      "ConsignorInfo": {
+        "type": "object",
+        "title": "ConsignorInfo",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Consignor name",
+            "maxLength": 70,
+            "examples": [
+              "Chan Tai Man"
+            ]
+          },
+          "nameLangInd": {
+            "type": "string",
+            "enum": [
+              "E",
+              "T",
+              "S"
+            ],
+            "description": "Name language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AciAddress",
+            "description": "Address"
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "E",
+              "T",
+              "S"
+            ],
+            "description": "Address language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+          },
+          "brn": {
+            "type": "string",
+            "description": "Business Registration Number (applicable to Phase 3B and after)",
+            "maxLength": 35
+          }
+        },
+        "required": [
+          "name",
+          "nameLangInd",
+          "address",
+          "addrLangInd"
+        ],
+        "x-stoplight": {
+          "id": "ekuhhrewp2d05"
+        }
+      },
+      "ConsigneeInfo": {
+        "type": "object",
+        "title": "ConsigneeInfo",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Consignee Name"
+          },
+          "nameLangInd": {
+            "type": "string",
+            "enum": [
+              "E",
+              "T",
+              "S"
+            ],
+            "description": "Name language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+          },
+          "address": {
+            "$ref": "#/components/schemas/AciAddress",
+            "description": "Address"
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "E",
+              "T",
+              "S"
+            ],
+            "description": "Address language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+          },
+          "brn": {
+            "type": "string",
+            "description": "Business Registration Number (applicable to Phase 3B and after)",
+            "maxLength": 35
+          }
+        },
+        "required": [
+          "name",
+          "nameLangInd",
+          "address",
+          "addrLangInd"
+        ],
+        "x-stoplight": {
+          "id": "yem2x561a15wu"
+        }
+      },
+      "ConsignmentInfo": {
+        "type": "object",
+        "title": "ConsignmentInfo",
+        "properties": {
+          "impExpInd": {
+            "type": "string",
+            "enum": [
+              "I",
+              "E"
+            ],
+            "description": "Import/Export indicator:<br/>\nI - Import<br/>\nE - Export"
+          },
+          "expectedDate": {
+            "description": "Expected date of arrival / Expected date of departure<br/>\nFormat: YYYY-MM-DD",
+            "$ref": "#/components/schemas/LocalDate"
+          },
+          "cefaRegNo": {
+            "type": "string",
+            "description": "CEFA Registration Number",
+            "maxLength": 70
+          },
+          "cefaDevanningSiteCode": {
+            "type": "string",
+            "description": "CEFA devanning site code",
+            "maxLength": 70
+          },
+          "cefaExamSiteCode": {
+            "type": "string",
+            "description": "CEFA exam site code",
+            "maxLength": 70
+          },
+          "mainlandManifestNo": {
+            "type": "string",
+            "description": "Mainland manifest number",
+            "maxLength": 70
+          },
+          "totalCifFobValue": {
+            "type": "number",
+            "description": "Total CIF / FOB value"
+          }
+        },
+        "required": [
+          "impExpInd",
+          "expectedDate"
+        ],
+        "x-stoplight": {
+          "id": "mhgj6g8lwrwfn"
+        }
+      },
+      "GoodsItemInfo": {
+        "type": "object",
+        "title": "GoodsItemInfo",
+        "x-stoplight": {
+          "id": "hwlvrgrhlveq1"
+        },
+        "required": [
+          "seqNo",
+          "description"
+        ],
+        "properties": {
+          "seqNo": {
+            "type": "integer",
+            "description": "Sequence number"
+          },
+          "additionalDocList": {
+            "type": "array",
+            "description": "Additio nal Document list",
+            "items": {
+              "$ref": "#/components/schemas/AdditionalDocument"
+            }
+          },
+          "description": {
+            "type": "string",
+            "description": "Commodity description",
+            "maxLength": 512
+          },
+          "foodInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Food indicator"
+          },
+          "grossWeight": {
+            "type": "number",
+            "description": "Gross weight "
+          },
+          "grossWeightUnit": {
+            "type": "string",
+            "description": "Gross weight unit",
+            "maxLength": 3
+          },
+          "grossVol": {
+            "type": "number",
+            "description": "Gross volume "
+          },
+          "grossVolUnit": {
+            "type": "string",
+            "description": "Gross volume unit",
+            "maxLength": 3
+          },
+          "netWeight": {
+            "type": "number",
+            "description": "Net Weight "
+          },
+          "netWeightUnit": {
+            "type": "string",
+            "description": "Net weight unit",
+            "maxLength": 3
+          },
+          "qtyCargo": {
+            "type": "number",
+            "description": "Quantity Of Cargo",
+            "x-stoplight": {
+              "id": "w4y7g5zekpcru"
+            }
+          },
+          "qtyPackage": {
+            "type": "integer",
+            "description": "Number of Packages per consignment item "
+          },
+          "packingTypeCode": {
+            "type": "string",
+            "description": "Packing type code",
+            "maxLength": 2
+          },
+          "cargoType": {
+            "type": "string",
+            "enum": [
+              "B",
+              "P"
+            ],
+            "description": "Cargo Type<br/>\n\nB - Cargo in Bulk <br/>\nP - Cargo in Package <br/>\n"
+          },
+          "hsCode": {
+            "type": "string",
+            "description": "HS Code",
+            "maxLength": 8,
+            "examples": [
+              "39131000"
+            ]
+          },
+          "cifFobValue": {
+            "type": "number",
+            "description": "CIF / FOB value in item level"
+          }
+        }
+      },
+      "AdditionalDocument": {
+        "type": "object",
+        "title": "AdditionalDocument",
+        "properties": {
+          "docItemNo": {
+            "type": "integer",
+            "description": "Item number of document",
+            "maximum": 99,
+            "examples": [
+              1
+            ]
+          },
+          "refNo": {
+            "type": "string",
+            "description": "Additional Document Reference Number<br/>\nLicence/notification/supporting documents number",
+            "maxLength": 70,
+            "examples": [
+              "P39228401"
+            ]
+          },
+          "issuerCode": {
+            "type": "string",
+            "description": "Additional Document issuer code",
+            "maxLength": 17
+          },
+          "typeCode": {
+            "type": "string",
+            "description": "Additional Document type",
+            "maxLength": 3
+          },
+          "brandName": {
+            "type": "string",
+            "description": "Brand Name",
+            "maxLength": 35
+          },
+          "partModelNo": {
+            "type": "string",
+            "description": "Part/Model Number",
+            "maxLength": 25
+          },
+          "matchedInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Matched indicator of TSW1/TSW2 licence/permit<br/>\nY - Matched<br/>\nN - Not Matched"
+          },
+          "tswDocList": {
+            "type": "array",
+            "description": "TSW Document List",
+            "items": {
+              "$ref": "#/components/schemas/TswDoc"
+            }
+          }
+        },
+        "required": [
+          "docItemNo"
+        ],
+        "x-stoplight": {
+          "id": "7j78el7a5jjv6"
+        }
+      },
+      "TswDoc": {
+        "type": "object",
+        "title": "TswDoc",
+        "properties": {
+          "tswDocId": {
+            "type": "string",
+            "description": "TSW Document ID",
+            "maxLength": 20,
+            "examples": [
+              "2495201234"
+            ]
+          }
+        },
+        "x-stoplight": {
+          "id": "dgknmqrzxz62f"
+        }
+      },
+      "TranshipmentInfo": {
+        "type": "object",
+        "title": "TranshipmentInfo",
+        "properties": {
+          "transhipmentScheme": {
+            "type": "string",
+            "enum": [
+              "ITFS",
+              "ATCS"
+            ],
+            "description": "Transhipment Scheme (i.e. ITFS, ATCS)"
+          },
+          "transhipmentMode": {
+            "type": "string",
+            "enum": [
+              "LA",
+              "AL",
+              "LS",
+              "SL"
+            ],
+            "description": "Transhipment Mode: <br/>\nLA - Land to Air (Southbound) <br/>\nAL - Air to Land (Northbound) <br/>\nLS - Land to Sea (Southbound) <br/>\nSL - Sea to Land (Northbound) <br/>"
+          },
+          "airCargo": {
+            "$ref": "#/components/schemas/AirCargo",
+            "description": "Air Cargo"
+          },
+          "seaCargo": {
+            "$ref": "#/components/schemas/SeaCargo",
+            "description": "Sea Cargo"
+          },
+          "schemeRegNo": {
+            "type": "string",
+            "description": "IMTF Reference Number / ATCS Reference Number"
+          }
+        },
+        "x-stoplight": {
+          "id": "x14wsj3eypks9"
+        }
+      },
+      "AirCargo": {
+        "type": "object",
+        "title": "AirCargo",
+        "properties": {
+          "flightNo": {
+            "type": "string",
+            "description": "Flight Number",
+            "maxLength": 70
+          },
+          "flightDate": {
+            "description": "Estimated Flight Departure/Arrival Date",
+            "$ref": "#/components/schemas/LocalDate"
+          },
+          "awb": {
+            "type": "string",
+            "description": "Air Waybill Number",
+            "maxLength": 70
+          },
+          "hwb": {
+            "type": "string",
+            "description": "House Waybill Number",
+            "maxLength": 70
+          }
+        },
+        "x-stoplight": {
+          "id": "oyua7amuqu8i0"
+        }
+      },
+      "SeaCargo": {
+        "type": "object",
+        "title": "SeaCargo",
+        "properties": {
+          "vesselNo": {
+            "type": "string",
+            "description": "Vessel Identification",
+            "maxLength": 70
+          },
+          "shipmentDate": {
+            "type": "string",
+            "description": "Estimated Vessel Departure/Arrival Date",
+            "$ref": "#/components/schemas/LocalDate"
+          },
+          "voyageNo": {
+            "type": "string",
+            "description": "Voyage Number",
+            "maxLength": 70
+          },
+          "mbl": {
+            "type": "string",
+            "description": "Master Bill of Lading Number",
+            "maxLength": 70
+          },
+          "hbl": {
+            "type": "string",
+            "description": "House Bill of Lading Number",
+            "maxLength": 70
+          }
+        },
+        "x-stoplight": {
+          "id": "bwavn82nm162g"
+        }
+      },
+      "TransportEquipment": {
+        "type": "object",
+        "title": "TransportEquipment",
+        "properties": {
+          "sealNo": {
+            "type": "string",
+            "description": "Seal Number",
+            "maxLength": 35
+          },
+          "equipmentTypeCode": {
+            "type": "string",
+            "description": "Equipment Size and Type (Container) Code",
+            "maxLength": 10
+          },
+          "containerNo": {
+            "type": "string",
+            "description": "Container Number",
+            "maxLength": 17
+          }
+        },
+        "x-stoplight": {
+          "id": "lbgnnwws1x7ge"
+        }
+      },
+      "PostACIResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ResponseMessage"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "ccrnList": {
+                "type": "array",
+                "description": "List of CCRNs inserted",
+                "items": {
+                  "$ref": "#/components/schemas/CcrnList"
+                }
+              }
+            }
+          }
+        ],
+        "x-stoplight": {
+          "id": "fxu3mmi5pejo4"
+        }
+      },
+      "Ccrn": {
+        "type": "string",
+        "description": "Customs Cargo Reference Number",
+        "maxLength": 70,
+        "examples": [
+          "1383347892"
+        ],
+        "x-stoplight": {
+          "id": "gfobcm21gjm40"
+        }
+      },
+      "CcrnList": {
+        "type": "object",
+        "title": "Ccrn",
+        "properties": {
+          "ccrn": {
+            "$ref": "#/components/schemas/Ccrn"
+          },
+          "version": {
+            "type": "integer",
+            "description": "Version number",
+            "format": "int64",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "ccrn"
+        ],
+        "x-stoplight": {
+          "id": "bw4fktddj7nhy"
+        }
+      },
+      "PutACIRequest": {
+        "type": "object",
+        "properties": {
+          "submitter": {
+            "$ref": "#/components/schemas/SubmitterInfo",
+            "description": "Submitter Information"
+          },
+          "aciInfo": {
+            "$ref": "#/components/schemas/AdvanceCargoInfo",
+            "description": "Advance Cargo Information"
+          },
+          "trader": {
+            "$ref": "#/components/schemas/TraderInfo",
+            "description": "Trader Information"
+          },
+          "consignor": {
+            "$ref": "#/components/schemas/ConsignorInfo",
+            "description": "Consignor Information "
+          },
+          "consignee": {
+            "$ref": "#/components/schemas/ConsigneeInfo",
+            "description": "Consignee Information "
+          },
+          "consignment": {
+            "$ref": "#/components/schemas/ConsignmentInfo",
+            "description": "Consignment Information"
+          },
+          "goodsItemList": {
+            "type": "array",
+            "description": "Consignment Item Information",
+            "items": {
+              "$ref": "#/components/schemas/GoodsItemInfo"
+            }
+          },
+          "transhipment": {
+            "$ref": "#/components/schemas/TranshipmentInfo",
+            "description": "Transhipment Information "
+          },
+          "transportEquipment": {
+            "$ref": "#/components/schemas/TransportEquipment"
+          },
+          "submittedDatetime": {
+            "description": "Submission datetime",
+            "$ref": "#/components/schemas/LocalDatetime"
+          }
+        },
+        "required": [
+          "submitter",
+          "aciInfo",
+          "trader",
+          "consignor",
+          "consignee",
+          "consignment",
+          "goodsItemList",
+          "submittedDatetime"
+        ],
+        "x-stoplight": {
+          "id": "aur2m8au1h3kw"
+        }
+      },
+      "PutACIResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ResponseMessage"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "ccrn": {
+                "$ref": "#/components/schemas/Ccrn"
+              },
+              "version": {
+                "type": "integer",
+                "description": "Version number",
+                "format": "int64",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "ccrn",
+              "version"
+            ]
+          }
+        ],
+        "x-stoplight": {
+          "id": "3b8wap6dbj6op"
+        }
+      },
+      "CancelSubmitterInfo": {
+        "type": "object",
+        "title": "CancelSubmitterInfo",
+        "properties": {
+          "submitter": {
+            "$ref": "#/components/schemas/SubmitterInfo",
+            "description": "Submitter Information"
+          },
+          "trader": {
+            "$ref": "#/components/schemas/TraderInfo",
+            "description": "Trader Information"
+          },
+          "udi": {
+            "type": "string",
+            "description": "Unique Declaration ID",
+            "maxLength": 70,
+            "examples": [
+              "293921021"
+            ]
+          },
+          "submittedDatetime": {
+            "description": "Submission datetime",
+            "$ref": "#/components/schemas/LocalDatetime"
+          }
+        },
+        "required": [
+          "submitter",
+          "trader",
+          "udi",
+          "submittedDatetime"
+        ],
+        "examples": [
+          {
+            "party": "TRADER",
+            "tswId": "P492812390",
+            "udi": "293921021",
+            "submittedDatetime": "2024-08-25T19:30:00Z"
+          }
+        ],
+        "x-stoplight": {
+          "id": "k2shc2wu60zbu"
+        }
+      },
+      "CancelACIResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ResponseMessage"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "ccrn": {
+                "$ref": "#/components/schemas/Ccrn"
+              },
+              "version": {
+                "type": "integer",
+                "description": "Version number",
+                "format": "int64",
+                "minimum": 1
+              }
+            },
+            "required": [
+              "ccrn",
+              "version"
+            ]
+          }
+        ],
+        "x-stoplight": {
+          "id": "izya1t1fglks1"
+        }
+      },
+      "Bundling": {
+        "type": "object",
+        "title": "Bundling",
+        "examples": [
+          {
+            "ubr": "9100204461",
+            "version": 1,
+            "channel": "WEB",
+            "impExpInd": "I",
+            "ccrnList": [
+              "1323456324",
+              "1324324567"
+            ],
+            "unassociatedBatchCcrnList": [
+              "1423480841"
+            ],
+            "vrn": "CM1999",
+            "party": "DRIVER",
+            "driverInfo": {
+              "tswId": "P492812390",
+              "chiName": "陳大文"
+            },
+            "expectedLbcp": "LMC",
+            "submittedDatetime": "2024-09-29T09:00:00",
+            "bundlingCompleteDatetime": "2024-09-29T09:00:05",
+            "validUntilDate": "2024-10-30",
+            "udi": "293921021"
+          }
+        ],
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "ubr": {
+                "type": "string",
+                "description": "Unique Bundling Reference",
+                "maxLength": 35,
+                "examples": [
+                  "9100204461"
+                ]
+              },
+              "version": {
+                "type": "integer",
+                "description": "Bundling version,  start from 1 and increment by one for each bundling updated",
+                "format": "int64",
+                "minimum": 1
+              },
+              "channel": {
+                "type": "string",
+                "enum": [
+                  "I",
+                  "M",
+                  "S",
+                  "W"
+                ],
+                "description": "Submission channel:<br/>\nI - IVRS <br/>\nM - Mobile<br/>\nS - Bulk (System to System) <br/>\nW - Web <br/>\n"
+              },
+              "impExpInd": {
+                "type": "string",
+                "enum": [
+                  "I",
+                  "E"
+                ],
+                "description": "Import/Export indicator:<br/>\nI - Import<br/>\nE - Export"
+              },
+              "ccrnList": {
+                "type": "array",
+                "description": "List of CCRN in bundling",
+                "minItems": 1,
+                "maxItems": 99999,
+                "items": {
+                  "$ref": "#/components/schemas/Ccrn"
+                }
+              },
+              "unassociatedBatchCcrnList": {
+                "type": "array",
+                "description": "List of CCRNs whose assoicated batchCCRN should be updated to NULL",
+                "items": {
+                  "$ref": "#/components/schemas/Ccrn"
+                }
+              },
+              "vrn": {
+                "type": "string",
+                "description": "Vehicle Registration Number",
+                "maxLength": 25,
+                "examples": [
+                  "CM1999"
+                ]
+              },
+              "party": {
+                "type": "string",
+                "enum": [
+                  "DRIVER",
+                  "AGENT",
+                  "VASP"
+                ],
+                "description": "Submitter Party:<br>\nDRIVER - Submitted by truck DRIVER<br>\nAGENT - Submitted by agent (applicable to Phase 3A only)<br>\nVASP - Submitted by VASP (applicable to Phase 3B and after)"
+              },
+              "agentInfo": {
+                "$ref": "#/components/schemas/AgentInfo",
+                "description": "Agent/VASP Information"
+              },
+              "driverInfo": {
+                "$ref": "#/components/schemas/DriverInfo",
+                "description": "Driver Information"
+              },
+              "expectedLbcp": {
+                "type": "string",
+                "description": "The code of expected Customs Land Boundary Control Point",
+                "maxLength": 3
+              },
+              "submittedDatetime": {
+                "description": "Submission datetime",
+                "$ref": "#/components/schemas/LocalDatetime"
+              },
+              "bundlingCompleteDatetime": {
+                "description": "Bundling completion datetime which is calulated in STD.",
+                "$ref": "#/components/schemas/LocalDatetime"
+              },
+              "validUntilDate": {
+                "description": "Validity (end date) of bundling, inclusive",
+                "$ref": "#/components/schemas/LocalDate"
+              },
+              "udi": {
+                "type": "string",
+                "description": "Unique Declaration ID",
+                "maxLength": 70,
+                "examples": [
+                  "293921021"
+                ]
+              },
+              "inOneGoInd": {
+                "type": "string",
+                "enum": [
+                  "Y",
+                  "N"
+                ],
+                "description": "In-one-go indicator:<br/>\n\nY - submission in-one-go <br/>\nN - submission not in-one-go"
+              }
+            },
+            "required": [
+              "ubr",
+              "version",
+              "channel",
+              "impExpInd",
+              "ccrnList",
+              "vrn",
+              "party",
+              "driverInfo",
+              "submittedDatetime",
+              "bundlingCompleteDatetime",
+              "validUntilDate"
+            ]
+          }
+        ],
+        "x-stoplight": {
+          "id": "uv7rndvz0vcw8"
+        }
+      },
+      "AgentInfo": {
+        "type": "object",
+        "title": "AgentInfo",
+        "x-stoplight": {
+          "id": "g5hicdfhb3ylf"
+        },
+        "required": [
+          "companyTswId",
+          "tswId"
+        ],
+        "properties": {
+          "companyTswId": {
+            "type": "string",
+            "description": "Comapny Tsw ID",
+            "minLength": 10,
+            "maxLength": 11
+          },
+          "tswId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jflgdjmzob4ph"
+            },
+            "minLength": 10,
+            "maxLength": 10,
+            "description": "TSW ID"
+          },
+          "chiName": {
+            "type": "string",
+            "description": "Chinese name of the agent",
+            "maxLength": 70
+          },
+          "engName": {
+            "type": "string",
+            "description": "English name of the agent",
+            "maxLength": 120
+          },
+          "brn": {
+            "type": "string",
+            "description": "Business Registration Number ",
+            "maxLength": 35
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Chinese Address"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "English Address"
+          },
+          "contactNo": {
+            "type": "string",
+            "description": "Contact No.",
+            "maxLength": 50
+          },
+          "faxNo": {
+            "type": "string",
+            "description": "Fax No.",
+            "maxLength": 50
+          }
+        }
+      },
+      "DriverInfo": {
+        "type": "object",
+        "title": "DriverInfo",
+        "examples": [
+          {
+            "tswId": "P439283920",
+            "name": "陳大文"
+          }
+        ],
+        "x-stoplight": {
+          "id": "n9u936swh4p1l"
+        },
+        "required": [
+          "tswId"
+        ],
+        "properties": {
+          "tswId": {
+            "type": "string",
+            "description": "TSW ID",
+            "minLength": 10,
+            "maxLength": 10,
+            "examples": [
+              "P439283920"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the driver",
+            "maxLength": 70
+          },
+          "driverId": {
+            "type": "string",
+            "description": "Driver ID",
+            "maxLength": 35
+          },
+          "idType": {
+            "type": "string",
+            "enum": [
+              "C",
+              "H"
+            ],
+            "description": "Driver ID type.<br/>\n\nC - China, PRC exit-entry permit number <br/>\nH - HKID\n"
+          },
+          "hkDrivingLicenceNo": {
+            "type": "string",
+            "description": "HKSAR driving licence number.",
+            "maxLength": 20
+          },
+          "phoneNo": {
+            "type": "string",
+            "description": "Phone No.",
+            "maxLength": 50
+          },
+          "faxNo": {
+            "type": "string",
+            "description": "Fax No.",
+            "maxLength": 50
+          },
+          "email": {
+            "type": "string",
+            "description": "Email",
+            "maxLength": 320
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Chinese Address"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "English Address"
+          },
+          "closedRoadPermitNo": {
+            "type": "string",
+            "description": "HK Closed Road Permit Number",
+            "maxLength": 11
+          }
+        }
+      },
+      "BundlingResult": {
+        "type": "object",
+        "title": "BundlingResult",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ResponseMessage"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "earliestCrossingTime": {
+                "description": "Earliest crossing time",
+                "$ref": "#/components/schemas/LocalDatetime"
+              },
+              "ccrnList": {
+                "type": "array",
+                "description": "List of CCRNs included in the bundling",
+                "items": {
+                  "$ref": "#/components/schemas/CcrnList"
+                }
+              },
+              "bundlingCode": {
+                "type": "integer",
+                "enum": [
+                  11,
+                  12,
+                  13,
+                  14
+                ],
+                "description": "Response Information Code:<br/>\n\n11 - The bundling of CCRN(s) with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 30 minutes after successful bundling. <br/> \n12 - The bundling of CCRN(s)with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 5 minutes after successful bundling. <br/>\n13 - The amendment of bundling of CCRN(s) with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 30 minutes after successful amendment of bundling. <br/>\n14 - The amendment of bundling of CCRN(s)with the vehicle is successful. The subject vehicle can cross the LBCP for customs clearance after 5 minutes after successful bundling."
+              }
+            },
+            "required": [
+              "ccrnList",
+              "bundlingCode"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/Ubr"
+          }
+        ],
+        "x-stoplight": {
+          "id": "jemomx8xji8r3"
+        }
+      },
+      "Ubr": {
+        "type": "object",
+        "title": "Ubr",
+        "properties": {
+          "ubr": {
+            "type": "string",
+            "description": "Unique Bundling Reference",
+            "maxLength": 35,
+            "examples": [
+              "9100204461"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "description": "Bundling version",
+            "format": "int64",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "ubr",
+          "version"
+        ],
+        "x-stoplight": {
+          "id": "ckug1e01rexua"
+        }
+      },
+      "DeleteBundlingRequest": {
+        "type": "object",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "party": {
+                "type": "string",
+                "enum": [
+                  "DRIVER",
+                  "AGENT",
+                  "VASP"
+                ],
+                "description": "Submitter Party:<br>\nDRIVER - Submitted by truck driver<br>\nAGENT - Submitted by agent (applicable to Phase 3A only)<br>\nVASP - Submitted by VASP (applicable to Phase 3B and after)"
+              },
+              "agentInfo": {
+                "$ref": "#/components/schemas/AgentInfo",
+                "description": "Agent Information"
+              },
+              "driverInfo": {
+                "$ref": "#/components/schemas/DriverInfo",
+                "description": "Driver Information"
+              },
+              "udi": {
+                "type": "string",
+                "description": "Unique Declaration ID",
+                "maxLength": 70,
+                "examples": [
+                  "293921021"
+                ]
+              },
+              "submittedDatetime": {
+                "description": "Submission datetime",
+                "$ref": "#/components/schemas/LocalDatetime"
+              }
+            },
+            "required": [
+              "party",
+              "udi",
+              "submittedDatetime"
+            ]
+          }
+        ],
+        "x-stoplight": {
+          "id": "vqx8cxmssiise"
+        }
+      },
+      "DeleteBundlingResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ResponseMessage"
+          },
+          {
+            "$ref": "#/components/schemas/Ubr"
+          }
+        ],
+        "x-stoplight": {
+          "id": "5etvujb4vbddv"
+        }
+      },
+      "PostCEFARequest": {
+        "allOf": [
+          {
+            "required": [
+              "file",
+              "submittedDatetime"
+            ],
+            "properties": {
+              "file": {
+                "$ref": "#/components/schemas/File",
+                "description": "File - CSV file."
+              },
+              "brn": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "t7x6i6v3spjf9"
+                },
+                "description": "Business Registration Number "
+              },
+              "hkid": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "80h84q67djfcj"
+                },
+                "maxLength": 35,
+                "description": "HKID"
+              },
+              "companyTswId": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "dj4fcaekasjv1"
+                },
+                "minLength": 10,
+                "maxLength": 11,
+                "description": "Comapny Tsw ID"
+              },
+              "submittedDatetime": {
+                "$ref": "#/components/schemas/LocalDatetime",
+                "description": "Submission datetime"
+              }
+            }
+          }
+        ],
+        "x-stoplight": {
+          "id": "7zh5fya3hrdvy"
+        },
+        "type": "object",
+        "title": ""
+      },
+      "File": {
+        "type": "object",
+        "title": "File",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "File name",
+            "maxLength": 255,
+            "examples": [
+              "file.pdf"
+            ]
+          },
+          "fileType": {
+            "type": "string",
+            "description": "MIME type, e.g., application/pdf",
+            "maxLength": 100,
+            "examples": [
+              "application/pdf"
+            ]
+          },
+          "fileSizeByte": {
+            "type": "integer",
+            "description": "File size in byte",
+            "examples": [
+              2342
+            ]
+          },
+          "fileContentBase64": {
+            "type": "string",
+            "description": "File content in base64 encoded format",
+            "format": "byte",
+            "examples": [
+              "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4="
+            ]
+          }
+        },
+        "required": [
+          "fileName",
+          "fileType",
+          "fileSizeByte",
+          "fileContentBase64"
+        ],
+        "x-stoplight": {
+          "id": "sti1asl8j7pqq"
+        }
+      },
+      "PostRoadMessageRequest": {
+        "type": "object",
+        "properties": {
+          "ccrn": {
+            "$ref": "#/components/schemas/Ccrn"
+          },
+          "tswId": {
+            "type": "string",
+            "description": "TSW ID",
+            "minLength": 10,
+            "maxLength": 10,
+            "examples": [
+              "P123892323"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "Message from C&ED officer or trader",
+            "examples": [
+              "This is a sample message"
+            ]
+          },
+          "queryId": {
+            "type": "integer",
+            "description": "Query ID",
+            "format": "int64",
+            "minimum": 1,
+            "examples": [
+              123
+            ]
+          },
+          "submittedDatetime": {
+            "description": "Submission datetime",
+            "$ref": "#/components/schemas/LocalDatetime"
+          }
+        },
+        "required": [
+          "ccrn",
+          "tswId",
+          "message",
+          "queryId",
+          "submittedDatetime"
+        ],
+        "x-stoplight": {
+          "id": "62eazzyw6gwfp"
+        }
+      },
+      "UserSearchCriteria": {
+        "type": "object",
+        "title": "UserSearchCriteria",
+        "x-stoplight": {
+          "id": "py36bkbestkas"
+        },
+        "required": [
+          "sort",
+          "pageable"
+        ],
+        "properties": {
+          "tswId": {
+            "type": "string",
+            "description": "TSW ID",
+            "minLength": 10,
+            "maxLength": 10
+          },
+          "companyTswId": {
+            "type": "string",
+            "description": "Company TSW ID",
+            "minLength": 10,
+            "maxLength": 11
+          },
+          "accountType": {
+            "type": "string",
+            "enum": [
+              "PERSON",
+              "EMPLOYEE",
+              "RP"
+            ],
+            "description": "The user type of this user.<br/>\n\nPossible value:<br/>\nPERSON <br/>\nEMPLOYEE <br/>\nRP <br/>"
+          },
+          "userName": {
+            "type": "string",
+            "description": "Chinese Name or English Name",
+            "maxLength": 70
+          },
+          "address": {
+            "type": "string",
+            "description": "Address",
+            "maxLength": 150
+          },
+          "idNo": {
+            "type": "string",
+            "description": "Identity number",
+            "maxLength": 35
+          },
+          "vrn": {
+            "type": "string",
+            "description": "HK Vehicle Registration number",
+            "maxLength": 25
+          },
+          "closedRoadPermitNo": {
+            "type": "string",
+            "description": "HK Closed Road Permit Number",
+            "maxLength": 11
+          },
+          "companyName": {
+            "type": "string",
+            "description": "Company Name",
+            "maxLength": 120
+          },
+          "companyType": {
+            "type": "string",
+            "enum": [
+              "BR",
+              "CS",
+              "EI",
+              "NLC",
+              "OTHER"
+            ],
+            "description": "Company type<br/>\n\nBR - Hong Business Registration <br/>\nNLC - Non-local Company <br/>\nCS - Co-operative Society <br/>\nEI - Educational Institution <br/>\nOTHER - Other\n"
+          },
+          "companyIdNo": {
+            "type": "string",
+            "description": "The identity number of the organisation",
+            "maxLength": 70
+          },
+          "agentInd": {
+            "type": "string",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "description": "Agent indicator <br>\n\nY - Agent\nN - is not Agent"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/Sort",
+            "description": "Sort criteria"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/Pageable",
+            "description": "Pagination"
+          }
+        }
+      },
+      "Sort": {
+        "type": "object",
+        "title": "Sort",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Sort by"
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "A",
+              "D"
+            ],
+            "description": "Sorting order<br/>\n\nA - ascending <br/>\nD - descending"
+          }
+        },
+        "required": [
+          "field",
+          "order"
+        ],
+        "x-stoplight": {
+          "id": "jmgk8ejdaahe9"
+        }
+      },
+      "Pageable": {
+        "type": "object",
+        "title": "Pageable",
+        "properties": {
+          "pageSize": {
+            "type": "string",
+            "description": "Maximum items of each page"
+          },
+          "pageNo": {
+            "type": "string",
+            "description": "Current Page"
+          },
+          "totalItems": {
+            "type": "string",
+            "description": "Total items (for response)"
+          },
+          "totalPages": {
+            "type": "string",
+            "description": "Total page (for response)"
+          }
+        },
+        "required": [
+          "pageSize",
+          "pageNo"
+        ],
+        "x-stoplight": {
+          "id": "d3zhjcgbio2l8"
+        }
+      },
+      "UserSearchResult": {
+        "type": "object",
+        "title": "UserSearchResult",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/TswAccountUser"
+          },
+          "company": {
+            "$ref": "#/components/schemas/CompanyInfo"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/BundlingSubscriptionInfo"
+          }
+        },
+        "x-stoplight": {
+          "id": "tf5uso42vi1ud"
+        }
+      },
+      "TswAccountUser": {
+        "type": "object",
+        "title": "TswAccountUser",
+        "x-stoplight": {
+          "id": "xw641x2fegeew"
+        },
+        "required": [
+          "tswId",
+          "type",
+          "name",
+          "phoneNo",
+          "enabled",
+          "locked",
+          "idCheckInd",
+          "activatedInd",
+          "profileVersion",
+          "delInd",
+          "displayStatus"
+        ],
+        "properties": {
+          "tswId": {
+            "type": "string",
+            "description": "TSW ID",
+            "minLength": 10,
+            "maxLength": 10,
+            "examples": [
+              "P123892323"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "PERSON",
+              "EMPLOYEE",
+              "RP"
+            ],
+            "description": "The user type of this user.<br/>\n\nPossible value:<br/>\nPERSON <br/>\nEMPLOYEE <br/>\nRP <br/>\n"
+          },
+          "name": {
+            "type": "string",
+            "description": "The English name of this user",
+            "maxLength": 70,
+            "examples": [
+              "Chan Tai Man"
+            ]
+          },
+          "chiName": {
+            "type": "string",
+            "description": "The Chinese name of this user",
+            "maxLength": 70
+          },
+          "phoneNo": {
+            "type": "string",
+            "description": "The primary phone number of this user",
+            "maxLength": 50,
+            "examples": [
+              "22223333"
+            ]
+          },
+          "phoneNo2": {
+            "type": "string",
+            "description": "The alternative phone number of this user",
+            "maxLength": 20
+          },
+          "faxNo": {
+            "type": "string",
+            "description": "The fax number of this user",
+            "maxLength": 50
+          },
+          "enabled": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether this user account is enabled\n\n0 - disabled\n1 - enabled"
+          },
+          "locked": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether this user account is locked <br/>\n\n0 - not locked<br/>\n1 - locked"
+          },
+          "lockedDatetime": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "description": "The time when this user account is locked"
+          },
+          "userGovInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether the created user is a government user.<br/>\n\nPossible value: <br/>\n0 - non-government user <br/>\n1 - government user"
+          },
+          "testAcctInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether the created user is a testing account.<br/>\n\nPossible value: <br/>\n0 - normal user <br/>\n1 - testing user"
+          },
+          "driverInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether the created user is a truck driver.<br/>\n\nPossible value: <br/>\n0 - not a truck driver <br/>\n1 - is a truck driver"
+          },
+          "idCheckInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether the identity of this user is vetted<br/>\nPossible value: <br/>\n0 - ID not checked <br/>\n1 - ID checked\n\n"
+          },
+          "activatedInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether this user account is activated<br/>\nPossible value: <br/>\n0 - Not activated <br/>\n1 - Activated"
+          },
+          "supportDocInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Pending submission of Company/Organisation's Authorisation Letter\n\nPossible value: <br/>\n0 - Pending <br/>\n1 - Submitted"
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "C",
+              "E"
+            ],
+            "description": "Address language indicator:<br/>\nC - Chinese<br/>\nE - English\n"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "English address"
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Chinese address"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email",
+            "maxLength": 320
+          },
+          "locale": {
+            "type": "string",
+            "description": "The preferred language of this external user – en, zh_CN or zh_HK",
+            "maxLength": 5
+          },
+          "companyTswId": {
+            "type": "string",
+            "description": "Company TSW ID",
+            "minLength": 10,
+            "maxLength": 11
+          },
+          "idType": {
+            "type": "string",
+            "description": "The type of identity owned by this external user – HKID, PASSPORT, PRCEEP (PRC Exit Entry Permit) or OTHER",
+            "maxLength": 8
+          },
+          "idNo": {
+            "type": "string",
+            "description": "The identity number"
+          },
+          "profileVersion": {
+            "type": "integer",
+            "description": "The version of the profile of this user",
+            "format": "int64",
+            "minimum": 0,
+            "examples": [
+              1
+            ]
+          },
+          "delInd": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Whether this record is mark deleted <br/>\n\nPossible value: <br/>\n0 - Not deleted <br/>\n1 - Deleted\n\n"
+          },
+          "displayStatus": {
+            "type": "string",
+            "description": "Status of the user account"
+          }
+        }
+      },
+      "CompanyInfo": {
+        "type": "object",
+        "title": "CompanyInfo",
+        "x-stoplight": {
+          "id": "i3xju0tm8sx4d"
+        },
+        "required": [
+          "companyTswId",
+          "idType",
+          "phoneNo"
+        ],
+        "properties": {
+          "companyTswId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ljfbvs8os5mrw"
+            },
+            "description": "Company TSW ID",
+            "minLength": 10,
+            "maxLength": 11
+          },
+          "idType": {
+            "type": "string",
+            "description": "The type of identity owned by this organisation – BR, CS, EI, NLC or OTHER.",
+            "maxLength": 5
+          },
+          "idNo": {
+            "type": "string",
+            "description": "The identity number of this organisation.",
+            "maxLength": 70
+          },
+          "chiName": {
+            "type": "string",
+            "description": "Company Chinese Name",
+            "maxLength": 70
+          },
+          "engName": {
+            "type": "string",
+            "description": "Company English Name",
+            "maxLength": 120
+          },
+          "phoneNo": {
+            "type": "string",
+            "description": "The primary phone number of this organisation.",
+            "maxLength": 50
+          },
+          "phoneNo2": {
+            "type": "string",
+            "description": "The alternative phone number of this organisation.",
+            "maxLength": 20
+          },
+          "faxNo": {
+            "type": "string",
+            "description": "Fax number",
+            "maxLength": 50
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "C",
+              "E"
+            ],
+            "description": "Address language indicator:<br/>\nC - Chinese<br/>\nE - English\n"
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Chinese Company Address"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "English Company Address"
+          },
+          "agentInd": {
+            "type": "string",
+            "description": "Agent Indicator",
+            "maxLength": 1
+          },
+          "businessStatus": {
+            "type": "string",
+            "description": "Business Status",
+            "maxLength": 1
+          },
+          "businessNature": {
+            "type": "string",
+            "description": "Business Nature(s) in Hong Kong, separate with commas:<br/>\n\nC – Cargo Freight Forwarding <br/>\nT – Transportation of Cargo <br/>\nW – Warehouse of Cargo<br/>\nO – Others (Please specify, e.g. Data Entry Services Provider)\n"
+          },
+          "businessNatureOther": {
+            "type": "string",
+            "description": "Other Business Nature, free text.",
+            "maxLength": 40
+          },
+          "profileVersion": {
+            "type": "integer",
+            "description": "The version of the profile of this organization.",
+            "format": "int64",
+            "minimum": 0
+          }
+        }
+      },
+      "CompanyNameAddress": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "3hnflhd460oop"
+        },
+        "title": "CompanyNameAddress",
+        "properties": {
+          "chiName": {
+            "type": "string",
+            "description": "Company Chinese Name",
+            "maxLength": 70
+          },
+          "engName": {
+            "type": "string",
+            "description": "Company English Name",
+            "maxLength": 120
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "C",
+              "E"
+            ],
+            "description": "Address language indicator:<br/>\nC - Chinese<br/>\nE - English\n"
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Chinese Company Address"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "English Company Address"
+          }
+        }
+      },
+      "BundlingSubscriptionInfo": {
+        "type": "object",
+        "title": "BundlingSubscriptionInfo",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "S",
+              "U"
+            ],
+            "description": "Subscription Status<br/>\nPossible value: <br/>\n\nS – Subscribed <br/>\nU – UnSubscribed\n"
+          },
+          "areaCode": {
+            "type": "string",
+            "description": "Area code of mobile number",
+            "maxLength": 4,
+            "examples": [
+              "852"
+            ]
+          },
+          "mobileNo": {
+            "type": "string",
+            "description": "Driver's mobile number",
+            "maxLength": 50,
+            "examples": [
+              "66668888"
+            ]
+          },
+          "hkDrivingLicenceNo": {
+            "type": "string",
+            "description": "HKSAR driving licence number.",
+            "maxLength": 20,
+            "examples": [
+              "T2323491"
+            ]
+          },
+          "cnDrivingLicenceNo": {
+            "type": "string",
+            "description": "People’s Republic of China driving licence number.",
+            "examples": [
+              "Z4252132"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "description": "Bundling subscription version",
+            "format": "int64",
+            "minimum": 1
+          },
+          "vehicleList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VehicleSubscriptionInfo"
+            }
+          }
+        },
+        "required": [
+          "status",
+          "version"
+        ],
+        "x-stoplight": {
+          "id": "my6r73a7li6li"
+        }
+      },
+      "VehicleSubscriptionInfo": {
+        "type": "object",
+        "title": "VehicleSubscriptionInfo",
+        "properties": {
+          "seqNo": {
+            "type": "integer",
+            "description": "Vehicle ID sequence number",
+            "format": "int64",
+            "minimum": 1
+          },
+          "vrn": {
+            "type": "string",
+            "description": "Vehicle Registration Number",
+            "maxLength": 25,
+            "examples": [
+              "MM0101"
+            ]
+          },
+          "closedRoadPermitNo": {
+            "type": "string",
+            "description": "Closed Road Permit Number",
+            "maxLength": 11
+          },
+          "vehicleType": {
+            "type": "string",
+            "enum": [
+              "BT",
+              "CT",
+              "TT",
+              "OT"
+            ],
+            "description": "Vehicle type <br/>\n\nPossible value: <br/>\nBT – Box truck <br/>\nCT – Container truck <br/>\nTT – Tow truck <br/>\nOT – Others\n"
+          },
+          "vehicleOtherType": {
+            "type": "string",
+            "description": "Vehicle Type Other Information (applicable if Vehicle Type is Other)",
+            "maxLength": 50
+          },
+          "ownerChiName": {
+            "type": "string",
+            "description": "Vehicle owner's Chinese name",
+            "maxLength": 70,
+            "examples": [
+              "陳大文"
+            ]
+          },
+          "ownerEngName": {
+            "type": "string",
+            "description": "Vehicle owner's English name",
+            "maxLength": 70,
+            "examples": [
+              "Chan Tai Man"
+            ]
+          },
+          "addrLangInd": {
+            "type": "string",
+            "enum": [
+              "C",
+              "E"
+            ],
+            "description": "Address language indicator:<br/>\nC - Chinese<br/>\nE - English\n"
+          },
+          "chiAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Chinese Address"
+          },
+          "engAddress": {
+            "$ref": "#/components/schemas/TswAddress",
+            "description": "Englist Address"
+          },
+          "version": {
+            "type": "integer",
+            "description": "Version number",
+            "format": "int64",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "seqNo",
+          "vrn",
+          "addrLangInd"
+        ],
+        "examples": [
+          {
+            "seqNo": 1,
+            "vrn": "MM0101",
+            "closedRoadPermitNo": "40239482012",
+            "vehicleType": "BT",
+            "ownerChiName": "陳大文",
+            "ownerEngName": "Chan Tai Man",
+            "addrLangInd": "C",
+            "chiAddress": {
+              "cityName": "香港",
+              "countryCode": "HK",
+              "line1": "尖沙咀彌敦道100號嘉華大廈12樓"
+            },
+            "version": 1
+          }
+        ],
+        "x-stoplight": {
+          "id": "q2zr565dotu1x"
+        }
+      },
+      "PutCrossingStatusRequest": {
+        "type": "object",
+        "title": "PutCrossingStatusRequest",
+        "x-stoplight": {
+          "id": "5mxw2qlzo4s65"
+        },
+        "required": [
+          "arrivalTime",
+          "impExpInd",
+          "tswId",
+          "version"
+        ],
+        "properties": {
+          "arrivalTime": {
+            "$ref": "#/components/schemas/LocalDatetime",
+            "description": "Arrival time"
+          },
+          "impExpInd": {
+            "type": "string",
+            "enum": [
+              "I",
+              "E"
+            ],
+            "description": "Import/Export indicator:<br/>\nI - Import<br/>\nE - Export"
+          },
+          "tswId": {
+            "type": "string",
+            "description": "TSW ID",
+            "minLength": 10,
+            "maxLength": 10
+          },
+          "version": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "0ow87ouo1b69p"
+            },
+            "format": "int64",
+            "minimum": 1,
+            "description": "Bundling version"
+          }
+        }
+      },
+      "LocalDatetime": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+        "examples": [
+          "2024-08-25T19:30:00"
+        ],
+        "x-stoplight": {
+          "id": "0mmtjuet44q2f"
+        }
+      },
+      "LocalDate": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "examples": [
+          "2024-10-29"
+        ],
+        "x-stoplight": {
+          "id": "ym0fj37155ruo"
+        }
+      },
+      "Version": {
+        "title": "Version",
+        "x-stoplight": {
+          "id": "degetod04snlz"
+        },
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "mka6aavshqb8c"
+            },
+            "format": "int64",
+            "description": "Version number",
+            "minimum": 1
+          }
+        }
+      },
+      "TswAccount": {
+        "title": "TswAccount",
+        "x-stoplight": {
+          "id": "gw2lyvjs1t0k2"
+        },
+        "type": "object",
+        "required": [
+          "tswId",
+          "encryptedPass",
+          "hashedPass"
+        ],
+        "properties": {
+          "tswId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1hv5znzq20v0s"
+            },
+            "description": "TSW ID"
+          },
+          "encryptedPass": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "haszbka4l630q"
+            },
+            "description": "Encrypted password"
+          },
+          "hashedPass": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "7xzjqmdm5156c"
+            },
+            "description": "Hashed password"
+          }
+        }
+      },
+      "ValidateResult": {
+        "title": "ValidateResult",
+        "x-stoplight": {
+          "id": "w2ply6zgalne9"
+        },
+        "type": "object",
+        "required": [
+          "result"
+        ],
+        "properties": {
+          "result": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "io5aloash003q"
+            },
+            "description": "Validate Result"
+          },
+          "companyNameAddress": {
+            "$ref": "#/components/schemas/CompanyNameAddress",
+            "x-stoplight": {
+              "id": "hzhsy7teqglk4"
+            },
+            "description": "If validate result is true and the TSW ID is company account.<br>\nCompany name and address will be returned."
+          }
+        }
+      },
+      "LicencePermitInfo": {
+        "title": "LicencePermitInfo",
+        "x-stoplight": {
+          "id": "wvwdodqtvdjwl"
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "pgaCode",
+          "licenceNo"
+        ],
+        "properties": {
+          "fileList": {
+            "x-stoplight": {
+              "id": "mkm2vhu2zp5bs"
+            },
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/File",
+              "x-stoplight": {
+                "id": "cu86ubng0241b"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "5von169pxsjej"
+            },
+            "description": "Licence/Permit Status"
+          },
+          "expiryDate": {
+            "$ref": "#/components/schemas/LocalDate",
+            "x-stoplight": {
+              "id": "h2as3t5z5rjmu"
+            },
+            "description": "Licence/Permit expiry date"
+          },
+          "pgaCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bym2v8i8c3joy"
+            },
+            "description": "PGA code"
+          },
+          "licenceNo": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "t69oh0hiph3fe"
+            },
+            "description": "Licence/Permit Number"
+          }
+        }
+      }
+    }
+  }
+}

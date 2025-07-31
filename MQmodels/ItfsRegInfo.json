@@ -1,0 +1,41 @@
+{
+  "title": "ItfsRegInfo",
+  "x-stoplight": {
+    "id": "gwdqijr1yvzol"
+  },
+  "type": "object",
+  "required": [
+    "refNo",
+    "ctoCode",
+    "actionType"
+  ],
+  "properties": {
+    "refNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "87h0fn61qct15"
+      },
+      "description": "ITFS scheme reference number",
+      "maxLength": 10
+    },
+    "ctoCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "l5f4kbydmvxnt"
+      },
+      "description": "CTO code",
+      "maxLength": 3
+    },
+    "actionType": {
+      "x-stoplight": {
+        "id": "lyuav4nvumbws"
+      },
+      "description": "Action Type:<br/>\nI - Insert<br/>\nU - Update<br/>\nD - Delete",
+      "enum": [
+        "I",
+        "U",
+        "D"
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "QueryMessage",
+  "x-stoplight": {
+    "id": "1pn5guwobmeut"
+  },
+  "type": "object",
+  "properties": {
+    "ccrn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "egm7coxdmfsec"
+      },
+      "example": "3001051147",
+      "maxLength": 35,
+      "description": "Customs Cargo Reference Number (CCRN)"
+    },
+    "tswID": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ydzqndol3dcpv"
+      },
+      "maxLength": 35,
+      "description": "TSW ID",
+      "example": "P392310191"
+    },
+    "message": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "f7fsp4d80uayt"
+      },
+      "description": "Message"
+    },
+    "queryID": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "syarzdr6p5lmn"
+      },
+      "description": "Query id"
+    },
+    "querySentDatetime": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "z4ltt97qh0q07"
+      },
+      "description": "Query Sent Datetime",
+      "format": "date-time"
+    }
+  }
+}

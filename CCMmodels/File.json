@@ -1,0 +1,50 @@
+{
+  "title": "File",
+  "x-stoplight": {
+    "id": "846x3jjqqtev6"
+  },
+  "type": "object",
+  "required": [
+    "fileName",
+    "fileType",
+    "fileSizeByte",
+    "fileContentBase64"
+  ],
+  "properties": {
+    "fileName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "sbfb8sxpwu1d7"
+      },
+      "description": "File name",
+      "maxLength": 255,
+      "example": "file.pdf"
+    },
+    "fileType": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "7bpg3wupy79mr"
+      },
+      "description": "MIME type, e.g., application/pdf",
+      "maxLength": 100,
+      "example": "application/pdf"
+    },
+    "fileSizeByte": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "dw9a109fqbnhk"
+      },
+      "description": "File size in byte",
+      "example": 2342
+    },
+    "fileContentBase64": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "n8lkgggyrcgy0"
+      },
+      "format": "byte",
+      "example": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4=",
+      "description": "File content in base64 encoded format"
+    }
+  }
+}

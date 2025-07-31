@@ -1,0 +1,106 @@
+{
+  "title": "CommoditySearchResult",
+  "x-stoplight": {
+    "id": "n0dnspwow1apv"
+  },
+  "type": "object",
+  "examples": [
+    {
+      "ccrn": "1334421232",
+      "actualControlPoint": "LMC",
+      "matchedInd": "Y"
+    }
+  ],
+  "required": [
+    "matchedInd"
+  ],
+  "properties": {
+    "ccrn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "wy2fjl3ntz7fe"
+      },
+      "description": "Customs Cargo Reference Number<br>\nMandatory if transport mode is ROAD",
+      "maxLength": 35
+    },
+    "goodsItemNo": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "7og9jmpa3pv8g"
+      },
+      "description": "Goods item sequence number<br/>\nMandatory if transport mode is ROAD"
+    },
+    "actualControlPoint": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "v1w55i7q1lko4"
+      },
+      "description": "Actual Control Point Location<br>\nMandatory if transport mode is ROAD",
+      "maxLength": 11
+    },
+    "matchedInd": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "sqdowjhc4al6d"
+      },
+      "description": "Matched Indicator<br>\nY - Keyword Matched<br>\nN - Keyword not matched"
+    },
+    "ceRefNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "uj7xghhxrmn18"
+      },
+      "maxLength": 12,
+      "description": "C&E Reference Number\r\nMandatory if transport mode is AIR"
+    },
+    "umr": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "qergqd3z8d266"
+      },
+      "description": "Unique Manifest Reference\r\nMandatory if transport mode is OCEAN, RIVER, FERRY and RAIL",
+      "maxLength": 14
+    },
+    "specialStatement": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "to0wpy6v41jzv"
+      },
+      "maximum": 1,
+      "description": "Special Statement\r\nMandatory if transport mode is OCEAN, RIVER, FERRY and RAIL"
+    },
+    "version": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "xnlt4gunhu98b"
+      },
+      "format": "int64",
+      "description": "Version Number\r\nMandatory if transport mode is OCEAN, RIVER, FERRY and RAIL",
+      "minimum": 1
+    },
+    "masterItemNo": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "p9rmd9scpiuhd"
+      },
+      "maximum": 9999,
+      "description": "Master Item No\r\nMandatory if transport mode is OCEAN, RIVER, FERRY and RAIL"
+    },
+    "consignmentItemNo": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "134g9fwd9qn30"
+      },
+      "maximum": 99999,
+      "description": "Consignment Item No\r\nMandatory if transport mode is OCEAN, RIVER, FERRY and RAIL"
+    },
+    "cargoItemNo": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "xsqm43jbf9cr5"
+      },
+      "maximum": 9999,
+      "description": "Cargo Item No\r\nMandatory if transport mode is OCEAN, RIVER, FERRY and RAIL"
+    }
+  }
+}

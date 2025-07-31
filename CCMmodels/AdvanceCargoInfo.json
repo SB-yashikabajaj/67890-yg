@@ -1,0 +1,134 @@
+{
+  "title": "AdvanceCargoInfo",
+  "x-stoplight": {
+    "id": "8ocu1e7jth9st"
+  },
+  "type": "object",
+  "x-internal": false,
+  "required": [
+    "ccrn",
+    "version",
+    "aciStatus",
+    "validUntilDate",
+    "udi"
+  ],
+  "properties": {
+    "ccrn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "f3pwvxe94viyi"
+      },
+      "description": "Customs Cargo Reference Number",
+      "maxLength": 35,
+      "example": "1383347892"
+    },
+    "version": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "z14cwjhhc17pi"
+      },
+      "minimum": 1,
+      "format": "int64",
+      "description": "ACI version , not ccrn version , \"for each ACI updated\""
+    },
+    "aciStatus": {
+      "x-stoplight": {
+        "id": "iq5mqxpn4d48j"
+      },
+      "description": "ACI Status:<br/>\r\nS - Submitted<br/>\r\nB - Bundled<br/>\r\nE - Expired<br/>\r\nC - Cancelled",
+      "enum": [
+        "S",
+        "B",
+        "E",
+        "C"
+      ]
+    },
+    "validUntilDate": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ablwq4mkdxd13"
+      },
+      "minLength": 10,
+      "maxLength": 10,
+      "example": "2024-10-29",
+      "description": "Validity (end date) of CCRN, inclusive",
+      "format": "date"
+    },
+    "batchCcrn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "m0ktkmjpr9fk3"
+      },
+      "description": "Batch CCRN (if the submission channel is Batch)",
+      "maxLength": 35
+    },
+    "expectedLBCP": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "8p3w0yuxkc9c7"
+      },
+      "description": "Expected Customs Control Point",
+      "maxLength": 3,
+      "example": "LMC"
+    },
+    "messageSenderRef": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "5es83qgnb99po"
+      },
+      "description": "Message Sender Reference",
+      "maxItems": 5,
+      "items": {
+        "x-stoplight": {
+          "id": "9e39x5ik8rueo"
+        },
+        "type": "string"
+      }
+    },
+    "ucr": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "bsn6kktew83tx"
+      },
+      "description": "Unique Consignment Reference Number (UCR)"
+    },
+    "udi": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "gfjapijf8adyf"
+      },
+      "description": "Unique Declaration ID",
+      "maxLength": 70,
+      "example": "293921021"
+    },
+    "docList": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "xeg4x1otvkjzr"
+      },
+      "description": "List of supporting document",
+      "items": {
+        "x-stoplight": {
+          "id": "3oehzm0dteu2v"
+        },
+        "type": "object",
+        "properties": {
+          "docType": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "vejdkqs4uq1aj"
+            },
+            "description": "Document type"
+          },
+          "tswDocId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ylnz4m06rrwsc"
+            },
+            "description": "TSW Document ID"
+          }
+        }
+      }
+    }
+  }
+}

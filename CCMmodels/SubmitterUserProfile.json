@@ -1,0 +1,55 @@
+{
+  "title": "SubmitterUserProfile",
+  "x-stoplight": {
+    "id": "5meywg0a8df7l"
+  },
+  "type": "object",
+  "properties": {
+    "chiName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "le8d6nm3rbwr5"
+      }
+    },
+    "engName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "87xcb41wsqnge"
+      }
+    },
+    "engAddress": {
+      "$ref": "./TswAddress.json",
+      "x-stoplight": {
+        "id": "ftmh5i8ug5jre"
+      }
+    },
+    "chiAddress": {
+      "$ref": "./TswAddress.json",
+      "x-stoplight": {
+        "id": "ej8yruvp0jt5u"
+      }
+    },
+    "contactNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "pg1mm9h2ajeie"
+      },
+      "maxLength": 50
+    },
+    "faxNo": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "fxxkpv0yuqvvs"
+      },
+      "maxLength": 50
+    },
+    "brn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "0sd69vl4mpvpg"
+      },
+      "description": "Business Registration Number",
+      "maxLength": 17
+    }
+  }
+}

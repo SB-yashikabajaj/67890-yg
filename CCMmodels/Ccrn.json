@@ -1,0 +1,30 @@
+{
+  "title": "Ccrn",
+  "x-stoplight": {
+    "id": "my0ed3ce8hl79"
+  },
+  "type": "object",
+  "required": [
+    "ccrn"
+  ],
+  "properties": {
+    "ccrn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "71vkrmme2mrai"
+      },
+      "example": "1383347892",
+      "maxLength": 70,
+      "description": "Customs Cargo Reference Number"
+    },
+    "version": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "1iesazn4hgxxj"
+      },
+      "format": "int64",
+      "minimum": 1,
+      "description": "Version number"
+    }
+  }
+}

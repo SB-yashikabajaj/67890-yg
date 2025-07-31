@@ -1,0 +1,61 @@
+{
+  "title": "ConsignorInfo",
+  "x-stoplight": {
+    "id": "hcth93shrm93f"
+  },
+  "type": "object",
+  "required": [
+    "name",
+    "nameLangInd",
+    "address",
+    "addrLangInd"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "r3imo1q4z99mw"
+      },
+      "description": "Consignor name",
+      "maxLength": 70,
+      "example": "Chan Tai Man"
+    },
+    "nameLangInd": {
+      "x-stoplight": {
+        "id": "ma0q0kh4oz2v4"
+      },
+      "description": "Name language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese",
+      "enum": [
+        "E",
+        "T",
+        "S"
+      ]
+    },
+    "address": {
+      "$ref": "./AciAddress.json",
+      "x-stoplight": {
+        "id": "sweu8ch9atbfs"
+      },
+      "description": "Address"
+    },
+    "addrLangInd": {
+      "x-stoplight": {
+        "id": "7exlq73nt9c4q"
+      },
+      "enum": [
+        "E",
+        "T",
+        "S"
+      ],
+      "description": "Address language indicator:<br/>\nE - English<br/>\nT - Traditional Chinese <br/>\nS - Simplified Chinese"
+    },
+    "brn": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "8mvvty4seblan"
+      },
+      "maxLength": 35,
+      "description": "Business Registration Number (applicable to Phase 3B and after)"
+    }
+  }
+}

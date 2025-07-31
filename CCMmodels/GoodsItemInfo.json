@@ -1,0 +1,144 @@
+{
+  "title": "GoodsItemInfo",
+  "x-stoplight": {
+    "id": "j6h5rbo0sgq5a"
+  },
+  "type": "object",
+  "required": [
+    "seqNo",
+    "description"
+  ],
+  "properties": {
+    "seqNo": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "dm0o7u6lxyqd4"
+      },
+      "description": "Sequence number"
+    },
+    "additionalDocList": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "e325eomubhiwz"
+      },
+      "description": "Additional Document list",
+      "items": {
+        "$ref": "./AdditionalDocument.json",
+        "x-stoplight": {
+          "id": "w5ed1rdz4q1cq"
+        }
+      }
+    },
+    "description": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "6uy8jmjex2zfl"
+      },
+      "description": "Commodity description",
+      "maxLength": 512
+    },
+    "foodInd": {
+      "x-stoplight": {
+        "id": "mpt5uj0l0f4ot"
+      },
+      "description": "Food indicator",
+      "enum": [
+        "Y",
+        "N"
+      ]
+    },
+    "grossWeight": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "fv8w02ublsv5t"
+      },
+      "description": "Gross weight "
+    },
+    "grossWeightUnit": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "pfrfwkvkkqfvx"
+      },
+      "description": "Gross weight unit",
+      "maxLength": 3
+    },
+    "grossVol": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "rl9p32g7fe94x"
+      },
+      "description": "Gross volume "
+    },
+    "grossVolUnit": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "186a57ry8vieh"
+      },
+      "description": "Gross volume unit",
+      "maxLength": 3
+    },
+    "netWeight": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "3kn4hqg5k04wu"
+      },
+      "description": "Net Weight "
+    },
+    "netWeightUnit": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "twz2ki74l2pe6"
+      },
+      "maxLength": 3,
+      "description": "Net weight unit"
+    },
+    "qtyCargo ": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "bfhw3o4c7qg23"
+      },
+      "description": "Quantity Of Cargo"
+    },
+    "qtyPackage": {
+      "type": "integer",
+      "x-stoplight": {
+        "id": "tbkaauvxdxj6l"
+      },
+      "description": "Number of Packages per consignment item "
+    },
+    "packingTypeCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "9qqwhosi2evo8"
+      },
+      "description": "Packing type code",
+      "maxLength": 2
+    },
+    "cargoType": {
+      "x-stoplight": {
+        "id": "rvg2paeajtttb"
+      },
+      "enum": [
+        "B",
+        "P"
+      ],
+      "description": "Cargo Type<br/>\n\nB - Cargo in Bulk <br/>\nP - Cargo in Package <br/>\n"
+    },
+    "hsCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "1kvw3srg8fb5c"
+      },
+      "maxLength": 8,
+      "example": "39131000",
+      "description": "HS Code"
+    },
+    "cifFobValue": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "ajosj3l38xtn9"
+      },
+      "description": "CIF / FOB value in item level"
+    }
+  }
+}

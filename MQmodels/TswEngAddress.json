@@ -1,0 +1,80 @@
+{
+  "title": "TswEngAddress",
+  "x-stoplight": {
+    "id": "4q3tgwqfgt20e"
+  },
+  "type": "object",
+  "examples": [
+    {
+      "cityName": "Sample City",
+      "countryCode": "US",
+      "countrySubDivision": "California",
+      "countrySubEntityId": "CA",
+      "line1": "123 Example St",
+      "line2": "Apt 4B",
+      "postalCode": "90210"
+    }
+  ],
+  "required": [
+    "countryCode",
+    "line1"
+  ],
+  "properties": {
+    "cityName": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "f9y00536ee2ye"
+      },
+      "description": "City name",
+      "maxLength": 35
+    },
+    "countryCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "uaam2xp81uhzf"
+      },
+      "description": "Country code",
+      "maxLength": 2
+    },
+    "countrySubDivision": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "rds47qijamysw"
+      },
+      "description": "Country/Territory Subdivision (State, Province)",
+      "maxLength": 35
+    },
+    "countrySubDivisionId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "cr7urji1hotvd"
+      },
+      "description": "Country/Territory Subdivision Identification",
+      "maxLength": 9
+    },
+    "line1": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "vnt2tygkdw9vr"
+      },
+      "description": "Line 1 of address",
+      "maxLength": 150
+    },
+    "line2": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "t27m7h1kh6xef"
+      },
+      "description": "Line 2 of address",
+      "maxLength": 62
+    },
+    "postalCode": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "i51jnnoq7uxl1"
+      },
+      "description": "Postal code",
+      "maxLength": 9
+    }
+  }
+}

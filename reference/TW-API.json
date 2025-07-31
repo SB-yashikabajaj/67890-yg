@@ -1,0 +1,4527 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "oiz0orw41ag2w"
+  },
+  "info": {
+    "title": "TW-API",
+    "version": "1.0",
+    "description": "For Report APIs",
+    "contact": {
+      "name": "Ken Hsu",
+      "email": "ken.hsu@varmeego.com",
+      "url": "https://none"
+    },
+    "license": {
+      "name": "None",
+      "url": "https://none"
+    },
+    "termsOfService": "https://none",
+    "summary": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/tsw3/v1/reports/online": {
+      "post": {
+        "summary": "Create Report File",
+        "responses": {
+          "201": {
+            "description": "It will return a binary file encoded in Base64, and the filename will be included in the headers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "fileName": "invoice.pdf",
+                      "fileType": "application/pdf",
+                      "fileSizeByte": 44,
+                      "fileContentBase64": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4="
+                    }
+                  },
+                  "required": [
+                    "fileType",
+                    "fileName",
+                    "fileSizeByte",
+                    "fileContentBase64"
+                  ],
+                  "properties": {
+                    "fileType": {
+                      "type": "string",
+                      "example": "application/pdf",
+                      "description": "MIME type, e.g., application/pdf"
+                    },
+                    "fileName": {
+                      "type": "string",
+                      "example": "invoice.pdf",
+                      "description": "File name"
+                    },
+                    "fileSizeByte": {
+                      "type": "integer",
+                      "example": 44,
+                      "description": "File size in byte"
+                    },
+                    "fileContentBase64": {
+                      "type": "string",
+                      "description": "File content in base64 encoded format",
+                      "example": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "fileName": "string",
+                      "fileType": "string",
+                      "fileSizeByte": 0,
+                      "fileContentBase64": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "fbmepoasnr6sx"
+                      },
+                      "description": "Response Code",
+                      "example": 40001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "t090iu4p2vmc7"
+                      },
+                      "description": "Response Message",
+                      "example": "Not Found"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 40001,
+                      "message": "Not Found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "hjy1lygbtpe9s"
+                      },
+                      "description": "Response Code",
+                      "example": 50001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "1tzpn9qehm5ki"
+                      },
+                      "description": "Response Message",
+                      "example": "Internal Server Error"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 50001,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-report",
+        "x-stoplight": {
+          "id": "cp1e7ds5l78nr"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reportId",
+                  "reportFormat",
+                  "reportDataSource"
+                ],
+                "properties": {
+                  "reportId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "edvjtupmpni6n"
+                    },
+                    "description": "Report Id\n",
+                    "example": "MUS-01"
+                  },
+                  "reportFormat": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "i4efay111kmfu"
+                    },
+                    "description": "Report Type",
+                    "example": "pdf"
+                  },
+                  "reportDataSource": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "l3rg47vubwo9q"
+                    },
+                    "description": "Report Data Source",
+                    "example": "ccm-online"
+                  },
+                  "reportPassword": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "xlt86d64e6sfl"
+                    },
+                    "description": "Report Password",
+                    "example": "P@ssword"
+                  },
+                  "reportParameters": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "kxqgh0vdl0zg9"
+                    },
+                    "description": "Report Parameters\ntpye: Map<String, String>\n",
+                    "additionalProperties": {
+                      "x-stoplight": {
+                        "id": "pea5t05vgijku"
+                      },
+                      "type": "string",
+                      "example": "CCMReport"
+                    }
+                  },
+                  "reportResults": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "y6hg5rhql2r7o"
+                    },
+                    "additionalProperties": {
+                      "x-stoplight": {
+                        "id": "ipjdt6zai6fmr"
+                      },
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "reportId": "MUS-01",
+                    "reportFormat": "pdf",
+                    "reportDataSource": "ccm-online",
+                    "reportPassword": "P@ssword",
+                    "reportParameters": {
+                      "property1": "CCMReport",
+                      "property2": "CCMReport"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "description": "ReportResult and reportDatasource need to be selected one"
+        },
+        "tags": [
+          "Report"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Request-Id",
+            "description": "A unique identifier for the API request to assist with issue resolution"
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/reports/background": {
+      "parameters": [],
+      "post": {
+        "summary": "Create Background Report File",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "k4zh4fg0k9dzt"
+                      },
+                      "example": 20001,
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "wx0ttpmjjnbs0"
+                      },
+                      "example": "finsihed",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 20001,
+                      "message": "finsihed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "hjdtc1vj2j4us"
+                      },
+                      "description": "Response Code",
+                      "example": 40001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "t0y01ivznzvrk"
+                      },
+                      "description": "Response Message",
+                      "example": "Bad Request"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 40001,
+                      "message": "Bad Request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "n1uu8krk41v7r"
+                      },
+                      "description": "Response Code",
+                      "example": 50001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "dpw0g38srw4sn"
+                      },
+                      "description": "Response Message",
+                      "example": "Internal Server Error"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 50001,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-background-report",
+        "x-stoplight": {
+          "id": "miut1r8w8zvs5"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reportId",
+                  "reportFormat",
+                  "reportDataSource",
+                  "callBackUrl"
+                ],
+                "properties": {
+                  "reportId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "fszph5pdzfd2n"
+                    },
+                    "description": "Report Id",
+                    "example": "MUS-01"
+                  },
+                  "reportFormat": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "7tyeb7zrgvhqa"
+                    },
+                    "description": "Report Type",
+                    "example": "pdf"
+                  },
+                  "reportDataSource": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "5mex83xw6tnte"
+                    },
+                    "description": "Report Type",
+                    "example": "ccm-online"
+                  },
+                  "reportPassword": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "de44s5ltgzumg"
+                    },
+                    "description": "Report Password",
+                    "example": "P@ssword"
+                  },
+                  "reportParameters": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "d3y0d3elidd1u"
+                    },
+                    "description": "Report Parameters",
+                    "additionalProperties": {
+                      "x-stoplight": {
+                        "id": "mh8e5tz8pu5eh"
+                      },
+                      "type": "string",
+                      "example": "CCMReport"
+                    }
+                  },
+                  "reportResults": {
+                    "type": "object",
+                    "x-stoplight": {
+                      "id": "5f1h45ok280o2"
+                    },
+                    "additionalProperties": {
+                      "x-stoplight": {
+                        "id": "pjkk1y6endrrd"
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "callBackUrl": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "rlxoaktcebbrl"
+                    },
+                    "description": "CallBack Url",
+                    "format": "uri",
+                    "example": "http://dns/tsw1/v1/callback"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "reportId": "MUS-01",
+                    "reportFormat": "pdf",
+                    "reportDataSource": "ccm-online",
+                    "reportPassword": "P@ssword",
+                    "reportParameters": {
+                      "property1": "CCMReport",
+                      "property2": "CCMReport"
+                    },
+                    "callBackUrl": "http://dns/tsw1/v1/callback"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Report"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Request-Id",
+            "description": "A unique identifier for the API request to assist with issue resolution"
+          }
+        ]
+      }
+    },
+    "/tsw3/v1/reports/batch": {
+      "parameters": [],
+      "post": {
+        "summary": "Create Batch Report Files",
+        "tags": [
+          "Report"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "nw93mi7tu481v"
+                      },
+                      "description": "Response Code",
+                      "example": 20001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "igi0eb1yj24j4"
+                      },
+                      "description": "Response Message",
+                      "example": "finished"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 20001,
+                      "message": "finished"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "avh1bw1bk0mpg"
+                      },
+                      "description": "Response Code",
+                      "example": 40001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "t2w6371m6lp35"
+                      },
+                      "description": "Response Message",
+                      "example": "Bad Request"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 40001,
+                      "message": "Bad Request"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "n3cis1hub1clg"
+                      },
+                      "description": "Response Code",
+                      "example": 50001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "d870obgl0bavi"
+                      },
+                      "description": "Response Message",
+                      "example": "Internal Server Error"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 50001,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-batch-report",
+        "x-stoplight": {
+          "id": "51vclk5566a9o"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "reportList",
+                  "callBackUrl"
+                ],
+                "properties": {
+                  "reportList": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "1v2rao0vc4sfw"
+                    },
+                    "description": "Reports",
+                    "items": {
+                      "x-stoplight": {
+                        "id": "s0y189i3ikilx"
+                      },
+                      "type": "object",
+                      "required": [
+                        "reportId",
+                        "reportFormat",
+                        "reportDataSource"
+                      ],
+                      "properties": {
+                        "reportId": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "qbrl7bepznh8x"
+                          },
+                          "description": "Report Id\n",
+                          "example": "MUS-01"
+                        },
+                        "reportFormat": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "aq4131r0nx4cr"
+                          },
+                          "description": "Report Type",
+                          "example": "pdf"
+                        },
+                        "reportDataSource": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "jbdm0wv2akygd"
+                          },
+                          "description": "Report Type",
+                          "example": "ccm-online"
+                        },
+                        "reportParameters": {
+                          "type": "object",
+                          "x-stoplight": {
+                            "id": "c1rhsl3ff9gux"
+                          },
+                          "description": "Report Parameters",
+                          "additionalProperties": {
+                            "x-stoplight": {
+                              "id": "y1oe6e5t6wpjw"
+                            },
+                            "type": "string",
+                            "example": "reportTitle"
+                          }
+                        },
+                        "reportResults": {
+                          "type": "object",
+                          "x-stoplight": {
+                            "id": "kfr98865iu84l"
+                          },
+                          "description": "Report ressult set",
+                          "additionalProperties": {
+                            "x-stoplight": {
+                              "id": "kwwgclwhvf2wq"
+                            },
+                            "type": "object"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "callBackUrl": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "h63zwasoimno9"
+                    },
+                    "description": "Report callback url"
+                  },
+                  "reportPassword": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "k0616w2gtfq3m"
+                    },
+                    "description": "Report password"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "reportList": [
+                      {
+                        "reportId": "MUS-01",
+                        "reportFormat": "pdf",
+                        "reportDataSource": "ccm-online",
+                        "reportPassword": "P@ssword",
+                        "reportParameters": {
+                          "property1": "reportTitle",
+                          "property2": "reportTitle"
+                        },
+                        "callBackUrl": "http://dns/tsw1/v1/callback2"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "Request-Id",
+            "description": "A unique identifier for the API request to assist with issue resolution"
+          }
+        ]
+      }
+    },
+    "/tsw3/v1/reports?requestId={requestId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "requestId",
+          "in": "path",
+          "required": true,
+          "description": "requestId maintain by ccm"
+        },
+        {
+          "schema": {
+            "type": "string",
+            "example": "requestId"
+          },
+          "in": "query",
+          "name": "requestId",
+          "description": "requestId maintain by ccm",
+          "required": true,
+          "allowEmptyValue": false
+        }
+      ],
+      "get": {
+        "summary": "Get Report File",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "fileName": "invoice.pdf",
+                      "fileType": "application/pdf",
+                      "fileSizeByte": 44,
+                      "fileContentBase64": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4="
+                    }
+                  },
+                  "properties": {
+                    "fileName": {
+                      "type": "string",
+                      "example": "invoice.pdf"
+                    },
+                    "fileType": {
+                      "type": "string",
+                      "example": "application/pdf"
+                    },
+                    "fileSizeByte": {
+                      "type": "integer",
+                      "example": 44
+                    },
+                    "fileContentBase64": {
+                      "type": "string",
+                      "example": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4=",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "fileName": "invoice.pdf",
+                      "fileType": "application/pdf",
+                      "fileSizeByte": 44,
+                      "fileContentBase64": "SGVsbG8sIHRoaXMgaXMgc2FtcGxlIHRleHQgZmlsZS4="
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 40401,
+                      "message": "Not Found"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 40401,
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Not Found",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 40401,
+                      "message": "Not Found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 50001,
+                      "message": "Internal Server Error"
+                    }
+                  },
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 50001
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 50001,
+                      "message": "Internal Server Error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-report-file",
+        "tags": [
+          "Report"
+        ],
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "requestId"
+            },
+            "in": "query",
+            "name": "requestId",
+            "description": "requestId maintain by ccm",
+            "required": true
+          }
+        ],
+        "x-stoplight": {
+          "id": "vwwqtsxizbh05"
+        }
+      }
+    },
+    "/tsw3/v1/reports/status?requestId={requestId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "requestId",
+          "in": "path",
+          "required": true,
+          "description": "requestId maintain by ccm"
+        },
+        {
+          "schema": {
+            "type": "string",
+            "example": "requestId"
+          },
+          "in": "query",
+          "description": "requestId maintain by ccm",
+          "name": "requestId",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get Report Status",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "3s93l2t7k88sc"
+                      },
+                      "description": "Response Code",
+                      "example": 20001
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "jlxp9i31qj7ga"
+                      },
+                      "description": "Response Message",
+                      "example": "finished"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 20001,
+                      "message": "finished"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 20001,
+                      "message": "finished"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 40001,
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Not Found",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 40001,
+                      "message": "Not Found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 40001,
+                      "message": "Not Found"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 50001,
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal Server Error",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-report-status",
+        "x-stoplight": {
+          "id": "s1batd58cebql"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "requestId"
+            },
+            "in": "query",
+            "description": "RequestId maintain by CCM",
+            "name": "requestId",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Report"
+        ]
+      }
+    },
+    "/tsw3/v1/acls/post": {
+      "get": {
+        "summary": "Get Posts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportGroupList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ReportGroup"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "reportGroupList": [
+                        {
+                          "recId": 0,
+                          "name": "string",
+                          "des": "string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-reportGroups",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "pf4au15o29eyn"
+        },
+        "tags": [
+          "Post"
+        ]
+      },
+      "post": {
+        "summary": "Create Post",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "name": "string",
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-post",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "string",
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "b1fg6xce2j691"
+        },
+        "tags": [
+          "Post"
+        ]
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/post/{recId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "recId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        }
+      ],
+      "put": {
+        "summary": "Update ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "name": "string",
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "put-api-v1-reportGroup-id",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "des": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "q5dc003d3gia6"
+        }
+      },
+      "delete": {
+        "summary": "Delete ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-reportGroup-id",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "38gdxonxol6ma"
+        }
+      }
+    },
+    "/tsw3/v1/acls/post-group": {
+      "get": {
+        "summary": "Get ReportGroups",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportGroupList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ReportGroup"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "reportGroupList": [
+                        {
+                          "recId": 0,
+                          "name": "string",
+                          "des": "string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-reportGroups",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "7jhpjyqe5kffh"
+        }
+      },
+      "post": {
+        "summary": "Create ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "name": "string",
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-reportGroup",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "des": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "string",
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "7mirftzac2el0"
+        }
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/post-group/{recId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "recId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        }
+      ],
+      "put": {
+        "summary": "Update ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "name": "string",
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "put-api-v1-reportGroup-id",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "des": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "wimvm71xuhn0k"
+        }
+      },
+      "delete": {
+        "summary": "Delete ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-reportGroup-id",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "ktfw3oih1p6bk"
+        }
+      }
+    },
+    "/tsw3/v1/acls/report-group": {
+      "get": {
+        "summary": "Get ReportGroups",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportGroupList": {
+                      "x-stoplight": {
+                        "id": "7zev0n1xd4761"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ReportGroup",
+                        "x-stoplight": {
+                          "id": "qixsoc18aso29"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "reportGroupList": [
+                        {
+                          "recId": 0,
+                          "name": "string",
+                          "des": "string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "g78l2p3bcfa83"
+                      },
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "c11gjexdh8w2o"
+                      },
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "x-stoplight": {
+                        "id": "enpn0mvhikdp7"
+                      },
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "coslwww51wzdb"
+                      },
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-reportGroups",
+        "x-stoplight": {
+          "id": "idatxtlppalbn"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        }
+      },
+      "post": {
+        "summary": "Create ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "name": "string",
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-reportGroup",
+        "x-stoplight": {
+          "id": "uwvhjispojkbk"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "des": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "string",
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/report-group/{recId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "recId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        }
+      ],
+      "put": {
+        "summary": "Update ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "name": "string",
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "put-api-v1-reportGroup-id",
+        "x-stoplight": {
+          "id": "288wq9cnv4mc1"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "des": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "recId": 0,
+                    "name": "string",
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete ReportGroup",
+        "tags": [
+          "Report Group"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-reportGroup-id",
+        "x-stoplight": {
+          "id": "z4z67gls4rcq4"
+        },
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        }
+      }
+    },
+    "/tsw3/v1/acls/report-template": {
+      "get": {
+        "summary": "Get ReportTemplates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportTemplateList": {
+                      "x-stoplight": {
+                        "id": "c3go7xjseb7w9"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ReportTemplate",
+                        "x-stoplight": {
+                          "id": "zp8sqslsfust7"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "reportTemplateList": [
+                        {
+                          "recId": 0,
+                          "data": "asdkandaosnfasjdasdaslm",
+                          "name": "string",
+                          "isConfidential": true,
+                          "des": "string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-reportTemps",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "enxjifm1ajqvb"
+        },
+        "tags": [
+          "Report Template"
+        ]
+      },
+      "post": {
+        "summary": "Create ReportTemplate",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportTemplate"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "data": "asdkandaosnfasjdasdaslm",
+                      "name": "string",
+                      "isConfidential": true,
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-reportTemplate",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "h70ro35o1gr5f"
+                    },
+                    "example": "11111dsadsaokdapcodsma"
+                  },
+                  "name": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "7flj2m30qenx4"
+                    }
+                  },
+                  "isConfidential": {
+                    "type": "boolean",
+                    "x-stoplight": {
+                      "id": "rfkpstiua0dyh"
+                    }
+                  },
+                  "des": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "typf83euwv7mb"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "data": "11111dsadsaokdapcodsma",
+                    "name": "string",
+                    "isConfidential": true,
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "2mhco5p7gexnn"
+        },
+        "tags": [
+          "Report Template"
+        ]
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/report-template/{recId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "recId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        }
+      ],
+      "put": {
+        "summary": "Update ReportTemplate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/ReportTemplate"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "recId": 0,
+                      "data": "asdkandaosnfasjdasdaslm",
+                      "name": "string",
+                      "isConfidential": true,
+                      "des": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "put-api-v1-reportTemp-id",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "recId": 0,
+                    "data": [
+                      "string"
+                    ],
+                    "name": "string",
+                    "isConfidential": true,
+                    "des": "string"
+                  }
+                },
+                "properties": {
+                  "data": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "isConfidential": {
+                    "type": "boolean"
+                  },
+                  "des": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "data": "string",
+                    "name": "string",
+                    "isConfidential": true,
+                    "des": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "u54zevzlubojy"
+        },
+        "tags": [
+          "Report Template"
+        ]
+      },
+      "delete": {
+        "summary": "Delete ReportTemplate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-reportTemp-id",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "1r3byh9rx1178"
+        },
+        "tags": [
+          "Report Template"
+        ]
+      }
+    },
+    "/tsw3/v1/acls/post-group-post": {
+      "get": {
+        "summary": "Get PostGroupPost",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "functionGroupReportGroupList": {
+                      "$ref": "#/components/schemas/FunctionGroupReportGroup"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "functionGroupReportGroupList": {
+                        "functionGroupId": 0,
+                        "reportGroupId": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-functionGroupReportGroups",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "tags": [
+          "Function Group Report Group"
+        ],
+        "x-stoplight": {
+          "id": "o5g7i5d20cznh"
+        }
+      },
+      "post": {
+        "summary": "Create PostGroupPost",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FunctionGroupReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "functionGroupId": 0,
+                      "reportGroupId": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-functionGroupReportGroup",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/FunctionGroupReportGroup"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "functionGroupId": 0,
+                    "reportGroupId": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Function Group Report Group"
+        ],
+        "x-stoplight": {
+          "id": "pjqd6fp2ejm8f"
+        }
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/post-group-post/{postId}/{reportGroupId}}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "reportGroupId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "postId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "Delete FunctionGroupReportGroup",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-functionGroupReportGroup",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "tags": [
+          "Function Group Report Group"
+        ],
+        "x-stoplight": {
+          "id": "b17mgf8k2fu7i"
+        }
+      },
+      "put": {
+        "description": "",
+        "x-stoplight": {
+          "id": "3e5a2rvldriu0"
+        }
+      }
+    },
+    "/tsw3/v1/acls/post-group-report-group": {
+      "get": {
+        "summary": "Get FunctionGroupReportGroup",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "postGroupList": [
+                        {
+                          "recId": 492,
+                          "name": "A Group",
+                          "des": "This is A Group",
+                          "posts": [
+                            {
+                              "recId": 502,
+                              "name": "B Post"
+                            },
+                            {
+                              "recId": 492,
+                              "name": "A Post"
+                            }
+                          ],
+                          "reportGrps": [
+                            {
+                              "recId": 492,
+                              "name": "A Group",
+                              "des": "This is A Group"
+                            }
+                          ]
+                        },
+                        {
+                          "recId": 2,
+                          "name": "B Group",
+                          "des": "This is B Group"
+                        }
+                      ]
+                    }
+                  },
+                  "properties": {
+                    "postGroupList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostGroupReportGroup"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "functionGroupReportGroupList": {
+                        "functionGroupId": 0,
+                        "reportGroupId": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-functionGroupReportGroups",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "1itayax95b664"
+        },
+        "tags": [
+          "Function Group Report Group"
+        ]
+      },
+      "post": {
+        "summary": "Create FunctionGroupReportGroup",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/FunctionGroupReportGroup"
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "functionGroupId": 0,
+                      "reportGroupId": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-functionGroupReportGroup",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "x-examples": {
+                  "Example 1": {
+                    "reportGroupId": 1,
+                    "postGroupId": 2
+                  }
+                },
+                "properties": {
+                  "reportGroupId": {
+                    "type": "integer"
+                  },
+                  "postGroupId": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "functionGroupId": 0,
+                    "reportGroupId": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "1fwrhy6yciwco"
+        },
+        "tags": [
+          "Function Group Report Group"
+        ]
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/post-group-report-group/{postGroupId}/{reportGroupId}}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "reportGroupId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "postGroupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "Delete PostGroupReportGroup",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-functionGroupReportGroup",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "qvdgx09woy0qe"
+        },
+        "tags": [
+          "Function Group Report Group"
+        ]
+      },
+      "put": {
+        "description": "",
+        "x-stoplight": {
+          "id": "3l4pa02r93j8n"
+        }
+      }
+    },
+    "/tsw3/v1/acls/report-group-report-template": {
+      "get": {
+        "summary": "Get ReportGroupReportTemplates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportGroupReportTemplateList": {
+                      "x-stoplight": {
+                        "id": "j5xixg1l6wckl"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ReportGroupReportTemplate",
+                        "x-stoplight": {
+                          "id": "3h40lhkwjmh3c"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "reportGroupReportTemplateList": [
+                        {
+                          "reportGroupId": 0,
+                          "reportTemplateId": 0
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-reportGroupReportTemplates",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "n60vd8uskdl9g"
+        },
+        "tags": [
+          "Report Group Report Template"
+        ]
+      },
+      "post": {
+        "summary": "Create ReportGroupReportTemplate",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "reportGroupId": {
+                      "type": "integer"
+                    },
+                    "reportTemplateId": {
+                      "type": "integer"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "reportGroupId": 1,
+                      "reportTemplateId": 1
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "reportGroupId": 0,
+                      "reportTemplateId": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-api-v1-reportGroupReportTemplate",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ReportGroupReportTemplate"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "reportGroupId": 0,
+                    "reportTemplateId": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "bqtzn86xyndv0"
+        },
+        "tags": [
+          "Report Group Report Template"
+        ]
+      },
+      "parameters": []
+    },
+    "/tsw3/v1/acls/report-group-report-template/{reportGroupId}/{reportTemplateId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "reportGroupId",
+          "in": "path",
+          "required": true,
+          "description": "Report Group Id"
+        },
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "reportTemplateId",
+          "in": "path",
+          "required": true,
+          "description": "Report Template Id"
+        }
+      ],
+      "delete": {
+        "summary": "Delete ReportGroupReportTemplate",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "Response Code"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Response Message"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "code": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "delete-api-v1-reportGroupReportTemplate",
+        "description": "Host: Report Server<br>\nFrequency:<br>\nCCM Function:",
+        "requestBody": {
+          "content": {}
+        },
+        "x-stoplight": {
+          "id": "3w2s8txbofd9x"
+        },
+        "tags": [
+          "Report Group Report Template"
+        ]
+      },
+      "put": {
+        "description": "",
+        "x-stoplight": {
+          "id": "haonve40p825c"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Post": {
+        "title": "Post",
+        "x-stoplight": {
+          "id": "6sozfi2nzjd0y"
+        },
+        "type": "object",
+        "properties": {
+          "recId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "4xrbsic72ty7x"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "h8xiyv8i6z7xd"
+            }
+          }
+        }
+      },
+      "PostGroup": {
+        "title": "PostGroup",
+        "x-stoplight": {
+          "id": "u537b428zbxr0"
+        },
+        "type": "object",
+        "properties": {
+          "recId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "msb5isp7xr4ru"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "kg3tlsgipagg7"
+            }
+          },
+          "des": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "dvma8wofdarva"
+            }
+          }
+        }
+      },
+      "ReportGroup": {
+        "title": "ReportGroup",
+        "x-stoplight": {
+          "id": "c763hfwrb2rzu"
+        },
+        "type": "object",
+        "required": [
+          "recId",
+          "name"
+        ],
+        "properties": {
+          "recId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "4vh25xjwbgrax"
+            },
+            "description": "Report Group Record Id"
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "d1l6dtklr9af0"
+            },
+            "description": "Report Group Name"
+          },
+          "des": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cjx5q1jmfcu1o"
+            },
+            "description": "Report Group Description"
+          }
+        },
+        "examples": [
+          {
+            "recId": 0,
+            "name": "string",
+            "des": "string"
+          }
+        ]
+      },
+      "ReportTemplate": {
+        "title": "ReportTemplate",
+        "x-stoplight": {
+          "id": "4jifkv8bc1fod"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "recId": 0,
+            "data": "asdkandaosnfasjdasdaslm",
+            "name": "string",
+            "isConfidential": true,
+            "des": "string"
+          },
+          {
+            "recId": 0,
+            "data": "asdkandaosnfasjdasdaslm",
+            "name": "string",
+            "isConfidential": true,
+            "des": "string"
+          }
+        ],
+        "required": [
+          "recId",
+          "data",
+          "name",
+          "isConfidential"
+        ],
+        "properties": {
+          "recId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "u7ywc5wst2jt3"
+            },
+            "description": "Report Template Id"
+          },
+          "data": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "kixuqfs31mk7z"
+            },
+            "description": "Report Template Data"
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ff88mryar707u"
+            },
+            "description": "Report Template Name"
+          },
+          "id": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "tgfqb93hgefu9"
+            }
+          },
+          "isConfidential": {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "gc0259e7cwft0"
+            },
+            "description": "Report Template IsConfidential"
+          },
+          "des": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "3fug4zrxzhyud"
+            },
+            "description": "Report Descritpion"
+          }
+        }
+      },
+      "PostGroupPost": {
+        "title": "PostGroupPost",
+        "x-stoplight": {
+          "id": "zkgv6t4c2q0qz"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "functionGroupId": 0,
+            "reportGroupId": 0
+          }
+        ],
+        "properties": {
+          "recId": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "561g2x7ahiqmm"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "9jrmx4qebgjuz"
+            }
+          },
+          "des": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "fbcnmpwa8hbrh"
+            }
+          },
+          "posts": {
+            "x-stoplight": {
+              "id": "jw8kuo241sm6r"
+            },
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Post",
+              "x-stoplight": {
+                "id": "znm5e8igvnfas"
+              }
+            }
+          }
+        }
+      },
+      "PostGroupReportGroup": {
+        "title": "PostGroupReportGroup",
+        "x-stoplight": {
+          "id": "ow0su1fw2h34t"
+        },
+        "type": "object",
+        "properties": {
+          "recId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "glpgmih9wr4v7"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jh0bae3uggpni"
+            }
+          },
+          "des": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "f5itq7coqhnb4"
+            }
+          },
+          "reportGrps": {
+            "x-stoplight": {
+              "id": "3tev2la58fgl9"
+            },
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportGroup",
+              "x-stoplight": {
+                "id": "1cm41jh94uma3"
+              }
+            }
+          }
+        }
+      },
+      "ReportGroupReportTemplate": {
+        "title": "ReportGroupReportTemplate",
+        "x-stoplight": {
+          "id": "9q5fmtwswiq9y"
+        },
+        "type": "object",
+        "examples": [
+          {
+            "reportGroupId": 0,
+            "reportTemplateId": 0
+          }
+        ],
+        "properties": {
+          "recId": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "hz4akw4vetcr9"
+            }
+          },
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "dce2hl5s2nkcg"
+            }
+          },
+          "des": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "ohvvcn56o25qq"
+            }
+          },
+          "reportTemps": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "vlqmca6mz5oxr"
+            },
+            "items": {
+              "$ref": "#/components/schemas/ReportTemplate",
+              "x-stoplight": {
+                "id": "0fygs9xgygoml"
+              }
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {},
+    "responses": {}
+  },
+  "tags": [
+    {
+      "name": "Function Group Report Group",
+      "description": "Function Group Report Group specific"
+    },
+    {
+      "name": "Report",
+      "description": "Report specific"
+    },
+    {
+      "name": "Report Group",
+      "description": "Report Group specific"
+    },
+    {
+      "name": "Report Group Report Template",
+      "description": "Report Group Report Template specific"
+    },
+    {
+      "name": "Report Template",
+      "description": "Report Template specific"
+    }
+  ]
+}
